@@ -27,5 +27,18 @@
     -webkit-backdrop-filter: blur( 9px );
     border-radius: 10px;
     border: 1px solid rgba( 255, 255, 255, 0.18 );
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
+}
+.manage_menu .menu_container .container a{
+    text-decoration: none;
+}
+
+.manage_menu .menu_container .container h1{
+    color: black;
+}
+.manage_menu .menu_container .container h1:hover{
+    color: red;
 }
