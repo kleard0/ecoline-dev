@@ -25,13 +25,30 @@
     color: white;
     font-family: Arial;
     font-size: larger;
+    display: flex;
+    justify-content: space-between;
+    justify-content: left;
 }
 .container-all .sidebar .section img{
     margin-top: 10px;
     height: 50%;
     width: auto;
 }
+.container-all .sidebar .section .material-symbols-outlined{
+    font-size: 50px;
+}
+.container-all .sidebar .section  span {
 
-.material-symbols-outlined {
+    font-size: 20px;
+    line-height: 80px;
+}
 
-font-size: 50px;}
+.container-all .sidebar .section a{
+    text-decoration: none;
+    color: white;
+
+}
+
+.title{
+    color: rgb(148, 191, 255);
+}
