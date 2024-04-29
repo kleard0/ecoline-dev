@@ -39,7 +39,7 @@
                     <span class="material-symbols-outlined">
                         mail
                         </span>
-                        <span><a href="messagerie/index.php">Messagerie</a>
+                        <span><a href="index.php">Messagerie</a>
                         </span>
                 </div>
                 <div class="section">
@@ -70,7 +70,7 @@
                     <span class="material-symbols-outlined">
                         restaurant
                         </span>
-                        <span> Repas</span>
+                        <span>Repas</span>
                 </div>
             </div>
         </div>
@@ -85,23 +85,60 @@
             </div>
             <div class="main-container">
                 <div class="container">
-                    <a href="formulaire.php">Nouveau message</a>
-                    <div class="button-container">
-                            <a href="formulaire.php" class="rounded-button">Nouveau message</a>
-                        </div>
-                    </div>
+                    
 
 
                     <div class="view-message">  <!--carré blanc-->
-                      
-                       
+                        <form method="post" action="">
+                            <label for="firstname">Prénom:</label>
+                            <input type="text" name="firstname" id="firstname" required><br><br>
+                            
+                            <label for="lastname">Nom:</label>
+                            <input type="text" name="lastname" id="lastname" required><br><br>
+                            
+                            <label for="message_text">Message:</label>
+                            <input type="message_text" name="message_text" id="message_text" required><br><br>
+                            
+                            <input type="submit" value="Enregistrer">
+                        </form>
                         
+                        <?php
+                        $servername = "localhost";
+                        $username = "message";
+                        $password = "4VZzATv&jiCV5Jo*5m5i@!X^#PbK9ijx";
+                        $dbname = "test";
+                
+                        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                            $firstname = $_POST["firstname"];
+                            $lastname = $_POST["lastname"];
+                            $message_text = $_POST["message_text"];
+                
+                            // Create connection
+                            $conn = new mysqli($servername, $username, $password, $dbname);
+                            // Check connection SQL
+                            if ($conn->connect_error) {
+                                die("Connection failed: " . $conn->connect_error);
+                            }
+                
+                            $sql = "INSERT INTO helloworld (firstname, lastname, message_text)
+                            VALUES ('$firstname', '$lastname', '$message_text')";
+                
+                            if ($conn->query($sql) === TRUE) {
+                                echo "Message enregistré avec succès";
+                            } else {
+                                echo "Erreur SQL" . $sql . "<br>" . $conn->error;
+                            }
+                
+                            $conn->close(); 
+                        }
+                        ?>
                     </div>
 
 
                        
                         
-                   
+                    <button onclick="history.back()">Retour</button>
+
 
                 </div>
 
