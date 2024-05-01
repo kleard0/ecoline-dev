@@ -1,72 +1,90 @@
 import mysql.connector
 from mysql.connector import errorcode
+from datetime import date, timedelta
 import random
 
+# Connexion à la base de données
 try:
     mydb = mysql.connector.connect(
-        host="localhost",
-        user="root",
-        password="",
-        database="ecoline_livremanuel"
-    )
+    host="localhost",
+    user="root",
+    password="",
+    database="ecoline_livremanuel"
+)
     cursor = mydb.cursor()
 
-    def trueorfalse():
-        return random.choice([True, False])
-        
+    genres = [
+        ("Sf",),
+        ("Romance",),
+        ("Thriller",),
+        ("Fantistique",),
+        ("Dramatique",)
+    ]
+    insert_genre = "INSERT INTO genre (genre) VALUES (%s )"
+    cursor.executemany(insert_genre, genres)
+    mydb.commit()
+
+    authors = [
+        ("Kylian Leard",),
+        ("Kylian Lelard",),
+        ("Kylian Lezard",),
+        ("Kylian Lamard",),
+        ("Kylian Tetard",)
+    ]
+    insert_author = "INSERT INTO author (author)  VALUES (%s)"
+    cursor.executemany(insert_author, authors)
+    mydb.commit()
+
+    
+
+
     def barcode_generation():
-        return random.randint(10000000, 99999999)
+        barcode = (random.randint(10000000, 99999999),)
+        return barcode
     
     def isbn_generation():
-        return random.randint(1000000000000, 9999999999999)
+        isbn = (random.randint(1000000000000, 9999999999999),)
+        return isbn
     
-    def title_generation(index):
-        return "Livre" + str(index)
+    def title_generation():
+        for i in range(6):
+            title = "Livre" + i
+            return title
         
-    def genre_choice():
-        genres = ["Sf", "Romance", "Thriller", "Fantistique", "Dramatique"]
-        return random.choice(genres)
-
-    def author_choice():
-        authors = ["Kylian Leard", "Kylian Lelard", "Kylian Lezard", "Kylian Lamard", "Kylian Tetard"]
-        return random.choice(authors)
+    def BookorManuel():
+        result = (random.randint(0, 50),)
+        if result  <= 50:
+            return False
+        else: return True
+        
+    def author_generation():
+        
+        
+        
 
     books_and_textbooks = [
-        (barcode_generation(), title_generation(i), trueorfalse(), genre_choice(), isbn_generation(), trueorfalse(), author_choice())
-        for i in range(6)
+        (title_generation(), BookorManuel(), 1, isbn_generation(), barcode_generation(), 1),
+        (title_generation(), BookorManuel(), 3, isbn_generation(), barcode_generation(), 2),
+        (title_generation(), BookorManuel(), 2, isbn_generation(), barcode_generation(), 3),
+        (title_generation(), BookorManuel(), 4, isbn_generation(), barcode_generation(), 4),
+        (title_generation(), BookorManuel(), 5, isbn_generation(), barcode_generation(), 5)
     ]
-
-    insert_book = "INSERT INTO Books(barcode, title, is_book, genre, isbn, is_borrowed, author) VALUES (%s, %s, %s, %s, %s, %s, %s)"
+    insert_book = "INSERT INTO BookorTextbook (title, books, textbook, genre_id, isbn, barcode, author_id) VALUES (%s, %s, %s, %s, %s, %s, %s)"
     cursor.executemany(insert_book, books_and_textbooks)
     mydb.commit()
-    
-    def barcode_generation():
-        return random.randint(10000000, 99999999)
 
-    def firstname_generation():
-        first_names = ["Kylian" + str(i) for i in range(6)]
-        return random.choice(first_names)
-
-    def lastname_generation():
-        last_names = ["Kylian" + str(i) for i in range(6)]
-        return random.choice(last_names)
-
-    def city_generation():
-        cities = ["Dijon" + str(i) for i in range(6)]
-        return random.choice(cities)
-
+ 
     users = [
-        (barcode_generation(), firstname_generation(), lastname_generation(), city_generation(), random.randint(0, 5))
-        for _ in range(6)  
+        ("Kylian", "Leard", "Fleurey-sur-Ouche", "0754329309", "kylian.leardpro@gmail.com", date(2004, 7, 22), random.choice(barcodes)[0], 1),
+        ("Armand", "Jurkowski", "Dijon", "0102030405", "arman.jrk@gmail.com", date(2004, 4, 8), random.choice(barcodes)[0], 5)
     ]
-
-    insert_user = "INSERT INTO student (barcode, first_name, last_name, city, book_id) VALUES (%s, %s, %s, %s, %s)"
+    insert_user = "INSERT INTO users (first_name, last_name, city, mobile_number, email, birthdate, barcode, BookorTextbook_id) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"
     cursor.executemany(insert_user, users)
     mydb.commit()
 
     cursor.close()
     mydb.close()
-
+    
 except mysql.connector.Error as err:
     if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
         print("L'accès vous est refusé monsieur Kylian")
@@ -74,3 +92,5 @@ except mysql.connector.Error as err:
         print("La BDD n'existe point monsieur Kylian.")
     else:
         print(err)
+
+
