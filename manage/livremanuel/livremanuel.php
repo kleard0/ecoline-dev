@@ -32,15 +32,24 @@ $connexion = mysqli_connect($serveur, $utilisateur, $motDePasse, $baseDeDonnees)
 if (!$connexion) {
     die("Échec de la connexion : " . mysqli_connect_error());
 }
-$requete = "SELECT * FROM books";
-$resultat = $connexion->query($requete);
+// Je récupère les livres dans ma bdd (problème, ça récupère tt)
+$requete_books = "SELECT * FROM books";
+$books_data = $connexion->query($requete_books);
 
+// Je récupère mon historique dans ma bdd (mm problème)
+$requete_history = "SELECT * FROM history";
+$history_data = $connexion->query($requete_history);
 
-$donnees = array();
-while ($ligne = $resultat->fetch_assoc()) {
-    $donnees[] = $ligne;
+ 
+$donnees_books = array();
+while ($ligne_books = $books_data->fetch_assoc()) {
+    $donnees_books[] = $ligne_books;
 }
 
+$donnees_history = array();
+while ($ligne_history = $history_data->fetch_assoc()) {
+    $donnees_history[] = $ligne_history;
+}
 
 ?>
 <body>
@@ -112,10 +121,29 @@ while ($ligne = $resultat->fetch_assoc()) {
                     <div class="add"> <a href="add.html"><h1>Ajouter </h1></a></div>
                     <div class="hystory"> <a href="historique.php"><h1>Historique </h1> </a></div>
                     <div class="mystock"><a href="stock.php"><h1>Mon stock </h1> </a></div>
+                    <div class="mystock"><a href="stock.php"><h1>Emprunter </h1> </a></div>
+                    <div class="mystock"><a href="stock.php"><h1>Rendre </h1> </a></div>
                 </div>
                <div class="me">
                     <div class="history_shortcut">
-                        <h1> Dernières transactions</h1>
+                        <h1> Dernières transactions </h1>
+                        <table class="historique_table">
+                            <tr>
+                                <th>ID </th>
+                                <th>Date</th>
+                                <th>Type</th>
+                                <th>Information</th>
+                            </tr>
+                        <?php
+                            foreach ($donnees_history as $ligne_history) {
+                                echo "<tr>";
+                                foreach ($ligne_history as $valeur_history) {
+                                    echo "<td>" . $valeur_history . "</td>";
+                                }
+                                echo "</tr>";
+                            }
+                        ?>
+                        </table>
                     </div>
                     <div class="mystock_shortcut">
                         <h1> Mes livres </h1>
@@ -130,10 +158,10 @@ while ($ligne = $resultat->fetch_assoc()) {
                                 <th>Autheur</th>
                             </tr>
                         <?php
-                            foreach ($donnees as $ligne) {
+                            foreach ($donnees_books as $ligne_books) {
                                 echo "<tr>";
-                                foreach ($ligne as $valeur) {
-                                    echo "<td>" . $valeur . "</td>";
+                                foreach ($ligne_books as $valeur_books) {
+                                    echo "<td>" . $valeur_books . "</td>";
                                 }
                                 echo "</tr>";
                             }

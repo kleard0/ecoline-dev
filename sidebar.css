@@ -16,10 +16,9 @@
     margin-right: auto;
 }
 .container-all .sidebar .section{
-    background-color: #153243;
     width: 80%;
     border-radius: 5%;
-    height: 80px;
+    height: 8vh;
     margin-bottom: 30px;
     color: white;
     font-family: Arial;
@@ -44,12 +43,15 @@
 
 .container-all .sidebar .section a{
     text-decoration: none;
-    color: #284B63;
+    color: white;
 
 }
 
 .title{
     color: rgb(148, 191, 255);
 }
-
+@media screen and (max-width: 1920px) {
+   
+    
+}
 

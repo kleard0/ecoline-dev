@@ -18,6 +18,7 @@
         @import url(../../style.css);
         @import url(../../icons.css);
         @import url(livremanuel.css);
+        @import url(add.css);
         @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
     </style>
@@ -84,6 +85,34 @@
                     <img src="/image/logo-ecoline.png">
                 </div>
                 <div class="name-box">
+                </div>
+            </div>
+            <div class="add_section">
+                <div class="field_section">
+                    <form action="data_add.php" method="post">
+                        <div class="field">
+                            <input name="book_ID" id="book_ID" type="number" placeholder="Code barre : ID"/>
+                        </div>
+
+                        <div class="field"> 
+                            <input name="book_name" id="book_name" type="text" placeholder="Nom du livre"/>
+                        </div>
+                        <div class="field">
+                            <input name="book_author" id="book_author" type="text" placeholder="Auteur du livre"/>
+                        </div>
+                        <div class="field">
+                            <input name="book_isbn" id="book_isbn" type="text" placeholder="Code ISBN"/>
+                        </div>
+                        <button type="submit">Valider</button>
+                    </form>
+                </div>
+                <div class="button_section">
+                    <div class="button">
+                        <a href="../livremanuel/livremanuel.php"><p>Annuler</p></a>
+                        </div>
+                    <div class="button">
+                        <p>Envoyer</p>
+                    </div>
                 </div>
             </div>
         
