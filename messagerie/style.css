@@ -55,7 +55,7 @@
     flex-wrap: wrap;
 }
 
-.main-container .container{
+.main-container .container{ 
     width: 700px;
     height: 400px;
     background-color: white;

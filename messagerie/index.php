@@ -24,7 +24,6 @@
     h1 {
     text-align: center;
     }
-
     </style>
     
 </head>
@@ -39,7 +38,6 @@
                         menu
                         </span>
                         <span><a href="/index.html">Accueil</a>
-                        
                 </div>
                 <div class="section">
                     <span class="material-symbols-outlined">
@@ -105,14 +103,7 @@
                         
                     </div>
 
-
-                       
-                        
-                   
-
                 </div>
-
-
 
             </div>                
         </div>
