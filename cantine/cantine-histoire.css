@@ -1,0 +1,43 @@
+
+.page-title{
+    color:  #153243;;
+}
+
+.main-container .date-container{
+    width: 100%;
+    height: 7.5%;
+    background-color: rgb(174, 202, 255);
+    border-radius: 10px;
+    margin-top: 1%;
+    margin-left: 1%;
+    margin-right: 1%;
+    text-align: left;    
+
+}
+.main-container .date-container span{
+    font-family: Arial;
+    font-size: 5vh;
+text-decoration: none;
+color:  #153243;
+    
+}
+.main-container .container{
+    width: 100%;
+    height: auto;
+    background-color: white;
+    border-radius: 10px;
+    margin-top: 1%;
+    margin-left: 1%;
+    margin-right: 1%;
+    text-align: center;    
+
+    box-shadow: 0vh 1vh 1vh rgb(60, 60, 60);
+}
+
+.main-container .container p{
+    font-family: Arial;
+    font-size: 2vh;
+text-decoration: none;
+color:  #153243;
+}
+

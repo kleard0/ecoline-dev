@@ -42,6 +42,13 @@
     width: auto;
 }
 
+.page-title{
+        margin-top: 5vh;
+        font-family: Arial;
+        font-size: 2vh;
+        text-align: center;
+        
+}
 .main-container{
     display: flex;
     width: 90%;
@@ -49,7 +56,7 @@
     margin-left: auto;
     margin-right: auto;
 
-    flex-direction: row;
+    flex-direction: column;
 
 }
 
