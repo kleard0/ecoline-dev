@@ -20,7 +20,13 @@
         @import url(style.css);
         @import url(sidebar.css);
         @import url(icons.css);
+
+    h1 {
+    text-align: center;
+    }
+
     </style>
+    
 </head>
 <!--Body-->
 <body>
@@ -39,7 +45,7 @@
                     <span class="material-symbols-outlined">
                         mail
                         </span>
-                        <span><a href="messagerie/index.php">Messagerie</a>
+                        <span><a href="index.php">Messagerie</a>
                         </span>
                 </div>
                 <div class="section">
@@ -74,7 +80,7 @@
                 </div>
             </div>
         </div>
-
+        <p style="font-family:Arial">
         <div class="main">
             <div class="head">
                 <div class="logo-block">
@@ -85,6 +91,7 @@
             </div>
             <div class="main-container">
                 <div class="container">
+                    <h1 style="font-family:Arial, Helvetica, sans-serif ";>Boîte de réception</h1>
                     
                     <div class="button-container">
                             <a href="formulaire.php" class="rounded-button">Nouveau message</a>
@@ -111,7 +118,7 @@
         </div>
 
     </div>
-
+    
 </body>
 </html>
 
