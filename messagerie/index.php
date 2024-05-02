@@ -20,7 +20,12 @@
         @import url(style.css);
         @import url(sidebar.css);
         @import url(icons.css);
+
+    h1 {
+    text-align: center;
+    }
     </style>
+    
 </head>
 <!--Body-->
 <body>
@@ -33,7 +38,6 @@
                         menu
                         </span>
                         <span><a href="/index.html">Accueil</a>
-                        
                 </div>
                 <div class="section">
                     <span class="material-symbols-outlined">
@@ -52,7 +56,7 @@
                     <span class="material-symbols-outlined">
                         book_2
                         </span>
-                        <span>Agenda</span>
+                        <span> Agenda</span>
                 </div>
                 <div class="section">
                     <span class="material-symbols-outlined">
@@ -70,11 +74,11 @@
                     <span class="material-symbols-outlined">
                         restaurant
                         </span>
-                        <span>Repas</span>
+                        <span> Repas</span>
                 </div>
             </div>
         </div>
-
+        <p style="font-family:Arial">
         <div class="main">
             <div class="head">
                 <div class="logo-block">
@@ -85,70 +89,27 @@
             </div>
             <div class="main-container">
                 <div class="container">
+                    <h1 style="font-family:Arial, Helvetica, sans-serif ";>Boîte de réception</h1>
                     
-
-
-                    <div class="view-message">  <!--carré blanc-->
-                        <form method="post" action="">
-                            <label for="firstname">Prénom:</label>
-                            <input type="text" name="firstname" id="firstname" required><br><br>
-                            
-                            <label for="lastname">Nom:</label>
-                            <input type="text" name="lastname" id="lastname" required><br><br>
-                            
-                            <label for="message_text">Message:</label>
-                            <input type="message_text" name="message_text" id="message_text" required><br><br>
-                            
-                            <input type="submit" value="Enregistrer">
-                        </form>
-                        
-                        <?php
-                        $servername = "localhost";
-                        $username = "message";
-                        $password = "4VZzATv&jiCV5Jo*5m5i@!X^#PbK9ijx";
-                        $dbname = "test";
-                
-                        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                            $firstname = $_POST["firstname"];
-                            $lastname = $_POST["lastname"];
-                            $message_text = $_POST["message_text"];
-                
-                            // Create connection
-                            $conn = new mysqli($servername, $username, $password, $dbname);
-                            // Check connection SQL
-                            if ($conn->connect_error) {
-                                die("Connection impossible à la base de données" . $conn->connect_error);
-                            }
-                
-                            $sql = "INSERT INTO helloworld (firstname, lastname, message_text)
-                            VALUES ('$firstname', '$lastname', '$message_text')";
-                
-                            if ($conn->query($sql) === TRUE) {
-                                echo "Message envoyé avec succès.";
-                            } else {
-                                echo "Erreur dans l'envoie du message." . $sql . "<br>" . $conn->error;
-                            }
-                
-                            $conn->close(); 
-                        }
-                        ?>
+                    <div class="button-container">
+                            <a href="formulaire.php" class="rounded-button">Nouveau message</a>
+                        </div>
                     </div>
 
 
+                    <div class="view-message">  <!--carré blanc-->
+                      
                        
                         
-                    <a href="index.php" class="rounded-button">Retour</a>
-
+                    </div>
 
                 </div>
-
-
 
             </div>                
         </div>
 
     </div>
-
+    
 </body>
 </html>
 

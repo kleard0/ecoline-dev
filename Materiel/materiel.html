@@ -1,34 +1,10 @@
-<!--
-                                                                      
-                                                                      
-    ,---,.                     ,--,                                   
-  ,'  .' |                   ,--.'|     ,--,                          
-,---.'   |            ,---.  |  | :   ,--.'|         ,---,            
-|   |   .'           '   ,'\ :  : '   |  |,      ,-+-. /  |           
-:   :  |-,   ,---.  /   /   ||  ' |   `--'_     ,--.'|'   |   ,---.   
-:   |  ;/|  /     \.   ; ,. :'  | |   ,' ,'|   |   |  ,"' |  /     \  
-|   :   .' /    / ''   | |: :|  | :   '  | |   |   | /  | | /    /  | 
-|   |  |-,.    ' / '   | .; :'  : |__ |  | :   |   | |  | |.    ' / | 
-'   :  ;/|'   ; :__|   :    ||  | '.'|'  : |__ |   | |  |/ '   ;   /| 
-|   |    \'   | '.'|\   \  / ;  :    ;|  | '.'||   | |--'  '   |  / | 
-|   :   .'|   :    : `----'  |  ,   / ;  :    ;|   |/      |   :    | 
-|   | ,'   \   \  /           ---`-'  |  ,   / '---'        \   \  /  
-`----'      `----'                     ---`-'                `----'   
-                                                                      
--->
-
-
-<!--Ecoline-->
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <!--Meta-->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Messagerie</title>
-    <link rel="icon" href="/favicon.ico">
-    <!--Icon font Google-->
+    <title>Gestion des materiels</title>
+    <link rel="icon" href="favicon.ico" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
@@ -37,37 +13,39 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-    <!--CSS-->
     <style type="text/css">
-        @import url(style.css);
-        @import url(/sidebar.css);
-        @import url(icons.css);
+        @import url(../../sidebar.css);
+        @import url(../../style.css);
+        @import url(../../icons.css);
+        @import url(../Materiel/materiel.css);
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
     </style>
 </head>
-<!--Body-->
+
 <body>
     <div class="container-all">
         <div class="sidebar">
             <div class="section-container">
                 <div class="section">
+                    <a href="../index.html">
                     <span class="material-symbols-outlined">
                         menu
                         </span>
-                        <span> Accueil</span>
-                        
+                        <span > Accueil</span>
+                    </a>   
                 </div>
+
                 <div class="section">
                     <span class="material-symbols-outlined">
                         mail
                         </span>
-                        <span><a href="/messagerie/messagerie.html">Messagerie</a>
-                        </span>
+                        <span> Messagerie</span>
                 </div>
                 <div class="section">
                     <span class="material-symbols-outlined">
                         calendar_today
                         </span>
-                        <span>Planning</span>
+                        <span> Planning</span>
                 </div>
                 <div class="section">
                     <span class="material-symbols-outlined">
@@ -82,16 +60,20 @@
                         <span>Note</span>
                 </div>
                 <div class="section">
+                    <a href="/manage/manage.html">
                     <span class="material-symbols-outlined">
                         shopping_bag
                         </span>
-                        <span>Gestion</span>
+                        <span class="title">Gestion</span>
+                    </a>
                 </div>
                 <div class="section">
-                    <span class="material-symbols-outlined">
+                    <a href="/cantine/cantine.html">
+                        <span class="material-symbols-outlined">
                         restaurant
                         </span>
-                        <span> Repas</span>
+                        <span> Cantine</span>
+                    </a>
                 </div>
             </div>
         </div>
@@ -102,20 +84,33 @@
                     <img src="/image/logo-ecoline.png">
                 </div>
                 <div class="name-box">
+                </div>    
+            </div>
+            <div class="manage_menu">
+                <div class="menu_container">
+                    <div class="container">
+                        <a href="">
+                            <h1>Option 1</h1>
+                        </a>
+                    </div>
+                    <div class="container">
+                        <a href="">
+                            <h1>Option 2</h1>
+                        </a>
+                    </div>
+                    <div class="container">
+                        <a href="">
+                            <h1>Option 3</h1>
+                        </a>
+                    </div>
                 </div>
             </div>
-            <div class="main-container">
-                <div class="container"></div>
-
-
-
-
-
-            </div>                
+        </div>
+        </main>
+                          
         </div>
 
     </div>
-
 </body>
 </html>
 

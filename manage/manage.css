@@ -1,0 +1,44 @@
+.manage_menu h1{
+    text-align: center;
+    color: white;
+        font-family: "Roboto", sans-serif;
+        font-weight: 500;
+        font-style: normal;
+        font-size: 3.5em;
+        margin-top: 20px;
+}
+
+.manage_menu .menu_container{
+    margin-top: 150px;
+    display: flex;
+    width: 80%;
+    height: 30vh;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: space-between;
+}
+.manage_menu .menu_container .container{
+    height: 100%;
+    width: 40%;
+    border-radius: 10px;
+    background: rgba( 255, 255, 255, 1 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 9px );
+    -webkit-backdrop-filter: blur( 9px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.manage_menu .menu_container .container a{
+    text-decoration: none;
+}
+
+.manage_menu .menu_container .container h1{
+    color: black;
+}
+.manage_menu .menu_container .container h1:hover{
+    color: red;
+}
