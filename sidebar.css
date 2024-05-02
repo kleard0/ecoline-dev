@@ -16,9 +16,10 @@
     margin-right: auto;
 }
 .container-all .sidebar .section{
+    background-color: #153243;
     width: 80%;
     border-radius: 5%;
-    height: 8vh;
+    height: 80px;
     margin-bottom: 30px;
     color: white;
     font-family: Arial;
@@ -43,7 +44,7 @@
 
 .container-all .sidebar .section a{
     text-decoration: none;
-    color: white;
+    color: #284B63;
 
 }
 
