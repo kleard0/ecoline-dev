@@ -32,13 +32,21 @@ $connexion = mysqli_connect($serveur, $utilisateur, $motDePasse, $baseDeDonnees)
 if (!$connexion) {
     die("Échec de la connexion : " . mysqli_connect_error());
 }
-$requete = "SELECT * FROM books";
-$resultat = $connexion->query($requete);
 
 
-$donnees = array();
-while ($ligne = $resultat->fetch_assoc()) {
-    $donnees[] = $ligne;
+$requete_books = "SELECT * FROM books";
+$resultat_books = $connexion->query($requete_books);
+$requete_history = "SELECT * FROM history";
+$resultat_history = $connexion->query($requete_history);
+
+
+$donnees_books = array();
+while ($ligne_books = $resultat_books->fetch_assoc()) {
+    $donnees_books[] = $ligne_books;
+}
+$donnees_history = array();
+while ($ligne_history = $resultat_history->fetch_assoc()) {
+    $donnees_history[] = $ligne_history;
 }
 
 
@@ -115,7 +123,24 @@ while ($ligne = $resultat->fetch_assoc()) {
                 </div>
                <div class="me">
                     <div class="history_shortcut">
-                        <h1> Dernières transactions</h1>
+                    <h1> Dernières transactions </h1>
+                        <table class="mystock_table">
+                            <tr>
+                                <th>ID </th>
+                                <th>Date</th>
+                                <th>Type</th>
+                                <th>Information</th>
+                            </tr>
+                        <?php
+                            foreach ($donnees_history as $ligne_history) {
+                                echo "<tr>";
+                                foreach ($ligne_history as $valeur_history) {
+                                    echo "<td>" . $valeur_history . "</td>";
+                                }
+                                echo "</tr>";
+                            }
+                        ?>
+                    </table>
                     </div>
                     <div class="mystock_shortcut">
                         <h1> Mes livres </h1>
@@ -130,10 +155,10 @@ while ($ligne = $resultat->fetch_assoc()) {
                                 <th>Autheur</th>
                             </tr>
                         <?php
-                            foreach ($donnees as $ligne) {
+                            foreach ($donnees_books as $ligne_books) {
                                 echo "<tr>";
-                                foreach ($ligne as $valeur) {
-                                    echo "<td>" . $valeur . "</td>";
+                                foreach ($ligne_books as $valeur_books) {
+                                    echo "<td>" . $valeur_books . "</td>";
                                 }
                                 echo "</tr>";
                             }
