@@ -52,7 +52,7 @@
                     <span class="material-symbols-outlined">
                         book_2
                         </span>
-                        <span> Agenda</span>
+                        <span>Agenda</span>
                 </div>
                 <div class="section">
                     <span class="material-symbols-outlined">
@@ -117,16 +117,16 @@
                             $conn = new mysqli($servername, $username, $password, $dbname);
                             // Check connection SQL
                             if ($conn->connect_error) {
-                                die("Connection failed: " . $conn->connect_error);
+                                die("Connection impossible à la base de données" . $conn->connect_error);
                             }
                 
                             $sql = "INSERT INTO helloworld (firstname, lastname, message_text)
                             VALUES ('$firstname', '$lastname', '$message_text')";
                 
                             if ($conn->query($sql) === TRUE) {
-                                echo "Message enregistré avec succès";
+                                echo "Message envoyé avec succès.";
                             } else {
-                                echo "Erreur SQL" . $sql . "<br>" . $conn->error;
+                                echo "Erreur dans l'envoie du message." . $sql . "<br>" . $conn->error;
                             }
                 
                             $conn->close(); 
@@ -137,7 +137,7 @@
 
                        
                         
-                    <button onclick="history.back()">Retour</button>
+                    <a href="index.php" class="rounded-button">Retour</a>
 
 
                 </div>

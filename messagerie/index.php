@@ -85,7 +85,7 @@
             </div>
             <div class="main-container">
                 <div class="container">
-                    <a href="formulaire.php">Nouveau message</a>
+                    
                     <div class="button-container">
                             <a href="formulaire.php" class="rounded-button">Nouveau message</a>
                         </div>
