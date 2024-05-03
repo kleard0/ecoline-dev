@@ -90,53 +90,55 @@
 
                     <div class="view-message">  <!--carré blanc-->
                         <form method="post" action="">
-                            <label for="firstname">Prénom:</label>
-                            <input type="text" name="firstname" id="firstname" required><br><br>
+                            <label for="destinataire_id">Destinataire ID:</label>
+                            <input type="text" name="destinataire_id" id="destinataire_id" required><br><br>
                             
-                            <label for="lastname">Nom:</label>
-                            <input type="text" name="lastname" id="lastname" required><br><br>
+                            <label for="message_content">Sujet:</label>
+                            <input type="text" name="message_content" id="message_content" required><br><br>
                             
-                            <label for="message_text">Message:</label>
-                            <input type="message_text" name="message_text" id="message_text" required><br><br>
+                            <label for="message_text">Contenu du message:</label>
+                            <input type="text" name="message_text" id="message_text" required><br><br>
                             
-                            <input type="submit" value="Enregistrer">
+                          <!--  <label for="message_media">Pièce jointe:</label>
+                            <input type="file" name="message_media" id="message_media"><br><br>
+-->
+                            <input type="submit" value="Envoyer le message">
                         </form>
-                        
+                       
                         <?php
                         $servername = "localhost";
                         $username = "message";
                         $password = "4VZzATv&jiCV5Jo*5m5i@!X^#PbK9ijx";
-                        $dbname = "test";
-                
+                        $dbname = "ecoline";
+
                         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                            $firstname = $_POST["firstname"];
-                            $lastname = $_POST["lastname"];
+                            $destinataire_id = $_POST["destinataire_id"];
+                            $message_content = $_POST["message_content"];
                             $message_text = $_POST["message_text"];
-                
+                            
+
                             // Create connection
                             $conn = new mysqli($servername, $username, $password, $dbname);
-                            // Check connection SQL
+                            // Check connection
                             if ($conn->connect_error) {
                                 die("Connection impossible à la base de données" . $conn->connect_error);
                             }
-                
-                            $sql = "INSERT INTO helloworld (firstname, lastname, message_text)
-                            VALUES ('$firstname', '$lastname', '$message_text')";
-                
+
+                            $sql = "INSERT INTO message (destinataire_id, message_content, message_text)
+                            VALUES ('$destinataire_id', '$message_content', '$message_text')";
+
                             if ($conn->query($sql) === TRUE) {
                                 echo "Message envoyé avec succès.";
                             } else {
-                                echo "Erreur dans l'envoie du message." . $sql . "<br>" . $conn->error;
+                                echo "Erreur dans l'envoi du message." . $sql . "<br>" . $conn->error;
                             }
-                
+
                             $conn->close(); 
                         }
                         ?>
                     </div>
 
-
-                       
-                        
+   
                     <a href="index.php" class="rounded-button">Retour</a>
 
 
