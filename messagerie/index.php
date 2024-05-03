@@ -16,8 +16,9 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 
     <!--CSS-->
+    <!--Changer les paths des fichiers styles pour la fin du projet-->
     <style type="text/css">
-        @import url(style.css);
+        @import url(/github/messagerie/style.css); 
         @import url(sidebar.css);
         @import url(icons.css);
 
@@ -96,6 +97,47 @@
                         </div>
                     </div>
 
+                    <?php
+                    // Connect to your database
+                    $servername = "localhost";
+                    $username = "message";
+                    $password = "4VZzATv&jiCV5Jo*5m5i@!X^#PbK9ijx";
+                    $dbname = "test";
+
+                    $conn = new mysqli($servername, $username, $password, $dbname);
+                    if ($conn->connect_error) {
+                        die("Connection failed: " . $conn->connect_error);
+                    }
+
+                    // Fetch data from the database
+                    $sql = "SELECT firstname, lastname, message_text FROM helloworld";
+                    $result = $conn->query($sql);
+
+                    // Display the data
+                    if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
+                            echo "<p>First Name: " . $row["firstname"] . "</p>";
+                            echo "<p>Last Name: " . $row["lastname"] . "</p>";
+                            echo "<p>Message: " . $row["message_text"] . "</p>";
+                            echo "<table>";
+                            echo "<tr><th>First Name</th><th>Last Name</th><th>Message</th></tr>";
+                            while ($row = $result->fetch_assoc()) {
+                                echo "<tr>";
+                                echo "<td>" . $row["firstname"] . "</td>";
+                                echo "<td>" . $row["lastname"] . "</td>";
+                                echo "<td>" . $row["message_text"] . "</td>";
+                                echo "</tr>";
+                            }
+                            echo "</table>";
+                        }
+                    } else {
+                        echo "No data found.";
+                    }
+
+                
+                    // Close the database connection
+                   
+                    ?>
 
                     <div class="view-message">  <!--carré blanc-->
                       
