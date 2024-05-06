@@ -1,3 +1,6 @@
+body {
+    font-family: Arial;
+}
 .container-all{
         display: flex;
         width: 100%;
@@ -6,7 +9,7 @@
 }
 
 .container-all .main{
-        width: 85%;
+        width: 100%;
         height: 100%;
         display: flex;
         flex-direction: column;
@@ -27,6 +30,7 @@
 }
 .container-all .head .logo-block img{
         height: 100%;
+        
 }
 .container-all .head .name-box{
         width: 50%;
@@ -51,26 +55,26 @@
 }
 
 .main-container .container{ 
-        width: 700px;
-        height: 400px;
+        width: 100%;
+        height: 100%;
         background-color: white;
         border-radius: 10px;
-        margin-top: 50px;
+        
 
 }
 
 @media screen and (max-width: 1920px) {
         .main-container .container{
-                width: 650px;
-                height: 200px;
+                width: 100%;
+                height: 98%;
         }
         
 }
 
 @media screen and (max-width: 1700px) {
         .main-container .container{
-                width: 800px;
-                height: 300px;
+                width: 100%;
+                height: 98%;
         }
         
 }

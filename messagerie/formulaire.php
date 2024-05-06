@@ -18,8 +18,7 @@
     <style type="text/css">
         @import url(style.css);
         @import url(sidebar.css);
-        @import url(icons.css);
-        @import url(/github/messagerie/test.css); 
+        @import url(formulaire.css); 
     </style>
 </head>
 <!--Body-->
@@ -84,54 +83,45 @@
             <div class="main-container">
                 <div class="container">
                     <div class="view-message">  <!--carré blanc-->
-                        <h2>Responsive Form</h2>
-                        <p>Resize the browser window to see the effect. When the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other.</p>
-
+                      
                         <div class="container">
-                            <form action="/action_page.php">
+                        <h1>Envoyer un message</h1>
+                            <form action="">
                                 <div class="row">
                                     <div class="col-25">
-                                        <label for="fname">First Name</label>
+                                        <label for="destinataire_id">Envoyer à :</label>
                                     </div>
                                     <div class="col-75">
-                                        <input type="text" id="fname" name="firstname" placeholder="Your name..">
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-25">
-                                        <label for="lname">Last Name</label>
-                                    </div>
-                                    <div class="col-75">
-                                        <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+                                        <input type="text" id="destinataire_id" name="destinataire_id" placeholder="Aucun destinataire sélectionné">
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-25">
-                                        <label for="country">Country</label>
+                                        <label for="message_content">Sujet :</label>
                                     </div>
                                     <div class="col-75">
-                                        <select id="country" name="country">
-                                            <option value="australia">Australia</option>
-                                            <option value="canada">Canada</option>
-                                            <option value="usa">USA</option>
-                                        </select>
+                                        <input type="text" id="message_content" name="message_content" placeholder="Sujet du message">
                                     </div>
                                 </div>
+                                
                                 <div class="row">
                                     <div class="col-25">
-                                        <label for="subject">Subject</label>
+                                        <label for="subject">Message :</label>
                                     </div>
                                     <div class="col-75">
-                                        <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+                                        <textarea id="subject" name="subject" placeholder="Ecrivez votre message ici" style="height:200px"></textarea>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <input type="submit" value="Submit">
+                                    <input type="submit" value="Envoyer">
+                                    <a href="index.php" class="rounded-button">Annuler</a>
                                 </div>
+                                
                             </form>
                         </div>
 
-                        <form method="post" action="">
+                
+                            <!--          <form method="post" action="">
                             <label for="destinataire_id">Destinataire ID:</label>
                             <input type="text" name="destinataire_id" id="destinataire_id" required><br><br>
                             
@@ -140,12 +130,13 @@
                             
                             <label for="message_text">Contenu du message:</label></br>
                             <textarea name="message_text" id="message_text" required></textarea><br><br>
-                            
-                            <!--  <label for="message_media">Pièce jointe:</label>
+                             <label for="message_media">Pièce jointe:</label>
                             <input type="file" name="message_media" id="message_media"><br><br>
-                            -->
+                           
                             <input type="submit" value="Envoyer le message">
-                        </form>
+                            <input type="back" value="Retour">
+                            <a href="index.php" class="rounded-button">Retour</a>
+                        </form> -->
 
                         <?php
                         $servername = "localhost";
@@ -179,7 +170,7 @@
                         ?>
                     </div>
 
-                    <a href="index.php" class="rounded-button">Retour</a>
+                    
                 </div>
             </div>                
         </div>
