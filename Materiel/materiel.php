@@ -31,12 +31,13 @@ while ($ligne_history = $resultat_history->fetch_assoc()) {
 <table class="mystock_table">
     <tr>
         <th>ID </th>
-        <th>Nom</th>
-        <th>Livre/Manuel</th>
-        <th>Genre</th>
+        <th>Nom matériel</th>
+        <th>Stock</th>
+        <th>Achat/Emprun</th>
         <th>ID Elève</th>
-        <th>ID Elève</th>
-        <th>Autheur</th>
+        <th>Date</th>
+        <th>Fournisseur</th>
+        <th>Expéditeur</th>
     </tr>
 <?php
     foreach ($donnees_produits as $ligne_produits) {
