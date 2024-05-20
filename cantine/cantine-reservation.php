@@ -25,7 +25,7 @@
 
 <body>
     <div class="container-all">
-        <div class="sidebar">
+        <div class="sidebar">  <!-- class pour le Sidebar -->
             <div class="section-container">
                 <div class="section">
                     <span class="material-symbols-outlined">
@@ -78,8 +78,8 @@
         </div>
 
         <div class="main">
-            <div class="head">
-                <div class="logo-block">
+            <div class="head"> <!-- class pour l'en-tête -->
+                <div class="logo-block"> 
                     <img src="/image/logo-ecoline.png">
                 </div>
                 <div class="name-box">

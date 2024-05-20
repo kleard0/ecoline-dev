@@ -1,5 +1,6 @@
 
 <?php
+//php login
     $host = "localhost";
     $user = "root";
     $password = "";
@@ -11,7 +12,7 @@
 }
 
 if($_SERVER["REQUEST_METHOD"]=="POST") {
-   
+   //utilise le data inséré dans le champ
     $parent_id=$_POST["parent_ID"];
 
     $req_parent = "SELECT * FROM parent where parent_id = '".$parent_id."' ";
@@ -20,6 +21,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST") {
     $row=mysqli_fetch_array($result);
     if ($result->num_rows > 0) {
         // output data of each row
+        //row 1: - row 2: - row 3: -
     echo "$row[0] : le parent est '$row[1] $row[2]'  ";
 }
 else {

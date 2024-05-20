@@ -6,7 +6,7 @@
 // CETTE PAGE SERA POUR LE PARENT A FAIRE L'APPEL
 //
 //
-//
+// PHP LOGIN
 $serveur = "localhost";
 $utilisateur = "root";
 $motDePasse = "";

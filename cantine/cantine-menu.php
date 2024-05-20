@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ecoline</title>
+    <title>Ecoline</title> <!-- liste pour les icons  -->
     <link rel="icon" href="favicon.ico" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
@@ -24,7 +24,7 @@
 
 <body>
     <div class="container-all">
-        <div class="sidebar">
+        <div class="sidebar"> <!-- class pour le Sidebar -->
             <div class="section-container">
                 <div class="section">
                     <span class="material-symbols-outlined">
@@ -77,17 +77,17 @@
         </div>
 
         <div class="main">
-            <div class="head">
-                <div class="logo-block">
+            <div class="head"> 
+                <div class="logo-block"> <!-- class pour l'en-tête -->
                     <img src="/image/logo-ecoline.png">
                 </div>
-                <div class="name-box">
+                <div class="name-box"> 
                 </div>
             </div>
             <div class="page-title">
                 <h1>Menu de Cantine</h1>
             </div>
-            <div class="main-container">
+            <div class="main-container"> <!-- class pour les containers -->
                 <div class="container">
                 <br><br><br><br><br><br>
                 <a href="/cantine/cantine-appel.php">
