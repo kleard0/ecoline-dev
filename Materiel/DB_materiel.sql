@@ -1,5 +1,7 @@
 CREATE DATABASE `ecoline`;
 
+ALTER DATABASE `ecoline` CHARSET=utf8;
+
 -- Création de la table `Produits`
 CREATE TABLE `Produits` (
   `product_id` INTEGER PRIMARY KEY,
@@ -15,6 +17,7 @@ CREATE TABLE `Stocks` (
   `stock_quantity` INTEGER,
   `stock_name` VARCHAR(255),
   `product_id` INTEGER,
+  `date_ajout` DATE,
   FOREIGN KEY (`product_id`) REFERENCES `Produits` (`product_id`)
 );
 
@@ -123,9 +126,9 @@ VALUES
 
 INSERT INTO `Stocks` (stock_id, stock_quantity, stock_name, product_id)
 VALUES
-(1, 100, 'Stylos bleus', 1),
-(2, 200, 'Cahiers A4', 2),
-(3, 150, 'Tablettes éducatives', 3);
+(1, 100, 'Stylos bleus', '2023-09-01', 1),
+(2, 200, 'Cahiers A4', '2023-09-01', 2),
+(3, 150, 'Tablettes éducatives', '2023-09-01', 3);
 
 -- Prêts
 INSERT INTO `Prets` (borrow_id, stock_id, client_ad, employe_ad, borrow_date, back_date, state_back)
