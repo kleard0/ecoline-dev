@@ -1,4 +1,3 @@
-
 <!--Ecoline-->
 <!DOCTYPE html>
 <html lang="fr">
@@ -16,8 +15,9 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 
     <!--CSS-->
+    <!--Changer les paths des fichiers styles pour la fin du projet-->
     <style type="text/css">
-        @import url(style.css);
+        @import url(/github/messagerie/style.css); 
         @import url(sidebar.css);
         @import url(icons.css);
 
@@ -90,12 +90,61 @@
             <div class="main-container">
                 <div class="container">
                     <h1 style="font-family:Arial, Helvetica, sans-serif ";>Boîte de réception</h1>
-                    
                     <div class="button-container">
-                            <a href="formulaire.php" class="rounded-button">Nouveau message</a>
-                        </div>
+                        <a href="formulaire.php" class="rounded-button">
+                            Nouveau message
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right" style="vertical-align: middle;">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </a>
                     </div>
 
+                    <?php
+                    /**
+                     * Connect to the database and fetch data from the "message" table.
+                     * Display the fetched data in a table.
+                     */
+
+                    // Connect to your database
+                    $servername = "localhost";
+                    $username = "message";
+                    $password = "4VZzATv&jiCV5Jo*5m5i@!X^#PbK9ijx";
+                    $dbname = "ecoline";
+
+                    $conn = new mysqli($servername, $username, $password, $dbname);
+                    if ($conn->connect_error) {
+                        die("Connection failed: " . $conn->connect_error);
+                    }
+
+                    // Fetch data from the database
+                    $sql = "SELECT destinataire_id,message_content, message_text FROM message";
+                    $result = $conn->query($sql);
+
+                    // Display the data
+                    if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
+                            echo "<p>ID Utilisateur: " . $row["destinataire_id"] . "</p>";
+                            echo "<p>Sujet: " . $row["message_content"] . "</p>";
+                            echo "<p>Message: " . $row["message_text"] . "</p>";
+                            echo "<table>";
+                            echo "<tr><th>ID Utilisateur</th><th>Sujet</th><th>Message</th></tr>";
+                            while ($row = $result->fetch_assoc()) {
+                                echo "<tr>";
+                                echo "<td>" . $row["destinataire_id"] . "</td>";
+                                echo "<td>" . $row["message_content"] . "</td>";
+                                echo "<td>" . $row["message_text"] . "</td>";
+                                echo "</tr>";
+                            }
+                            echo "</table>";
+                        }
+                    } else {
+                        echo "No data found.";
+                    }
+
+                    // Close the database connection
+                    $conn->close();
+                    ?>
 
                     <div class="view-message">  <!--carré blanc-->
                       
@@ -112,5 +161,3 @@
     
 </body>
 </html>
-
-
