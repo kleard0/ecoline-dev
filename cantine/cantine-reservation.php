@@ -14,10 +14,11 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <style type="text/css">
-        @import url(style-cantine-menu.css);
+        
+        @import url(style-cantine-appel.css);
         @import url(../sidebar.css);
         @import url(../icons.css);
-        @import url(cantine-menu.css);
+        @import url(cantine-appel.css);
         
     </style>
 </head>
@@ -84,30 +85,48 @@
                 <div class="name-box">
                 </div>
             </div>
-            <div class="page-title">
-                <h1>Menu de Cantine</h1>
-            </div>
-            <div class="main-container">
-                <div class="container">
-                <br><br><br><br><br><br>
-                <a href="/cantine/cantine-appel.php">
-                <span>Gérer l'appel</span>
-                </a>
-                </div>
 
-                <div class="container">
-                    <br><br><br><br><br>
-                    <a href="/cantine/reserve.php">
-                    <span>Faire/consulter une Réservation</span>
-                    </a>
-                </div>        
-                <div class="container">
-                    <br><br><br><br><br><br>
-                    <a href="/cantine/cantine-histoire.php">
-                    <span>Histoire de présence</span>
-                    </a>
-                </div>
+            <div class="main-container">
+
+            <div class="page-title">
                 
+                <h1>Gestion Appel</h1>
+            </div>
+            <div class="appel-menu">
+                <div class="container">
+                    <div class="student-image">
+                    <img src="/image/logo-ecoline.png">
+                    </div>
+                    <div class="student-name">
+                        <p>firstname lastname</p>
+                    </div>
+                </div>    
+                <div class="container">
+                    <p>object 2</p>
+                </div>
+                <div class="container">
+                    <p>object 2</p>
+                </div>
+                <div class="container">
+                    <p>object 2</p>
+                </div>
+                <div class="container">
+                    <p>object 2</p>
+                </div>
+                <div class="container">
+                    <p>object 2</p>
+                </div>
+                <div class="container">
+                    <p>object 2</p>
+                </div>
+                <div class="container">
+                    <div class="student-image">
+                        <img src="/image/logo-ecoline.png">
+                        </div>
+                    <p>object 2</p>
+                </div>
+            </div>
+ 
 
 
 
