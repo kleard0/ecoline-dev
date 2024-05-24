@@ -1,0 +1,19 @@
+.add_section{
+    height: 90vh;
+    width: 100%;
+    display: flex;
+    margin-top: 20vh;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.add_section .field{
+    height: 10vh;
+    width: 20vw;
+    margin-bottom: 2vh;
+}
+.add_section input{
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+}

@@ -1,0 +1,61 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+.container-all{
+    width: 100%;
+}
+.container-all .sidebar{
+    background-color: #284B63;
+    width: 15%;
+    height: 100vh;
+    overflow-y: hidden;
+}
+.container-all .sidebar .section-container{
+    margin-top: 100px;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.container-all .sidebar .section{
+    width: 80%;
+    border-radius: 5%;
+    height: 70px;
+    margin-bottom: 30px;
+    color: white;
+    font-family: Arial;
+    font-size: larger;
+    display: flex;
+    justify-content: space-between;
+    justify-content: left;
+    border: solid 0.5px white;
+}
+.container-all .sidebar .section .left{
+    height: 100%;
+    width: 30%;
+}
+.container-all .sidebar .section .left span{
+    font-size: 35px;
+    line-height: 70px;
+}
+.container-all .sidebar .section .right{
+    height: 100%;
+    width: 70%;
+}
+.container-all .sidebar .section .right h2{
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+    text-align: left;
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 70px;
+    text-decoration: none;
+}
+
+.container-all .sidebar .section:hover{
+    background-color: #284B63;
+}
+
+

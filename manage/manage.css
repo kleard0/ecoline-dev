@@ -1,3 +1,11 @@
+
+.container-all{
+    display: flex;
+    background-color: #CCCCCC;
+}
+.main{
+    width: 85%;
+}
 .manage_menu h1{
     text-align: center;
     color: white;
