@@ -1,0 +1,47 @@
+
+.page-title{
+    color:  #153243;;
+}
+
+
+
+
+.main-container .appel-menu{
+display: flex;
+flex-direction: row;
+flex-wrap: wrap;
+justify-content: space-around;
+}
+
+.main-container .container{
+    width: 15%;
+    height: auto;
+    background-color: white;
+    border-radius: 5px;
+    margin-top: 1%;
+    margin-left: 1%;
+    margin-right: 1%;
+    margin-bottom: 2vh;
+    text-align: center;    
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    box-shadow: 0vh 1vh 1vh rgb(60, 60, 60);
+}
+.main-container .container .student-image img{
+    height: 200px;
+    width: 100px;
+    margin-top: 1vh;
+    margin-left: 1vh;
+    margin-right: 1vh;
+    margin-bottom: 1vh;
+}
+
+
+.main-container .container p{
+    font-family: Arial;
+    font-size: 1vw;
+text-decoration: none;
+color:  #153243;
+}
+

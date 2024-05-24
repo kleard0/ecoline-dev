@@ -1,0 +1,63 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+.container-all{
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    
+}
+
+.container-all .main{
+    width: 85%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: #CCCCCC;
+    /* overflow-x: scroll; */
+    overflow-y: auto;
+}
+.container-all .head{
+    width: 100%;
+    height: 7vh;
+    display: flex;
+}
+.container-all .head .logo-block{
+    width: 50%;
+    height: 100%;
+    text-align: right;
+
+}
+.container-all .head .logo-block img{
+    height: 100%;
+}
+.container-all .head .name-box{
+    width: 50%;
+    height: 100%;
+}
+.section span{
+    height: 150px;
+    width: auto;
+}
+
+.page-title{
+        margin-top: 5vh;
+        margin-bottom: 1vh;
+        font-family: Arial;
+        font-size: 2vh;
+        text-align: center;
+        
+}
+.main-container{
+    display: flex;
+    width: 90%;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+
+    flex-direction: column;
+
+}
+

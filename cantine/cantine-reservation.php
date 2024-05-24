@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestion des materiels</title>
+    <title>Ecoline</title>
     <link rel="icon" href="favicon.ico" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
@@ -14,27 +14,26 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <style type="text/css">
+        
+        @import url(style-cantine-appel.css);
         @import url(../sidebar.css);
-        @import url(../style.css);
         @import url(../icons.css);
-        @import url(materiel.css);
-        @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+        @import url(cantine-appel.css);
+        
     </style>
 </head>
 
 <body>
     <div class="container-all">
-        <div class="sidebar">
+        <div class="sidebar">  <!-- class pour le Sidebar -->
             <div class="section-container">
                 <div class="section">
-                    <a href="index.html">
                     <span class="material-symbols-outlined">
                         menu
                         </span>
-                        <span > Accueil</span>
-                    </a>   
+                        <span class="title"> Accueil</span>
+                        
                 </div>
-
                 <div class="section">
                     <span class="material-symbols-outlined">
                         mail
@@ -60,12 +59,12 @@
                         <span>Note</span>
                 </div>
                 <div class="section">
-                    <a href="manage/manage.html">
+                    <a href="/manage/manage.html">
                     <span class="material-symbols-outlined">
                         shopping_bag
                         </span>
-                        <span class="title">Gestion</span>
-                    </a>
+                        <span>Gestion</span>
+                    </a>    
                 </div>
                 <div class="section">
                     <a href="/cantine/cantine.html">
@@ -79,37 +78,63 @@
         </div>
 
         <div class="main">
-            <div class="head">
-                <div class="logo-block">
+            <div class="head"> <!-- class pour l'en-tête -->
+                <div class="logo-block"> 
                     <img src="/image/logo-ecoline.png">
                 </div>
                 <div class="name-box">
-                </div>    
-            </div>
-            <div class="manage_menu">
-                <div class="menu_container">
-                    <div class="container">
-                        <a href="./ajout.html">
-                            <h1>Ajouter un materiel</h1>
-                        </a>
-                    </div>
-                    <div class="container">
-                        <a href="./materiel.php">
-                            <h1 class="voir_stock">Voir le stock</h1>
-                        </a>
-                    </div>
-                    <div class="container">
-                        <a href="./supprimer.html">
-                            <h1>Supprimer un materiel</h1>
-                        </a>
-                    </div>
                 </div>
             </div>
-        </div>
-        </main>                
+
+            <div class="main-container">
+
+            <div class="page-title">
+                
+                <h1>Gestion Appel</h1>
+            </div>
+            <div class="appel-menu">
+                <div class="container">
+                    <div class="student-image">
+                    <img src="/image/logo-ecoline.png">
+                    </div>
+                    <div class="student-name">
+                        <p>firstname lastname</p>
+                    </div>
+                </div>    
+                <div class="container">
+                    <p>object 2</p>
+                </div>
+                <div class="container">
+                    <p>object 2</p>
+                </div>
+                <div class="container">
+                    <p>object 2</p>
+                </div>
+                <div class="container">
+                    <p>object 2</p>
+                </div>
+                <div class="container">
+                    <p>object 2</p>
+                </div>
+                <div class="container">
+                    <p>object 2</p>
+                </div>
+                <div class="container">
+                    <div class="student-image">
+                        <img src="/image/logo-ecoline.png">
+                        </div>
+                    <p>object 2</p>
+                </div>
+            </div>
+ 
+
+
+
+            </div>                
         </div>
 
     </div>
+
 </body>
 </html>
 
