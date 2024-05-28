@@ -17,7 +17,7 @@
     <!--CSS-->
     <!--Changer les paths des fichiers styles pour la fin du projet-->
     <style type="text/css">
-        @import url(/github/messagerie/style.css); 
+        @import url(/messagerie/style.css); 
         @import url(sidebar.css);
         @import url(icons.css);
 
