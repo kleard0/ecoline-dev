@@ -128,7 +128,6 @@ JS;
         <th>Stock</th>
         <th>Prix</th>
         <th>Achat/Emprunt</th>
-        <th>ID El&egrave;ve</th>
         <th>Date</th>
         <th>Fournisseur</th>
         <th>Exp&eacute;diteur</th>
@@ -141,7 +140,6 @@ JS;
         echo "<td>" . $ligne_produits['category_description'] . "</td>";
         echo "<td>" . $ligne_produits['stock_quantity'] . "</td>";
         echo "<td>" . $ligne_produits['product_price'] . "</td>";
-        echo "<td>" . "" . "</td>";
         echo "<td>" . "" . "</td>";
         echo "<td>" . $ligne_produits['date_ajout'] . "</td>";
         echo "<td>" . $ligne_produits['supplier_name'] . "</td>";
@@ -192,3 +190,58 @@ echo "<br />";
     <input type='submit' value='Ajouter' id="ajout" name="ajout" />
   </div>
 </form>
+<style>
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+    color: #333;
+}
+
+.container {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    padding: 20px;
+    margin-top: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+tr:nth-child(even) {background-color: #f2f2f2;}
+
+input[type="text"], input[type="number"], input[type="date"], input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+</style>

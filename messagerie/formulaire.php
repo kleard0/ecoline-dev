@@ -106,10 +106,10 @@
                                 
                                 <div class="row">
                                     <div class="col-25">
-                                        <label for="subject">Message :</label>
+                                        <label for="message_text">Message :</label>
                                     </div>
                                     <div class="col-75">
-                                        <textarea id="subject" name="subject" placeholder="Ecrivez votre message ici" style="height:200px"></textarea>
+                                        <textarea id="message_text" name="message_text" placeholder="Ecrivez votre message ici" style="height:200px"></textarea>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -137,7 +137,6 @@
                             <input type="back" value="Retour">
                             <a href="index.php" class="rounded-button">Retour</a>
                         </form> -->
-
                         <?php
                         $servername = "localhost";
                         $username = "message";
@@ -149,23 +148,28 @@
                             $message_content = $_POST["message_content"];
                             $message_text = $_POST["message_text"];
 
-                            // Create connection
-                            $conn = new mysqli($servername, $username, $password, $dbname);
-                            // Check connection
-                            if ($conn->connect_error) {
-                                die("Connection impossible à la base de données" . $conn->connect_error);
-                            }
+                            // Check if all fields are filled
+                            if (!empty($destinataire_id) && !empty($message_content) && !empty($message_text)) {
+                                // Create connection
+                                $conn = new mysqli($servername, $username, $password, $dbname);
+                                // Check connection
+                                if ($conn->connect_error) {
+                                    die("Connection impossible à la base de données" . $conn->connect_error);
+                                }
 
-                            $sql = "INSERT INTO message (destinataire_id, message_content, message_text)
-                            VALUES ('$destinataire_id', '$message_content', '$message_text')";
+                                $sql = "INSERT INTO message (destinataire_id, message_content, message_text)
+                                VALUES ('$destinataire_id', '$message_content', '$message_text')";
 
-                            if ($conn->query($sql) === TRUE) {
-                                echo "Message envoyé avec succès.";
+                                if ($conn->query($sql) === TRUE) {
+                                    echo "Message envoyé avec succès.";
+                                } else {
+                                    echo "Erreur dans l'envoi du message." . $sql . "<br>" . $conn->error;
+                                }
+
+                                $conn->close();
                             } else {
-                                echo "Erreur dans l'envoi du message." . $sql . "<br>" . $conn->error;
+                                echo "Veuillez remplir tous les champs du formulaire.";
                             }
-
-                            $conn->close(); 
                         }
                         ?>
                     </div>

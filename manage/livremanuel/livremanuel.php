@@ -6,15 +6,9 @@
     <title>Gestion des livres et manuels</title>
     <link rel="icon" href="favicon.ico" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <style type="text/css">
-        @import url(../../sidebar.css);
+        @import url(../../components/sidebar.php);
+        @import url(../../components/sidebar.css);
         @import url(../../style.css);
         @import url(../../icons.css);
         @import url(livremanuel.css);
@@ -26,7 +20,7 @@
 $serveur = "localhost";
 $utilisateur = "root";
 $motDePasse = "";
-$baseDeDonnees = "ecoline_livremanuel";
+$baseDeDonnees = "ecoline_books";
 
 $connexion = mysqli_connect($serveur, $utilisateur, $motDePasse, $baseDeDonnees);
 if (!$connexion) {
@@ -34,9 +28,9 @@ if (!$connexion) {
 }
 
 
-$requete_books = "SELECT * FROM books";
+$requete_books = "SELECT * FROM books LIMIT 18";
 $resultat_books = $connexion->query($requete_books);
-$requete_history = "SELECT * FROM history";
+$requete_history = "SELECT * FROM history LIMIT 18";
 $resultat_history = $connexion->query($requete_history);
 
 
@@ -53,60 +47,8 @@ while ($ligne_history = $resultat_history->fetch_assoc()) {
 ?>
 <body>
     <div class="container-all">
-        <div class="sidebar">
-            <div class="section-container">
-                <div class="section">
-                    <a href="../index.html">
-                    <span class="material-symbols-outlined">
-                        menu
-                        </span>
-                        <span > Accueil</span>
-                    </a>   
-                </div>
-
-                <div class="section">
-                    <span class="material-symbols-outlined">
-                        mail
-                        </span>
-                        <span> Messagerie</span>
-                </div>
-                <div class="section">
-                    <span class="material-symbols-outlined">
-                        calendar_today
-                        </span>
-                        <span> Planning</span>
-                </div>
-                <div class="section">
-                    <span class="material-symbols-outlined">
-                        book_2
-                        </span>
-                        <span> Agenda</span>
-                </div>
-                <div class="section">
-                    <span class="material-symbols-outlined">
-                        school
-                        </span>
-                        <span>Note</span>
-                </div>
-                <div class="section">
-                    <a href="/manage/manage.html">
-                    <span class="material-symbols-outlined">
-                        shopping_bag
-                        </span>
-                        <span class="title">Gestion</span>
-                    </a>    
-                </div>
-                <div class="section">
-                    <a href="/cantine/cantine.html">
-                        <span class="material-symbols-outlined">
-                        restaurant
-                        </span>
-                        <span> Cantine</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-
+          <?php include '../../components/sidebar.php'; ?>
+    
         <div class="main">
             <div class="head">
                 <div class="logo-block">
@@ -117,9 +59,10 @@ while ($ligne_history = $resultat_history->fetch_assoc()) {
             </div>
             <div class="manage_menu">
                 <div class="navigation">
-                    <div class="add"> <a href="add.html"><h1>Ajouter </h1></a></div>
+                    <div class="add"> <a href="add.php"><h1>Ajouter </h1></a></div>
                     <div class="hystory"> <a href="historique.php"><h1>Historique </h1> </a></div>
-                    <div class="mystock"><a href="stock.php"><h1>Mon stock </h1> </a></div>
+                    <div class="mystock"><a href="mystock.php"><h1>Mon stock </h1> </a></div>
+                    <div class="Emprunts"><a href="emprunts.php"><h1>Emprunts </h1> </a></div>
                 </div>
                <div class="me">
                     <div class="history_shortcut">
@@ -130,6 +73,7 @@ while ($ligne_history = $resultat_history->fetch_assoc()) {
                                 <th>Date</th>
                                 <th>Type</th>
                                 <th>Information</th>
+                                
                             </tr>
                         <?php
                             foreach ($donnees_history as $ligne_history) {

@@ -15,7 +15,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <style type="text/css">
-        @import url(../../sidebar.css);
+        @import url(../../components/sidebar.php);
+        @import url(../../components/sidebar.css);
         @import url(../../style.css);
         @import url(../../icons.css);
         @import url(livremanuel.css);
@@ -27,59 +28,7 @@
 
 <body>
     <div class="container-all">
-        <div class="sidebar">
-            <div class="section-container">
-                <div class="section">
-                    <a href="../index.html">
-                    <span class="material-symbols-outlined">
-                        menu
-                        </span>
-                        <span > Accueil</span>
-                    </a>   
-                </div>
-                <div class="section">
-                    <span class="material-symbols-outlined">
-                        mail
-                        </span>
-                        <span> Messagerie</span>
-                </div>
-                <div class="section">
-                    <span class="material-symbols-outlined">
-                        calendar_today
-                        </span>
-                        <span> Planning</span>
-                </div>
-                <div class="section">
-                    <span class="material-symbols-outlined">
-                        book_2
-                        </span>
-                        <span> Agenda</span>
-                </div>
-                <div class="section">
-                    <span class="material-symbols-outlined">
-                        school
-                        </span>
-                        <span>Note</span>
-                </div>
-                <div class="section">
-                    <a href="/manage/manage.html">
-                    <span class="material-symbols-outlined">
-                        shopping_bag
-                        </span>
-                        <span class="title">Gestion</span>
-                    </a>    
-                </div>
-                <div class="section">
-                    <a href="/cantine/cantine.html">
-                        <span class="material-symbols-outlined">
-                        restaurant
-                        </span>
-                        <span> Cantine</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-
+        <?php include '../../components/sidebar.php'; ?>
         <div class="main">
             <div class="head">
                 <div class="logo-block">
@@ -92,7 +41,7 @@
                 <div class="field_section">
                     <form action="data_add.php" method="post">
                         <div class="field">
-                            <input name="book_ID" id="book_ID" type="number" placeholder="Code barre : ID"/>
+                            <input name="book_ID" id="book_ID" type="text" placeholder="Code barre : ID"/>
                         </div>
 
                         <div class="field"> 
@@ -107,13 +56,7 @@
                         <button type="submit">Valider</button>
                     </form>
                 </div>
-                <div class="button_section">
-                    <div class="button">
-                        <a href="../livremanuel/livremanuel.php"><p>Annuler</p></a>
-                        </div>
-                    <div class="button">
-                        <p>Envoyer</p>
-                    </div>
+
                 </div>
             </div>
         

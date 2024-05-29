@@ -8,7 +8,7 @@ try:
         host="localhost",
         user="root",
         password="",
-        database="ecoline_livremanuel"
+        database="ecoline_books"
     )
     cursor = mydb.cursor()
 
@@ -46,19 +46,19 @@ try:
 
     def create_books(i):
         books = [
-            (barcode_generation(), title_generation(i), book_or_manual(), genre_choice(), isbn_generation(), trueorfalse(), author_choice())
-            for _ in range(i)  # Note the use of _ since i is already defined
+            (barcode_generation(), title_generation(i), book_or_manual(), genre_choice(), author_choice(), isbn_generation(), trueorfalse(),0)
+            for _ in range(i)
         ]
-        insert_book = "INSERT INTO Books (barcode, title, is_book, genre, isbn, is_borrowed, author) VALUES (%s, %s, %s, %s, %s, %s, %s)"
+        insert_book = "INSERT INTO books (barcode, title, is_book, genre, author, isbn, is_borrowed, users_id) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"
         cursor.executemany(insert_book, books)
         mydb.commit()
 
     def create_students(i):
         students = [
-            (barcode_generation(), firstname_generation(i), lastname_generation(i), city_generation(i), random.randint(0, 5))
-            for _ in range(i)  # Same as above
+            (barcode_generation(), firstname_generation(i), lastname_generation(i), city_generation(i))
+            for _ in range(i) 
         ]
-        insert_student = "INSERT INTO student (barcode, first_name, last_name, city, book_id) VALUES (%s, %s, %s, %s, %s)"
+        insert_student = "INSERT INTO users (barcode, first_name, last_name, city) VALUES (%s, %s, %s, %s)"
         cursor.executemany(insert_student, students)
         mydb.commit()
 
@@ -66,7 +66,7 @@ try:
         create_books(n)
         create_students(n)
             
-    create_all(100000000000000)
+    create_all(100)
 
     cursor.close()
     mydb.close()
