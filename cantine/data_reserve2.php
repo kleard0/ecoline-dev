@@ -52,4 +52,5 @@ exit();
 // EXEMPLE LIASISON
 // SELECT * FROM `student` INNER JOIN parent_student ON parent_student.student_student_id = student.student_id
 //WHERE parent_student.parent_parent_id = 2;
+// SELECT * FROM `student` INNER JOIN p_s ON p_s.s_id = student.student_id WHERE p_s.p_id = 2;
 ?>
