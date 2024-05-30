@@ -5,14 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ecoline</title>
     <link rel="icon" href="favicon.ico" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <style type="text/css">
         @import url(style-cantine-histoire.css);
         @import url(../sidebar.css);
@@ -86,19 +78,16 @@
                 </div>
             </div>
             <div class="page-title">
-                <h1>Histoire de la cantine</h1>
+                <h1>Historique de la cantine</h1>
             </div>
             <div class="main-container">
                 <div class="date-container">
                     <span>DATE: HOLY MOLY</span>
                 </div>
                 <div class="container">
-                    <p>what</p><p>da</p><p>hell</p>
-                </div>        
-                <div class="container">
-                    <p>object 2</p>
+                    <p>La partie cantine :</p>
+                    <img src="https://media1.tenor.com/m/BpuC_9TcOrwAAAAd/jdg-joueur-du-grenier.gif" alt="Rotating GIF">
                 </div>
-                
 
 
 
