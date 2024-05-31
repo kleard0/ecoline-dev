@@ -19,7 +19,7 @@
     <style type="text/css">
         @import url(/messagerie/style.css); 
         @import url(sidebar.css);
-        @import url(icons.css);
+        @import url(/icons.css);
 
     h1 {
     text-align: center;
@@ -74,7 +74,7 @@
                     <span class="material-symbols-outlined">
                         restaurant
                         </span>
-                        <span> Repas</span>
+                        <span><a href="/cantine/cantine-menu.php">Cantine</a></span>
                 </div>
             </div>
         </div>

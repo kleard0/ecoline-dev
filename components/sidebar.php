@@ -1,7 +1,4 @@
-
-
-    
-            <div class="sidebar">
+               <div class="sidebar">
                 <div class="section-container">
                     <div class="section">
                         <div class="left">

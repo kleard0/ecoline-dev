@@ -58,11 +58,12 @@ while ($row_list = $result_list->fetch_assoc()) {
                 </div>
             </div>
             <div class="page-title">
-                <h1>Histoire de la cantine</h1>
+                <h1>Historique de la cantine</h1>
             </div>
 
 
             <div class="main-container">
+
                 <table class="table_histoire">
                     <tr>
                         <!-- <th scope='col'>ID</th> -->
@@ -90,6 +91,7 @@ while ($row_list = $result_list->fetch_assoc()) {
                     }}
                     ?>
                 </table>
+
 
 
 
