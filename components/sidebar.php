@@ -81,7 +81,7 @@
                             </span>
                         </div>
                         <div class="right">
-                            <a href="/cantine/cantine.html"> 
+                            <a href="/cantine/cantine-menu.php"> 
                                  <h2>Cantine</h2>
                             </a>
                         </div>   

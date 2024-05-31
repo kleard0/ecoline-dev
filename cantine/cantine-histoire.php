@@ -1,113 +1,140 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ecoline</title>
     <link rel="icon" href="favicon.ico" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <style type="text/css">
-        @import url(style-cantine-histoire.css);
-        @import url(../sidebar.css);
-        @import url(../icons.css);
+        @import url(../components/sidebar.php);
+        @import url(../../components/sidebar.css);
         @import url(cantine-histoire.css);
-        
+        @import url(../sidebar.css);
+        @import url(style-cantine-histoire.css);
+        @import url(../icons.css);
+        @import url(sql_login.php);
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
     </style>
 </head>
+<?php
+include 'sql_login.php';
+$data_histoire = array();
+while ($row_histoire = $result_histoire->fetch_assoc()) {
+    $data_histoire[] = $row_histoire;
+}
+/*
+$data_list = array();
+while ($row_list = $result_list->fetch_assoc()) {
+    $data_list[] = $row_list;
+}*/
+?>
 
 <body>
     <div class="container-all">
-        <div class="sidebar">
-            <div class="section-container">
-                <div class="section">
-                    
-                    <span class="material-symbols-outlined">
-                        menu
-                        </span>
-                        <span class="title"> Accueil</span>
-                        
-                </div>
-                <div class="section">
-                    <span class="material-symbols-outlined">
-                        mail
-                        </span>
-                        <span> Messagerie</span>
-                </div>
-                <div class="section">
-                    <span class="material-symbols-outlined">
-                        calendar_today
-                        </span>
-                        <span> Planning</span>
-                </div>
-                <div class="section">
-                    <span class="material-symbols-outlined">
-                        book_2
-                        </span>
-                        <span> Agenda</span>
-                </div>
-                <div class="section">
-                    <span class="material-symbols-outlined">
-                        school
-                        </span>
-                        <span>Note</span>
-                </div>
-                <div class="section">
-                    <a href="/manage/manage.html">
-                    <span class="material-symbols-outlined">
-                        shopping_bag
-                        </span>
-                        <span>Gestion</span>
-                    </a>    
-                </div>
-                <div class="section">
-                    <a href="/cantine/cantine-menu.html">
-                        <span class="material-symbols-outlined">
-                        restaurant
-                        </span>
-                        <span> Cantine</span>
-                    </a>
-                </div>
-            </div>
-        </div>
+        <?php include '../components/sidebar.php'; ?>
 
         <div class="main">
             <div class="head">
                 <div class="logo-block">
                     <img src="/image/logo-ecoline.png">
                 </div>
-                <div class="name-box">
-                </div>
             </div>
             <div class="page-title">
                 <h1>Histoire de la cantine</h1>
             </div>
+
+
             <div class="main-container">
-                <div class="date-container">
-                    <span>DATE: HOLY MOLY</span>
-                </div>
-                <div class="container">
-                    <p>what</p><p>da</p><p>hell</p>
-                </div>        
-                <div class="container">
-                    <p>object 2</p>
-                </div>
-                
+                <table class="table_histoire">
+                    <tr>
+                        <!-- <th scope='col'>ID</th> -->
+                        <th scope='col'>Name</th>
+                        <th scope='col'>ID</th>
+                        <th scope='col'>Date</th>
+                        <th scope='col'>Présence</th>
+                              <!--
+                                <th scope='col'>phone</th>
+                                <th scope='col'>email</th> --->
+                    </tr>
+                    <?php
+
+                    foreach ($data_histoire as $row_histoire) {
+                        if(!empty($row_histoire["reservation_id"])){
+                        echo "<tr>";
+                        //   echo "<td>" . $row_enfants["student_id"] . "</td>";                        echo "<td>" . $row_list["first_name"] . " " . $row_enfants["last_n"] . "</td>";}
+                        echo "<td>" . $row_histoire["first_name"] . " " . $row_histoire["last_name"] . "</td>";
+                        echo "<td>" . $row_histoire["reservation_id"] . "</td>";
+                        echo "<td>" . $row_histoire["date"] ." </td>";
+                        echo "<td>" . $row_histoire["presence"] ." </td>";
+                        /*
+                        echo "<td><button method="."POST"." onclick=\"location.href='/cantine/reserve3.php?student_id=".$row_enfants["student_id"]."'\">Choisir</button></td>"; */
+                        echo "</tr>";
+                    }}
+                    ?>
+                </table>
 
 
 
-            </div>                
+
+            </div>
         </div>
 
     </div>
 
 </body>
+
 </html>
 
+<style>
+.table_histoire {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    border-collapse: collapse;
+    border: 2px solid rgb(140 140 140);
+    font-family: sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+  }
+  
+  th,td {
+    border: 1px solid rgb(160 160 160);
+    padding: 8px 10px;
+  }
+  
+  th[scope='col'] {
+    background-color: #505050;
+    color: #fff;
+  }
+  
+  th[scope='row'] {
+    background-color: #d4e4ec;
+  }
+  
+  td {
+    text-align: center;
+  }
+  
+  tr:nth-of-type(even) {
+    background-color: #eee;
+  }
 
+</style>
