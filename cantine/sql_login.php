@@ -49,8 +49,18 @@ if (isset($_POST["student_id"])) {
     $row_enfants = mysqli_fetch_array($result_enfants);
 }
 
-$req_histoire = "SELECT * FROM reservation LEFT JOIN student ON reservation.fk_student_id = student.student_id UNION SELECT * FROM reservation RIGHT JOIN student ON reservation.fk_student_id = student.student_id";
+$req_histoire = "SELECT * FROM reservation 
+FULL JOIN student 
+ON fk_student_id = student.student_id";
 $result_histoire = $connect->query($req_histoire);
+
+
+$currentDate = date('Y-m-d');
+$req_appel = "SELECT * FROM reservation 
+FULL JOIN student 
+ON fk_student_id = student.student_id WHERE res_date = CURDATE()";
+$result_appel= $connect->query($req_appel);
+
 
 // EXEMPLE LIASISON
 // SELECT * FROM `student` INNER JOIN parent_student ON parent_student.student_student_id = student.student_id

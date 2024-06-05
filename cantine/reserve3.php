@@ -77,7 +77,7 @@ session_start();
                     if (isset($_POST["reserve_date"])) {
                         $reserve_date = date('y-m-d', strtotime($_POST["reserve_date"]));
 
-                        $query = "INSERT INTO reservation(date,fk_student_id) VALUES ('$reserve_date',(SELECT student_id FROM student WHERE student_id =  '" . $_SESSION["student_id"] . "'))";
+                        $query = "INSERT INTO reservation(res_date,fk_student_id) VALUES ('$reserve_date',(SELECT student_id FROM student WHERE student_id =  '" . $_SESSION["student_id"] . "'))";
                         $query_run = $connect->query($query);
 
                         /*

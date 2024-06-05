@@ -92,6 +92,7 @@
                     //   echo "<td>" . $row_enfants["student_id"] . "</td>";
                     echo "<td>" . $row_enfants["first_name"] . " " . $row_enfants["last_name"] . "</td>";
 
+            
                     echo "<td>
                                     <form action=" . "/cantine/reserve3.php " . "method=" . "POST" . ">
                                     <input type=" . "hidden " . "name=" . "student_id" . " value=" . $row_enfants["student_id"] . ">

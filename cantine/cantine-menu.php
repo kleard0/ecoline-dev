@@ -58,8 +58,8 @@
                 </div>        
                 <div class="container">
                     <br><br><br><br><br><br>
-                    <a href="/cantine/cantine-histoire.php">
-                    <span>Histoire de présence</span>
+                    <a href="/cantine/cantine-historique.php">
+                    <span>Historique de présence</span>
                     </a>
                 </div>
                 
