@@ -9,7 +9,6 @@ if (!$connexion) {
     die("Échec de la connexion : " . mysqli_connect_error());
 }
 
-
 $requete_produits = "
 SELECT 
     p.product_id,
@@ -73,45 +72,46 @@ if (isset($_POST['ajout'])) {
     $category_description = $_POST['category_description'];
     $date_ajout = $_POST['date_ajout'];
     //On insère le fournisseur en premier
-    if ($query = $connexion->prepare("INSERT INTO fournisseurs (supplier_id, supplier_name) VALUES (?, ?)")) {
+    if ($query = $connexion->prepare("INSERT INTO Fournisseurs (supplier_id, supplier_name) VALUES (?, ?)")) {
         $query->bind_param("is", $supplier_id, $supplier_name);
         $query->execute();
         $query->close();
     } else {
         die("Erreur de préparation de la requête : " . $connexion->error);
     }
-    //On insère le produit
-    if ($query = $connexion->prepare("INSERT INTO produits (product_id, supplier_id, product_price) VALUES (?, ?, ?)")) {
-    $query->bind_param("iis", $product_id, $supplier_id, $product_price);
-    $query->execute();
-    $query->close();
-    } else {
-        die("Erreur de préparation de la requête : " . $connexion->error);
-    }
-    //On insère l''expéditeur
-    if ($query = $connexion->prepare("INSERT INTO expediteurs (expeditor_id, expeditor_name) VALUES (?, ?)")) {
-        $query->bind_param("is", $expeditor_id, $expeditor_name);
-        $query->execute();
-        $query->close();
-    } else {
-        die("Erreur de préparation de la requête : " . $connexion->error);
-    }
-    //On insère le stock
-    if ($query = $connexion->prepare("INSERT INTO stocks (stock_id, stock_quantity, date_ajout) VALUES (?, ?, ?)")) {
-        $query->bind_param("iii", $stock_id, $stock_quantity, $date_ajout);
-        $query->execute();
-        $query->close();
-    } else {
-        die("Erreur de préparation de la requête : " . $connexion->error);
-    }
     //On insère la catégorie
-    if ($query = $connexion->prepare("INSERT INTO categories (category_id, category_description) VALUES (?, ?)")) {
+    if ($query = $connexion->prepare("INSERT INTO Categories (category_id, category_description) VALUES (?, ?)")) {
         $query->bind_param("is", $category_id, $category_description);
         $query->execute();
         $query->close();
     } else {
         die("Erreur de préparation de la requête : " . $connexion->error);
     }
+    //On insère le prix
+    if ($query = $connexion->prepare("INSERT INTO Produits (product_id, supplier_id, product_price) VALUES (?, ?, ?)")) {
+    $query->bind_param("iis", $product_id, $supplier_id, $product_price);
+    $query->execute();
+    $query->close();
+    } else {
+        die("Erreur de préparation de la requête : " . $connexion->error);
+    }
+   
+    //On insère le stock
+    if ($query = $connexion->prepare("INSERT INTO Stocks (product_id, stock_quantity, date_ajout, stock_id) VALUES (?, ?, ?, ?)")) {
+        $query->bind_param("iisi", $product_id, $stock_quantity, $date_ajout, $stock_id);
+        $query->execute();
+        $query->close();
+    } else {
+        die("Erreur de préparation de la requête : " . $connexion->error);
+    }
+//On insère l''expéditeur
+if ($query = $connexion->prepare("INSERT INTO Expediteurs (expeditor_id, expeditor_name, fournisseur_id) VALUES (?, ?, ?)")) {
+    $query->bind_param("isi", $expeditor_id, $expeditor_name, $supplier_id);
+    $query->execute();
+    $query->close();
+} else {
+    die("Erreur de préparation de la requête : " . $connexion->error);
+}
     header('Location: ' . $_SERVER['REQUEST_URI']);
     exit;
 }
@@ -139,7 +139,7 @@ JS;
         echo "<td>" . $ligne_produits['product_id'] . "</td>";
         echo "<td>" . $ligne_produits['category_description'] . "</td>";
         echo "<td>" . $ligne_produits['stock_quantity'] . "</td>";
-        echo "<td>" . $ligne_produits['product_price'] . "</td>";
+        echo "<td>" . $ligne_produits['product_price'],"€" . "</td>";
         echo "<td>" . "" . "</td>";
         echo "<td>" . $ligne_produits['date_ajout'] . "</td>";
         echo "<td>" . $ligne_produits['supplier_name'] . "</td>";
