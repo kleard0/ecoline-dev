@@ -25,9 +25,12 @@
     <style type="text/css">
         @import url(../components/sidebar.php);
         @import url(../../components/sidebar.css);
-        @import url(cantine-historique.css);
+        @import url(reserve.css);
         @import url(../sidebar.css);
-        @import url(style-cantine-historique.css);
+        @import url(../../sidebar.css);
+        @import url(../../style.css);
+        @import url(../../icons.css);
+        @import url(style-cantine.css);
         @import url(../icons.css);
         @import url(sql_login.php);
         @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
@@ -82,7 +85,7 @@ while ($row_list = $result_list->fetch_assoc()) {
                         echo "<tr>";
                         //   echo "<td>" . $row_enfants["student_id"] . "</td>";                        echo "<td>" . $row_list["first_name"] . " " . $row_enfants["last_n"] . "</td>";}
                         echo "<td>" . $row_histoire["first_name"] . " " . $row_histoire["last_name"] . "</td>";
-                        echo "<td>" . $row_histoire["reservation_id"] . "</td>";
+                        echo "<td>" . $row_histoire["student_id"] . "</td>";
                         echo "<td>" . $row_histoire["res_date"] ." </td>";
                         if( $row_histoire["presence"]==1){
                             echo "<td>Présent</td>";}

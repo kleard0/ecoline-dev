@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -34,16 +35,18 @@
     </style>
 </head>
 <?php
-    ob_start();
+ob_start();
 include 'sql_login.php';
 while ($row_appel = $result_appel->fetch_assoc()) {
-    $data_appel[] = $row_appel;} ?>
+    $data_appel[] = $row_appel;
+} ?>
+
 <body>
     <div class="container-all">
-        
+
         <?php
 
-        include '../components/sidebar.php'; 
+        include '../components/sidebar.php';
         ?>
         <div class="main">
             <div class="head">
@@ -58,96 +61,112 @@ while ($row_appel = $result_appel->fetch_assoc()) {
 
                 <div class="page-title">
                     <?php
-                    echo "<h1>Gestion Appel " . $currentDate . "</h1>";?>
+                    echo "<h1>Gestion Appel " . $currentDate . "</h1>"; ?>
                 </div>
                 <table class="table_appel">
-                <tr>
-                    <th scope='col'>ID</th>
-                    <th scope='col'>Name</th>
-                    <th scope='col'>Option</th>
-                    
-                </tr>
-                <?php
-                foreach ($data_appel as $row_appel) {
-                    echo "<tr>";
-                    echo '<td>' . $row_appel["student_id"] . '</td>';
-                    echo '<td>'. $row_appel["first_name"] . " " . $row_appel["last_name"] .' </td>';
-                    if( $row_appel["presence"]==1){
-                        echo '<td><p><a href="active-appel.php?student_id='.$row_appel["student_id"].'&presence=0">présent</a></p></td>';
-                        }
-                    else{
-                        echo '<td><p><a href="active-appel.php?student_id='.$row_appel["student_id"].'&presence=1">Absent</a></p></td>';
-                        }
-                   /* echo "<td>
-                                    <form action=" . "/cantine/reserve3.php " . "method=" . "POST" . ">
-                                    <input type=" . "checkbox" . "name=" . "checkbox" . " value=" . $row_appel["student_id"] . ">
-                                    <button type=" . "submit" . ">" . "Choisir" . "</button></form>
-                                    </td>";
-                    /*
-                    echo "<td><button method="."POST"." onclick=\"location.href='/cantine/reserve3.php?student_id=".$row_enfants["student_id"]."'\">Choisir</button></td>"; */
-                    echo "</tr>";
-                }
-                ob_end_flush();
-                ?>
-            </table><br>
-            <table class="table_appel">
-                <tr>
-                
-                    <th scope='col'>
-                      <form action="" method="GET">
-                       <input type="text" name="search" required value="<?php if(isset($_GET['search'])){echo $_GET['search']; } ?>" placeholder="Ajouter un élève">
-                       <button type="submit" class="btn btn-primary">Search</button>
-                    </th>
-                </tr>
-            </table>
+                    <tr>
+                        <th scope='col'>ID</th>
+                        <th scope='col'>Name</th>
+                        <th scope='col'>Option</th>
 
-                <?php 
-                                 if(isset($_GET['search']))
-                                 {
-                                    echo  '<table class="table_appel">';
-                                    echo  "<th scope='col'>Name</th>";
-                                    echo  "<th scope='col'>Option</th>";
-                        
-                                     $filtervalues = $_GET['search'];
-                                     $query = "SELECT DISTINCT * FROM reservation FULL JOIN student 
-                                     ON fk_student_id = student.student_id WHERE CONCAT(first_name,last_name) LIKE '%$filtervalues%' AND res_date=CURDATE() 
-                                     GROUP BY first_name, last_name";
-                                     $query_run = mysqli_query($connect, $query);
+                    </tr>
+                    <?php
 
-
-                                     if(mysqli_num_rows($query_run) > 0)
-                                     {
-                                         foreach($query_run as $element)
-                                         {
-                                            $register = "INSERT INTO reservation(res_date,fk_student_id) VALUES (CURDATE(),'" . $element["student_id"] . "')";
-                                            
-                                            echo "<tr>";
-                                            echo '<td>'.$element['first_name'].' '.$element['last_name'].'</td>';
-                                            if((!empty($element["presence"]))){
-                                                echo '<td>Cet élève est déja enrigestré</td>';
-                                                }
-                                            else{
-                                                echo '<td>
-                                                <form action="" method="POST">
-                                                <input type="hidden" name="ajouter" value="' . $element["student_id"] . '">
-                                                <button type="submit">Choisir</button></form>
-                                                </td>';
-                                            }
-                                            echo "</tr>";
-                                         }
-                                     }
-                                     else
-                                     {
-                                        echo "<tr>";
-                                        echo '<td>No Record Found</td>';
-                                        echo "</tr>";
-                                    }
-                                    if (isset($_POST["reserve_date"])) {
-                                }
+                    if (mysqli_num_rows($result_appel) > 0) {
+                        foreach ($data_appel as $row_appel) {
+                            echo "<tr>";
+                            echo '<td>' . $row_appel["student_id"] . '</td>';
+                            echo '<td>' . $row_appel["first_name"] . " " . $row_appel["last_name"] . ' </td>';
+                            if ($row_appel["presence"] == 1) {
+                                echo '<td><p><a href="active-appel.php?student_id=' . $row_appel["student_id"] . '&presence=0">présent</a></p></td>';
+                            } else {
+                                echo '<td><p><a href="active-appel.php?student_id=' . $row_appel["student_id"] . '&presence=1">Absent</a></p></td>';
                             }
-                                         ?>
-                          </table>
-                                         
+                            /* echo "<td>
+                                             <form action=" . "/cantine/reserve3.php " . "method=" . "POST" . ">
+                                             <input type=" . "checkbox" . "name=" . "checkbox" . " value=" . $row_appel["student_id"] . ">
+                                             <button type=" . "submit" . ">" . "Choisir" . "</button></form>
+                                             </td>";
+                             /*
+                             echo "<td><button method="."POST"." onclick=\"location.href='/cantine/reserve3.php?student_id=".$row_enfants["student_id"]."'\">Choisir</button></td>"; */
+                            echo "</tr>";
+                        }
+
+                    }
+                    ?>
+                </table><br>
+                <table class="table_appel">
+                    <tr>
+
+                        <th scope='col'>
+                            <form action="" method="GET">
+                                <input type="text" name="search" required
+                                    value="<?php if (isset($_GET['search'])) {
+                                        echo $_GET['search'];
+                                    } ?>"
+                                    placeholder="Ajouter un élève">
+                                <button type="submit">Search</button>
+                        </th>
+                    </tr>
+                </table>
+
+                <?php
+                if (isset($_GET['search'])) {
+                    echo '<table class="table_appel">';
+                    echo "<th scope='col'>Name</th>";
+                    echo "<th scope='col'>Option</th>";
+
+                    $filtervalues = $_GET['search'];
+                    $query = "SELECT DISTINCT * FROM student LEFT JOIN reservation ON  student_id= reservation.fk_student_id WHERE CONCAT(first_name,last_name) LIKE '%$filtervalues%' 
+                                     GROUP BY first_name, last_name";
+                    $query_run = mysqli_query($connect, $query);
+
+
+                    if (mysqli_num_rows($query_run) > 0) {
+                        foreach ($query_run as $element) {
+
+
+                            echo "<tr>";
+                            echo '<td>' . $element['first_name'] . ' ' . $element['last_name'] . '</td>';
+                            /*if((!empty($element["presence"]))){
+                                echo '<td>Cet élève est déja enrigestré</td>';
+                                }
+                            else{*/
+                            echo
+                                '<td>
+                                                <form target="_blank" action="active-appel.php" method="GET">
+                                                <input type="hidden" id="ajouter" name="ajouter" value="' . $element["student_id"] . '">
+                                                <button type="submit">Ajouter</button>
+                                                </td></form>';
+                            //}
+                            echo "</tr>";
+                        }
+                    } else {
+                        echo "<tr>";
+                        echo '<td>No Record Found</td>';
+                        echo "</tr>";
+                    }
+
+                    if (isset($_GET["ajouter"])) {
+                        $check = "SELECT * FROM reservation WHERE res_date=CURDATE() AND fk_student_id='" . $_GET["ajouter"] . "' ";
+                        $check_run = mysqli_query($connect, $check);
+
+                        //check si le tableau n'a pas de data enregistrée déjà avec ce nom
+                        if (mysqli_num_rows($check_run) === 0) {
+                            $register = "INSERT INTO reservation(res_date,fk_student_id) VALUES (CURDATE(),'" . $_GET["ajouter"] . "')";
+                            mysqli_query($connect, $register);
+                            header('location:active-appel.php');
+                        } else {
+                            echo "<td>Cet élève est déja enrigestré</td>";
+                        }
+
+                    }
+                    ob_end_flush();
+                }
+                ?>
+
+                </table>
+
 
             </div>
         </div>
@@ -160,38 +179,37 @@ while ($row_appel = $result_appel->fetch_assoc()) {
 </html>
 <style>
     .table_appel {
-    width: 80%;
-    margin-left: auto;
-    margin-right: auto;
-    border-collapse: collapse;
-    border: 2px solid rgb(140 140 140);
-    font-family: sans-serif;
-    font-size: 0.8rem;
-    letter-spacing: 1px;
-  }
-  
-  th,td {
-    border: 1px solid rgb(160 160 160);
-    padding: 8px 10px;
-  }
-  
-  th[scope='col'] {
-    background-color: #505050;
-    color: #fff;
-  }
-  
-  th[scope='row'] {
-    background-color: #d4e4ec;
-  }
-  
-  td {
-    text-align: center;
-  }
-  
-  tr:nth-of-type(even) {
-    background-color: #eee;
-  }
-  
-  </style>
-  <script>
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+        border-collapse: collapse;
+        border: 2px solid rgb(140 140 140);
+        font-family: sans-serif;
+        font-size: 0.8rem;
+        letter-spacing: 1px;
+    }
 
+    th,
+    td {
+        border: 1px solid rgb(160 160 160);
+        padding: 8px 10px;
+    }
+
+    th[scope='col'] {
+        background-color: #505050;
+        color: #fff;
+    }
+
+    th[scope='row'] {
+        background-color: #d4e4ec;
+    }
+
+    td {
+        text-align: center;
+    }
+
+    tr:nth-of-type(even) {
+        background-color: #eee;
+    }
+</style>
+<script>
