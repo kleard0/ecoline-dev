@@ -37,7 +37,7 @@
                     <span class="material-symbols-outlined">
                         menu
                         </span>
-                        <span><a href="/index.html">Accueil</a>
+                        <span><a href="/home.php">Accueil</a>
                 </div>
                 <div class="section">
                     <span class="material-symbols-outlined">
