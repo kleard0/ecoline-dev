@@ -1,3 +1,4 @@
+
 <!--Ecoline-->
 <!DOCTYPE html>
 <html lang="fr">
@@ -13,11 +14,16 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 
     <!--CSS-->
-    <style type="text/css">
-        @import url(style.css);
-        @import url(components\sidebar.css);
-        @import url(icons.css);
-        @import url(components/sidebar.css);
+    <!--<style type="text/css">
+        @import url('./style.css');
+        @import url('icons.css');
+        @import url('./components/sidebar.css');
+    </style>-->
+    
+    <style>
+        <?php include './style.css'; ?>
+        <?php include './icons.css'; ?>
+        <?php include './components/sidebar.css'; ?>
     </style>
     <!--FONT-->
     <style>
@@ -48,5 +54,4 @@
 </div>
 </body>
 </html>
-
 
