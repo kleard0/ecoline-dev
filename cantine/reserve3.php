@@ -26,7 +26,7 @@ session_start();
         @import url(../../icons.css);
         @import url(style.css);
         @import url(reserve2.php);
-        @import url(reserve3.css);
+        @import url(reserve.css);
         @import url(sql_login.php);
         @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
@@ -77,7 +77,7 @@ session_start();
                     if (isset($_POST["reserve_date"])) {
                         $reserve_date = date('y-m-d', strtotime($_POST["reserve_date"]));
 
-                        $query = "INSERT INTO reservation(date,fk_student_id) VALUES ('$reserve_date',(SELECT student_id FROM student WHERE student_id =  '" . $_SESSION["student_id"] . "'))";
+                        $query = "INSERT INTO reservation(res_date,fk_student_id) VALUES ('$reserve_date',(SELECT student_id FROM student WHERE student_id =  '" . $_SESSION["student_id"] . "'))";
                         $query_run = $connect->query($query);
 
                         /*

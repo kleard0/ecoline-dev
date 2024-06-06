@@ -22,7 +22,7 @@
         @import url(../../icons.css);
         @import url(style.css);
         @import url(reserve.php);
-        @import url(reserve2.css);
+        @import url(reserve.css);
         @import url(sql_login.php);
         @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
@@ -92,6 +92,7 @@
                     //   echo "<td>" . $row_enfants["student_id"] . "</td>";
                     echo "<td>" . $row_enfants["first_name"] . " " . $row_enfants["last_name"] . "</td>";
 
+            
                     echo "<td>
                                     <form action=" . "/cantine/reserve3.php " . "method=" . "POST" . ">
                                     <input type=" . "hidden " . "name=" . "student_id" . " value=" . $row_enfants["student_id"] . ">
