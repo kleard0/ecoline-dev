@@ -1,45 +1,56 @@
-<?php
-                    /**
-                     * Connect to the database and fetch data from the "message" table.
-                     * Display the fetched data in a table.
-                     */
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des utilisateurs</title>
+</head>
+<body>
+    <h2>Liste des utilisateurs</h2>
+    <?php
+    $servername = "localhost";
+    $username = "message";
+    $password = "4VZzATv&jiCV5Jo*5m5i@!X^#PbK9ijx";
+    $dbname = "ecoline";
 
-                    // Connect to your database
-                    $servername = "localhost";
-                    $username = "message";
-                    $password = "4VZzATv&jiCV5Jo*5m5i@!X^#PbK9ijx";
-                    $dbname = "ecoline";
+    // Créer une connexion
+    $conn = new mysqli($servername, $username, $password, $dbname);
 
-                    $conn = new mysqli($servername, $username, $password, $dbname);
-                    if ($conn->connect_error) {
-                        die("Connection failed: " . $conn->connect_error);
-                    }
+    // Vérifier la connexion
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
 
-                    // Fetch data from the database
-                    $sql = "SELECT destinataire_id,message_content, message_text FROM message";
-                    $result = $conn->query($sql);
+    // Préparer et exécuter la requête pour récupérer toutes les informations des utilisateurs
+    $sql = "SELECT user_id, first_name, last_name, username, email, phone, account_type FROM utilisateur";
+    $result = $conn->query($sql);
 
-                    // Display the data
-                    if ($result->num_rows > 0) {
-                        while ($row = $result->fetch_assoc()) {
-                            echo "<p>ID Utilisateur: " . $row["destinataire_id"] . "</p>";
-                            echo "<p>Sujet: " . $row["message_content"] . "</p>";
-                            echo "<p>Message: " . $row["message_text"] . "</p>";
-                            echo "<table>";
-                            echo "<tr><th>ID Utilisateur</th><th>Sujet</th><th>Message</th></tr>";
-                            while ($row = $result->fetch_assoc()) {
-                                echo "<tr>";
-                                echo "<td>" . $row["destinataire_id"] . "</td>";
-                                echo "<td>" . $row["message_content"] . "</td>";
-                                echo "<td>" . $row["message_text"] . "</td>";
-                                echo "</tr>";
-                            }
-                            echo "</table>";
-                        }
-                    } else {
-                        echo "No data found.";
-                    }
+    if ($result->num_rows > 0) {
+        echo "<table border='1'>";
+        echo "<tr><th>ID Utilisateur</th><th>Prénom</th><th>Nom</th><th>Nom d'utilisateur</th><th>Email</th><th>Téléphone</th><th>Type de compte</th></tr>";
+        // Afficher les données de chaque ligne
+        while($row = $result->fetch_assoc()) {
+            echo "<tr>
+                    <td>" . $row["user_id"]. "</td>
+                    <td>" . $row["first_name"]. "</td>
+                    <td>" . $row["last_name"]. "</td>
+                    <td>" . $row["username"]. "</td>
+                    <td>" . $row["email"]. "</td>
+                    <td>" . $row["phone"]. "</td>
+                    <td>" . $row["account_type"]. "</td>
+                  </tr>";
+        }
+        echo "</table>";
+    } else {
+        echo "0 résultats";
+    }
 
-                    // Close the database connection
-                    $conn->close();
-                    ?>
+    // Fermer la connexion
+    $conn->close();
+    ?>
+
+    <br>
+    <form action="index.php" method="get">
+        <input type="submit" value="Retour à l'accueil">
+    </form>
+</body>
+</html>

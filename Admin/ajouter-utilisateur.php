@@ -1,50 +1,86 @@
-<?php
-// Connexion à la base de données
-$servername = "localhost";
-$username = "message";
-$password = "4VZzATv&jiCV5Jo*5m5i@!X^#PbK9ijx";
-$dbname = "ecoline";
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulaire d'inscription</title>
+</head>
+<body>
+    <h2>Inscription</h2>
+    <?php
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $servername = "localhost";
+        $username = "message";
+        $password = "4VZzATv&jiCV5Jo*5m5i@!X^#PbK9ijx";
+        $dbname = "ecoline";
 
-$conn = new mysqli($servername, $username, $password, $dbname);
+        // Créer une connexion
+        $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Vérifier la connexion
-if ($conn->connect_error) {
-    die("Échec de la connexion à la base de données: " . $conn->connect_error);
-}
+        // Vérifier la connexion
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Récupérer les valeurs du formulaire
-    $nom = $_POST["nom"];
-    $email = $_POST["email"];
-    $mot_de_passe = $_POST["mot_de_passe"];
+        // Récupérer les données du formulaire
+        $first_name = $_POST['first_name'];
+        $last_name = $_POST['last_name'];
+        $username = $_POST['username'];
+        $email = $_POST['email'];
+        $phone = $_POST['phone'];
+        $password = $_POST['password'];
+        $account_type = $_POST['account_type'];
 
-    // Valider et insérer les données dans la base de données
-    $sql = "INSERT INTO utilisateur (user_id, firstlast_name, username) VALUES ('$nom', '$numero', '$mot_de_passe')";
+        // Préparer et lier
+        $stmt = $conn->prepare("INSERT INTO utilisateur (first_name, last_name, username, email, phone, password, account_type) VALUES (?, ?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("sssssss", $first_name, $last_name, $username, $email, $phone, $password, $account_type);
 
-    if ($conn->query($sql) === TRUE) {
-        echo "Utilisateur ajouté avec succès";
-    } else {
-        echo "Erreur lors de l'ajout de l'utilisateur: " . $conn->error;
+        // Exécuter la requête
+        if ($stmt->execute()) {
+            echo "Nouvel enregistrement créé avec succès";
+    
+        } else {
+            echo "Erreur: " . $stmt->error;
+        }
+
+        // Fermer la connexion
+        $stmt->close();
+        $conn->close();
     }
-}
+    ?>
 
-// Fermer la connexion
-$conn->close();
-?>
+    <form action="" method="post">
+        <label for="first_name">Prénom:</label>
+        <input type="text" id="first_name" name="first_name" required><br><br>
 
+        <label for="last_name">Nom:</label>
+        <input type="text" id="last_name" name="last_name" required><br><br>
 
-Ajouter un nouvel utilisateur
+        <label for="username">Nom d'utilisateur:</label>
+        <input type="text" id="username" name="username" required><br><br>
 
-<form action="ajouter-utilisateur.php" method="POST">
-    <label for="nom">Nom:</label>
-    <input type="text" name="nom" id="nom" required><br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br><br>
 
-    <label for="numero">ID:</label>
-    <input type="number" name="numero" id="numero" required><br>
+        <label for="phone">Téléphone:</label>
+        <input type="tel" id="phone" name="phone" required><br><br>
 
-    <label for="mot_de_passe">Mot de passe:</label>
-    <input type="password" name="mot_de_passe" id="mot_de_passe" required><br>
+        <label for="password">Mot de passe:</label>
+        <input type="password" id="password" name="password" required><br><br>
 
-    <input type="submit" value="Ajouter">
-</form>
+        <label for="account_type">Type de compte:</label>
+        <select id="account_type" name="account_type" required>
+            <option value="enseignant">Parent</option>
+            <option value="parent">Enseignant</option>
+            <option value="eleve">Eleve</option>
+            <option value="eleve">Direction</option>
+        </select><br><br>
 
+        <input type="submit" value="S'inscrire">
+    </form>
+    
+    <br>
+    <form action="index.php" method="get">
+        <input type="submit" value="Retour">
+    </form>
+</body>
+</html>

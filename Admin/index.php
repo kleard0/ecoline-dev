@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Messagerie</title>
+    <title>Administration</title>
     <link rel="icon" href="/favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <!-- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> -->
@@ -21,9 +21,9 @@
         @import url(/icons.css);
         @import url(admin.css);
 
-    h1 {
-    text-align: center;
-    }
+        h1 {
+            text-align: center;
+        }
     </style>
     
 </head>
@@ -36,45 +36,44 @@
                 <div class="section">
                     <span class="material-symbols-outlined">
                         menu
-                        </span>
-                        <span><a href="/home.php">Accueil</a>
+                    </span>
+                    <span><a href="/home.php">Accueil</a></span>
                 </div>
                 <div class="section">
                     <span class="material-symbols-outlined">
                         mail
-                        </span>
-                        <span><a href="/messagerie/index.php">Messagerie</a>
-                        </span>
+                    </span>
+                    <span><a href="/messagerie/index.php">Messagerie</a></span>
                 </div>
                 <div class="section">
                     <span class="material-symbols-outlined">
                         calendar_today
-                        </span>
-                        <span>Planning</span>
+                    </span>
+                    <span>Planning</span>
                 </div>
                 <div class="section">
                     <span class="material-symbols-outlined">
                         book_2
-                        </span>
-                        <span> Agenda</span>
+                    </span>
+                    <span>Agenda</span>
                 </div>
                 <div class="section">
                     <span class="material-symbols-outlined">
                         school
-                        </span>
-                        <span>‎ Note</span>
+                    </span>
+                    <span>Note</span>
                 </div>
                 <div class="section">
                     <span class="material-symbols-outlined">
                         shopping_bag
-                        </span>
-                        <span>Gestion</span>
+                    </span>
+                    <span>Gestion</span>
                 </div>
                 <div class="section">
                     <span class="material-symbols-outlined">
                         restaurant
-                        </span>
-                        <span><a href="/cantine/cantine-menu.php">Cantine</a></span>
+                    </span>
+                    <span><a href="/cantine/cantine-menu.php">Cantine</a></span>
                 </div>
             </div>
         </div>
@@ -89,47 +88,37 @@
             </div>
             <div class="main-container">
                 <div class="container">
-                    <h1 style="font-family:Arial, Helvetica, sans-serif ";>Admistration utilisateurs</h1>
+                    <h1 style="font-family:Arial, Helvetica, sans-serif;">Admistration utilisateurs</h1>
                  
 
 
                     <div class="manage_menu">
-                <div class="menu_container">
-                    <div class="container">
-                        <a href="ajouter-utilisateur.php">
-                            <h1>Ajouter un utilisateur</h1>
-                        </a>
+                        <div class="menu_container">
+                            <div class="container">
+                                <a href="ajouter-utilisateur.php">
+                                    <h1>Ajouter un utilisateur</h1>
+                                </a>
+                            </div>
+                            <div class="container">
+                                <a href="liste-utilisateur.php">
+                                    <h1>Voir la liste des utilisateurs</h1>
+                                </a>
+                            </div>
+                            <div class="container">
+                                <a href="modifier-utilisateur.php">
+                                    <h1>Modifier un utilisateur</h1>
+                                </a>
+                            </div>
+                            <div class="container">
+                                <a href="supprimer-utilisateur.php">
+                                    <h1>Supprimer un utilisateur</h1>
+                                </a>
+                            </div>
+                        </div>
                     </div>
-                    <div class="container">
-                        <a href="liste-utilisateur.php">
-                            <h1>Voir la liste des utilisateurs</h1>
-                        </a>
-                    </div>
-                    <div class="container">
-                        <a href="modifier-utilisateur.php">
-                            <h1>Modifier un utilisateur</h1>
-                        </a>
-                    </div>
-                    <div class="container">
-                        <a href="supprimer-utilisateur.php">
-                            <h1>Supprimer un utilisateur</h1>
-                        </a>
-                    </div>
-                 
                 </div>
-            </div>
-
-
-
-                 
-                   
-
-                </div>
-
             </div>                
         </div>
-
     </div>
-    
 </body>
 </html>
