@@ -25,11 +25,12 @@
     <style type="text/css">
         @import url(../components/sidebar.php);
         @import url(../../components/sidebar.css);
-        @import url(style-cantine-appel.css);
         @import url(../sidebar.css);
         @import url(../icons.css);
         @import url(cantine-appel.css);
         @import url(sql_login.php);
+        @import url(style-cantine.css);
+
         @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
     </style>
@@ -43,11 +44,7 @@ while ($row_appel = $result_appel->fetch_assoc()) {
 
 <body>
     <div class="container-all">
-
-        <?php
-
-        include '../components/sidebar.php';
-        ?>
+        <?php include '../components/sidebar.php';?>
         <div class="main">
             <div class="head">
                 <div class="logo-block">
@@ -170,8 +167,6 @@ while ($row_appel = $result_appel->fetch_assoc()) {
 
             </div>
         </div>
-    </div>
-
     </div>
 
 </body>
