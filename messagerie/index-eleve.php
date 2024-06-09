@@ -1,4 +1,4 @@
-<!--Ecoline-->
+<!--Ecoline cette page est en read only pour les eleves -->
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -90,10 +90,7 @@
             <div class="main-container">
                 <div class="container">
                     <h1 style="font-family:Arial, Helvetica, sans-serif ";>Boîte de réception</h1>
-                    <div class="button-container">
-                        <a href="formulaire.php" class="rounded-button">
-                            Nouveau message</a>
-                    </div>
+                    
 
                     <?php
                     /**

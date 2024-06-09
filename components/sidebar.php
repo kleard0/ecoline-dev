@@ -7,7 +7,7 @@
                                 </span>
                         </div>
                         <div class="right">
-                           <a href="localhost"> <h2>Accueil</h2></a>
+                           <a href="/home.php"> <h2>Accueil</h2></a>
                         </div>
                     </div>
 
