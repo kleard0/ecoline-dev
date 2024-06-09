@@ -1,10 +1,4 @@
-
-
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
 $serveur = "localhost";
 $utilisateur = "root";
 $motDePasse = "";
@@ -15,19 +9,6 @@ if (!$connexion) {
     die("Échec de la connexion : " . mysqli_connect_error());
 }
 
-session_start();
-
-if (!isset($_SESSION['ID'])) {
-    header("Location: login.php");
-    exit;
-}
-
-$roles = $_SESSION['roles'];
-if ($roles !==4) {
-    header('Location : login.php');
-    exit;
-}
-
 $requete_produits = "
 SELECT 
     p.product_id,
@@ -36,8 +17,7 @@ SELECT
     s.stock_quantity,
     s.date_ajout,
     f.supplier_name,
-    e.expeditor_name,
-    p.transaction_type
+    e.expeditor_name
 FROM produits as p
 LEFT JOIN categories as cat ON 
     cat.category_id = p.category_id
@@ -55,36 +35,28 @@ while ($ligne_produits = $resultat_produits->fetch_assoc()) {
     $donnees_produits[] = $ligne_produits;
 }
 
-if (isset($_POST['delete'])) {
-    $did = intval($_POST['id']);
-    // Supprimer les réservations associées
-    if ($query = $connexion->prepare("DELETE FROM reservations WHERE product_id = ?")) {
-        $query->bind_param("i", $did);
-        $query->execute();
-        $query->close();
-    } else {
-        die("Erreur de préparation de la requête : " . $connexion->error);
-    }
-    // Supprimer les stocks associés
-    if ($query = $connexion->prepare("DELETE FROM stocks WHERE product_id = ?")) {
-        $query->bind_param("i", $did);
-        $query->execute();
-        $query->close();
-    } else {
-        die("Erreur de préparation de la requête : " . $connexion->error);
-    }
-    // Supprimer le produit
-    if ($query = $connexion->prepare("DELETE FROM produits WHERE product_id = ?")) {
-        $query->bind_param("i", $did);
-        $query->execute();
-        $query->close();
-    } else {
-        die("Erreur de préparation de la requête : " . $connexion->error);
-    }
+// if (isset($_POST['delete'])) {
+//     $did = intval($_POST['id']);
+//     // Première requête pour supprimer les clés étrangères
+//     if ($query = $connexion->prepare("DELETE FROM stocks WHERE product_id = ?")) {
+//         $query->bind_param("i", $did);
+//         $query->execute();
+//         $query->close();
+//     } else {
+//         die("Erreur de préparation de la requête : " . $connexion->error);
+//     }
+//     // Seconde requête pour supprimer le produit
+//     if ($query = $connexion->prepare("DELETE FROM produits WHERE product_id = ?")) {
+//         $query->bind_param("i", $did);
+//         $query->execute();
+//         $query->close();
+//     } else {
+//         die("Erreur de préparation de la requête : " . $connexion->error);
+//     }
 
-    header('Location: ' . $_SERVER['REQUEST_URI']);
-    exit;
-}
+//     header('Location: ' . $_SERVER['REQUEST_URI']);
+//     exit;
+// }
 
 
 if (isset($_POST['ajout'])) {
@@ -99,7 +71,6 @@ if (isset($_POST['ajout'])) {
     $category_id = mt_rand(0, 10000);
     $category_description = $_POST['category_description'];
     $date_ajout = $_POST['date_ajout'];
-    $transaction_type = $_POST['transaction_type'];
     //On insère le fournisseur en premier
     if ($query = $connexion->prepare("INSERT INTO Fournisseurs (supplier_id, supplier_name) VALUES (?, ?)")) {
         $query->bind_param("is", $supplier_id, $supplier_name);
@@ -117,10 +88,10 @@ if (isset($_POST['ajout'])) {
         die("Erreur de préparation de la requête : " . $connexion->error);
     }
     //On insère le prix
-    if ($query = $connexion->prepare("INSERT INTO Produits (product_id, supplier_id, product_price, category_id, transaction_type) VALUES (?, ?, ?, ?, ?)")) {
-        $query->bind_param("iissi", $product_id, $supplier_id, $product_price, $category_id, $transaction_type);
-        $query->execute();
-        $query->close();
+    if ($query = $connexion->prepare("INSERT INTO Produits (product_id, supplier_id, product_price, category_id) VALUES (?, ?, ?, ?)")) {
+    $query->bind_param("iisi", $product_id, $supplier_id, $product_price, $category_id);
+    $query->execute();
+    $query->close();
     } else {
         die("Erreur de préparation de la requête : " . $connexion->error);
     }
@@ -133,15 +104,14 @@ if (isset($_POST['ajout'])) {
     } else {
         die("Erreur de préparation de la requête : " . $connexion->error);
     }
-    //On insère l'expéditeur
-    if ($query = $connexion->prepare("INSERT INTO Expediteurs (expeditor_id, expeditor_name, fournisseur_id) VALUES (?, ?, ?)")) {
-        $query->bind_param("isi", $expeditor_id, $expeditor_name, $supplier_id);
-        $query->execute();
-        $query->close();
-    } else {
-        die("Erreur de préparation de la requête : " . $connexion->error);
-    }
-
+//On insère l''expéditeur
+if ($query = $connexion->prepare("INSERT INTO Expediteurs (expeditor_id, expeditor_name, fournisseur_id) VALUES (?, ?, ?)")) {
+    $query->bind_param("isi", $expeditor_id, $expeditor_name, $supplier_id);
+    $query->execute();
+    $query->close();
+} else {
+    die("Erreur de préparation de la requête : " . $connexion->error);
+}
     header('Location: ' . $_SERVER['REQUEST_URI']);
     exit;
 }
@@ -157,7 +127,6 @@ JS;
     @import url('../components/sidebar.css');
     @import url('../style.css');
     @import url('../manage.css');
-    @import url('../components/sidebar.css');
 </style>
 
 
@@ -168,15 +137,14 @@ JS;
     <div>
         <table class="mystock_table">
             <tr>
-                <th>ID</th>
-                <th>Nom matériel</th>
+                <th>ID </th>
+                <th>Nom mat&eacute;riel</th>
                 <th>Stock</th>
                 <th>Prix</th>
                 <th>Achat/Emprunt</th>
                 <th>Date</th>
                 <th>Fournisseur</th>
-                <th>Expéditeur</th>
-                <th>Action</th>
+                <th>Exp&eacute;diteur</th>
             </tr>
             <?php
             foreach ($donnees_produits as $ligne_produits) {
@@ -184,23 +152,25 @@ JS;
                 echo "<td>" . $ligne_produits['product_id'] . "</td>";
                 echo "<td>" . $ligne_produits['category_description'] . "</td>";
                 echo "<td>" . $ligne_produits['stock_quantity'] . "</td>";
-                echo "<td>" . $ligne_produits['product_price'] . "€" . "</td>";
-                echo "<td>" . ($ligne_produits['transaction_type'] == 1 ? "Achat" : "Emprunt") . "</td>";
+                echo "<td>" . $ligne_produits['product_price'],"€" . "</td>";
+                echo "<td>" . "" . "</td>";
                 echo "<td>" . $ligne_produits['date_ajout'] . "</td>";
                 echo "<td>" . $ligne_produits['supplier_name'] . "</td>";
                 echo "<td>" . $ligne_produits['expeditor_name'] . "</td>";
                 echo "<td><form method='POST'>
-                <input type='hidden' name='id' value='" . $ligne_produits['product_id'] . "'>
-                <input type='submit' value='Supprimer' name='delete'>
-                </form></td>";
+                <input type=hidden name=id value=" . $ligne_produits['product_id'] . " >
+                </form>
+                </td>";
                 echo "</tr>";
             }
-            ?>
+        echo "<br />";
+        ?>
         </table>
     </div>
 </div>
 
 <style>
+
 body {
     font-family: 'Arial', sans-serif;
     background-color: #f4f4f4;
@@ -238,9 +208,7 @@ th {
     color: white;
 }
 
-tr:nth-child(even) {
-    background-color: #f2f2f2;
-}
+tr:nth-child(even) {background-color: #f2f2f2;}
 
 input[type="text"], input[type="number"], input[type="date"], input[type="submit"] {
     width: 100%;

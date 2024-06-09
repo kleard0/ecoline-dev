@@ -106,6 +106,13 @@ CREATE TABLE Reservations (
     FOREIGN KEY (product_id) REFERENCES Produits(product_id)
 );
 
+CREATE TABLE Utilisateurs (
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    noms VARCHAR(255) NOT NULL,
+    mdp TEXT NOT NULL,
+    roles INT NOT NULL
+);
+
 
 INSERT INTO `Fournisseurs` (supplier_id, supplier_name, supplier_contact, supplier_address, supplier_city, supplier_postal, supplier_phone)
 VALUES
@@ -160,3 +167,15 @@ VALUES
 INSERT INTO `Intermediaire` (inter_id, pret_quantity, stock_id, retour_stock)
 VALUES
 (1, 5, 1, 'OK');
+
+INSERT INTO `utilisateur` (`user_id`, `first_name`, `last_name`, `username`, `account_type`, `email`, `phone`, `password`) VALUES
+(1, 'Jean', 'Michel', 'michmich', 'pare', 'michel@gmail.com', '0641121213', 'azerty'),
+(2, 'Jean', 'Michel', 'michmich', 'pare', 'michel@gmail.com', '0641121213', 'azerty'),
+(3, 'Jean', 'Michel', 'michmich', 'pare', 'michel@gmail.com', '0641121213', 'azerty'),
+(5, 'test', 'sans id pour voir', 'test.user', 'pare', 'hello@outlook.com', '0906050441', 'iyugzsredfiuhfzeouhiuhiozfeuhiozfe'),
+(6, 'test', 'javascript', 'timetorefresh', 'enseignant', 'java@gmail.com', '0102030405', 'pîohjrfgvea zpiojn,zerfg,opzerf,pôzef'),
+(7, 'test', 'javascript', 'timetorefresh', 'enseignant', 'java@gmail.com', '0102030405', 'pîohjrfgvea zpiojn,zerfg,opzerf,pôzef'),
+(8, 'test', 'javascript', 'timetorefresh', 'enseignant', 'java@gmail.com', '0102030405', 'pîohjrfgvea zpiojn,zerfg,opzerf,pôzef'),
+(9, 'test', 'javascript', 'timetorefresh', 'enseignant', 'java@gmail.com', '0102030405', 'pîohjrfgvea zpiojn,zerfg,opzerf,pôzef'),
+(10, 'test', 'javascript', 'timetorefresh', 'enseignant', 'java@gmail.com', '0102030405', 'pîohjrfgvea zpiojn,zerfg,opzerf,pôzef');
+
