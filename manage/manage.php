@@ -29,7 +29,9 @@
             <div class="main">
                     <div class="head">
                         <div class="logo-block">
-                            <img src="./image/logo-ecoline.png">
+                            <div class="logo-block">
+                                <img src="/image/logo-ecoline.png" style="display: block; margin: 0 auto; max-width: 200px;">
+                            </div>
                         </div>
                         <div class="name-box">
                         </div>

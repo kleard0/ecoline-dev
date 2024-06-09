@@ -13,7 +13,7 @@ session_start();
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <link rel="stylesheet"
-href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <link rel="stylesheet"
@@ -43,7 +43,7 @@ href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wg
 
 <body>
     <div class="container-all">
-       <?php include '../components/sidebar.php'; ?>
+        <?php include '../components/sidebar.php'; ?>
 
         <div class="main"> <!--- start of main --->
             <div class="head">
@@ -57,41 +57,51 @@ href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wg
 
             <div class="add_section">
                 <div class="field_section">
-                    <form action="/cantine/reserve2.php" method="post">
-                        <!-- # pour récuperer le data depuis ce programme
-                            sinon mettre le nom d'autre fichier-->
+                    <form action="/cantine/cantine-codebarre.php" method="POST">
                         <div class="field">
-                            <label for="ID">ID de Parent :</label>
-                            <input name="parent_id" id="parent_id" type="number" placeholder="Parent ID" required />
+                            <label for="ID">Lecteur Code-barre:</label>
+                            <input name="code_barre" id="code_barre" type="number" placeholder="Code Barre" required
+                                autofocus />
                             <!-- required est pour obliger de saisir des valeurs -->
                         </div>
 
                         <button type="submit">Valider</button>
                     </form>
                 </div>
-                <div class="button_section">
-                    <div class="button">
-                        <a href="/cantine/cantine-menu.php">
-                            <p>Annuler</p>
-                        </a>
-                    </div>
-                    <!-- <div class="button">
-                           <p>Envoyer</p> -->
-                </div>
-            </div>
-            <br>
-            <div class="parent_name">
+                <br>
+                <form action="cantine-appel.php" method="POST">
+                    <input type="hidden">
+                    <button type="submit">Saisir l'appel manuellement</button>
+                    </td>
+                    <?php
 
-                <!--
-             <table class="table table-hover" >
-                <tr>
-                  <th scope="col">ID</th>
-                  <th scope="col">First Name</th>
-                  <th scope="col">Last Name</th>
-                </tr>
-            -->
-            </div> <!--- end of main --->
+                    if (isset($_POST["code_barre"])) {
+                        $barcode=$_POST["code_barre"];
+                        $scan = "SELECT DISTINCT * FROM student 
+                        INNER JOIN student_barcode ON student.student_id=student_barcode.fk_student_id 
+                        INNER JOIN reservation ON student.student_id=reservation.fk_student_id 
+                        WHERE student_barcode.code_id=$barcode 
+                        GROUP BY first_name, last_name";
+                        mysqli_query($connect, $scan);
+
+                        $verify = "INSERT INTO reservation(res_date,fk_student_id) VALUES (CURDATE(),(SELECT fk_student_id FROM student_barcode WHERE code_id =$barcode))";
+                        mysqli_query($connect, $verify);
+                        echo "<h4>Élève nrigestré</h4>";
+                        /*
+                        //check si le tableau n'a pas de data enregistrée déjà avec ce nom
+                        if (mysqli_num_rows($check_run) === 0) {
+                            $register = "INSERT INTO reservation(res_date,fk_student_id) VALUES (CURDATE(),'" . $_GET["ajouter"] . "')";
+                            mysqli_query($connect, $register);
+                            header('location:active-appel.php');
+                        } else {
+                            echo "<td>Cet élève est déja enrigestré</td>";
+                        }
+                        */
+                    } ?>
+                </form>
+            </div>
         </div>
+    </div> <!--- end of main --->
 
     </div>
 </body>

@@ -96,6 +96,17 @@ CREATE TABLE `Intermediaire` (
   FOREIGN KEY (`stock_id`) REFERENCES `Stocks` (`stock_id`)
 );
 
+CREATE TABLE Reservations (
+    reservation_id INT AUTO_INCREMENT PRIMARY KEY,
+    product_id INT,
+    client_name VARCHAR(255),
+    start_date DATE,
+    end_date DATE,
+    date_reserved TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (product_id) REFERENCES Produits(product_id)
+);
+
+
 INSERT INTO `Fournisseurs` (supplier_id, supplier_name, supplier_contact, supplier_address, supplier_city, supplier_postal, supplier_phone)
 VALUES
 (1, 'Alpha Fournitures', 'John Doe', '123 Rue de l’Industrie', 'Paris', '75001', '0123456789'),

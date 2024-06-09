@@ -1,7 +1,4 @@
-
-
-    
-            <div class="sidebar">
+               <div class="sidebar">
                 <div class="section-container">
                     <div class="section">
                         <div class="left">
@@ -10,7 +7,7 @@
                                 </span>
                         </div>
                         <div class="right">
-                           <a href="localhost"> <h2>Accueil</h2></a>
+                           <a href="/home.php"> <h2>Accueil</h2></a>
                         </div>
                     </div>
 
@@ -81,7 +78,7 @@
                             </span>
                         </div>
                         <div class="right">
-                            <a href="/cantine/cantine.html"> 
+                            <a href="/cantine/cantine-menu.php"> 
                                  <h2>Cantine</h2>
                             </a>
                         </div>   

@@ -14,7 +14,7 @@ justify-content: space-around;
 }
 
 .main-container .container{
-    width: 15%;
+    width: 5%;
     height: auto;
     background-color: white;
     border-radius: 5px;
@@ -28,6 +28,8 @@ justify-content: space-around;
     flex-wrap: wrap;
     box-shadow: 0vh 1vh 1vh rgb(60, 60, 60);
 }
+
+
 .main-container .container .student-image img{
     height: 200px;
     width: 100px;
@@ -45,3 +47,38 @@ text-decoration: none;
 color:  #153243;
 }
 
+
+.table_appel {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    border-collapse: collapse;
+    border: 2px solid rgb(140 140 140);
+    font-family: sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+  }
+  
+  th,td {
+    border: 1px solid rgb(160 160 160);
+    padding: 8px 10px;
+  }
+  
+  th[scope='col'] {
+    background-color: #505050;
+    color: #fff;
+  }
+  
+  th[scope='row'] {
+    background-color: #d4e4ec;
+  }
+  
+  td {
+    text-align: center;
+  }
+  
+  tr:nth-of-type(even) {
+    background-color: #eee;
+  }
+  
+  

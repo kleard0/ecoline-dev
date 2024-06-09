@@ -6,11 +6,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Ecoline</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
-    
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+
+// Récupérer les informations entrées par l'utilisateur
+$username = $_POST['username'];
+$password = $_POST['password'];
 
     <!--CSS-->
     <style type="text/css">
@@ -21,30 +20,27 @@
     </style>
     <!--FONT-->
     <style>
-       @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            margin: 0 auto;
+            text-align: center;
+        }
     </style>
 </head>
-<!--Body-->
 <body>
-<!-- Ligne pour importer la sidebar -->
-<div class="container-all">
-    <?php include 'components\sidebar.php'; ?>
-    <div class="main">
-        <div class="head">
-            <div class="logo-block">
-                <img src="./image/logo-ecoline.png">
-            </div>
-            <div class="name-box">
-            </div>
-        </div>
-        <div class="main-container">
-            <div class="container"></div>
-            <div class="container"></div>
-            
-            <div class="container"></div>
-            <div class="container"></div>
-        </div>                
-    </div>
+<div class="container">
+    <h1>Connexion</h1>
+    <img src="image/logo-ecoline.png" alt="Logo"><br>
+    <p>Veuillez vous connecter</p>
+    <form method="POST" action="">
+        <label for="username">Utilisateur :</label>
+        <input type="text" name="username" id="username" required><br>
+        <label for="password">Mot de passe :</label>
+        <input type="password" name="password" id="password" required><br>
+        <input type="submit" value="Login">
+    </form>
 </div>
 </body>
 </html>
