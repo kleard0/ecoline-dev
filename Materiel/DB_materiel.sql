@@ -8,7 +8,8 @@ CREATE TABLE `Produits` (
   `supplier_id` INTEGER,
   `category_id` INTEGER,
   `product_unit` VARCHAR(50),
-  `product_price` VARCHAR(50)
+  `product_price` VARCHAR(50),
+  `transaction_type` INTEGER
 );
 
 -- Création de la table `Stocks` après avoir vérifié que `Produits` existe

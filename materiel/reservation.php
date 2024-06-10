@@ -9,7 +9,7 @@ if (!$connexion) {
     die("Échec de la connexion : " . mysqli_connect_error());
 }
 
-if (!isset($_SESSION['ID'])) {
+/*if (!isset($_SESSION['ID'])) {
     header("Location: login.php");
     exit;
 }
@@ -18,7 +18,7 @@ $roles = $_SESSION['roles'];
 if ($roles ===1) {
     header('Location : login.php');
     exit;
-}
+}*/
 
 // Requête pour récupérer les produits
 $requete_produits = "
@@ -48,10 +48,11 @@ LEFT JOIN expediteurs as e ON
 $resultat_produits = $connexion->query($requete_produits);
 
 $donnees_produits = array();
-while ($ligne_produits = $resultat_produits->fetch_assoc()) {
-    $donnees_produits[] = $ligne_produits;
+if($resultat_produits) {
+    while ($ligne_produits = $resultat_produits->fetch_assoc()) {
+        $donnees_produits[] = $ligne_produits;
+    }
 }
-
 ?>
 
 <!DOCTYPE html>

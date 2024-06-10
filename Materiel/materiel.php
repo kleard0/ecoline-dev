@@ -83,7 +83,7 @@
             <div class="manage_menu">
                 <div class="menu_container">
                 <?php
-                    session_start();
+                session_start();
 
                     if (!isset($_SESSION['ID'])) {
                         header("Location: login.php");
@@ -99,9 +99,6 @@
                             </a>
                         </div>';
                     }
-                ?>
-                                    <?php
-                    session_start();
 
                     if (!isset($_SESSION['ID'])) {
                         header("Location: login.php");
@@ -117,10 +114,6 @@
                         </a>
                     </div>';
                     }
-                    ?>
-
-                    <?php
-                    session_start();
 
                     if (!isset($_SESSION['ID'])) {
                         header("Location: login.php");
@@ -136,10 +129,6 @@
                         </a>
                     </div>';
                     }
-                    ?>
-
-                    <?php
-                    session_start();
 
                     if (!isset($_SESSION['ID'])) {
                         header("Location: login.php");
@@ -155,9 +144,6 @@
                         </a>
                     </div>';
                     }
-                    ?>
-                    <?php
-                    session_start();
 
                     if (!isset($_SESSION['ID'])) {
                         header("Location: login.php");
