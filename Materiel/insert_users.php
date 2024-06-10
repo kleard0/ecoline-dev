@@ -22,7 +22,7 @@ foreach ($utilisateurs as $utilisateur) {
     $mdp = password_hash($utilisateur[1], PASSWORD_DEFAULT);
     $role = $utilisateur[2];
 
-    $requete = $connexion->prepare("INSERT INTO utilisateurs (noms, mdp, roles) VALUES (?, ?, ?)");
+    $requete = $connexion->prepare("INSERT INTO utilisateurs (names, passwords, roles) VALUES (?, ?, ?)");
     $requete->bind_param("ssi", $nom, $mdp, $role);
     $requete->execute();
     $requete->close();
