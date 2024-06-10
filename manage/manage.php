@@ -1,11 +1,3 @@
-<?php
-session_start();
-if (!isset($_SESSION['userid'])) {
-    header("Location: login.php");
-    exit();
-}
-?>
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -53,7 +45,7 @@ if (!isset($_SESSION['userid'])) {
                                     </a>
                                 </div>
                                 <div class="container">
-                                    <a href="../Materiel/materiel.php">
+                                    <a href="/Materiel/materiel.html">
                                         <h1> Gestion du matériel</h1>
                                     </a>
                                 </div>
