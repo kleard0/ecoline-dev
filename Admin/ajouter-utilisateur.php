@@ -68,10 +68,10 @@
 
         <label for="account_type">Type de compte:</label>
         <select id="account_type" name="account_type" required>
-            <option value="enseignant">Parent</option>
-            <option value="parent">Enseignant</option>
-            <option value="eleve">Eleve</option>
-            <option value="eleve">Direction</option>
+            <option value="parent">Parent</option>
+            <option value="teacher">Enseignant</option>
+            <option value="student">Eleve</option>
+            <option value="direction">Direction</option>
         </select><br><br>
 
         <input type="submit" value="S'inscrire">
