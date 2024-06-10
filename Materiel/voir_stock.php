@@ -9,7 +9,7 @@ if (!$connexion) {
     die("Échec de la connexion : " . mysqli_connect_error());
 }
 
-if (!isset($_SESSION['ID'])) {
+/*if (!isset($_SESSION['ID'])) {
     header("Location: login.php");
     exit;
 }
@@ -18,7 +18,7 @@ $roles = $_SESSION['roles'];
 if ($roles !==3 && $roles !== 4) {
     header('Location : login.php');
     exit;
-}
+}*/
 
 $requete_produits = "
 SELECT 
@@ -28,7 +28,8 @@ SELECT
     s.stock_quantity,
     s.date_ajout,
     f.supplier_name,
-    e.expeditor_name
+    e.expeditor_name,
+    p.transaction_type
 FROM produits as p
 LEFT JOIN categories as cat ON 
     cat.category_id = p.category_id
@@ -152,26 +153,28 @@ JS;
                 <th>Nom mat&eacute;riel</th>
                 <th>Stock</th>
                 <th>Prix</th>
-                <th>Achat/Emprunt</th>
+                <th>Achat/Pr&ecirc;t</th>
                 <th>Date</th>
                 <th>Fournisseur</th>
                 <th>Exp&eacute;diteur</th>
             </tr>
             <?php
             foreach ($donnees_produits as $ligne_produits) {
+                $achatEmprunt = $ligne_produits['transaction_type'] === "1" ? "Pr&ecirc;t" : 
+                    ($ligne_produits['transaction_type'] === "2" ? "Achat" 
+                    : "N/A");
                 echo "<tr>";
                 echo "<td>" . $ligne_produits['product_id'] . "</td>";
                 echo "<td>" . $ligne_produits['category_description'] . "</td>";
                 echo "<td>" . $ligne_produits['stock_quantity'] . "</td>";
-                echo "<td>" . $ligne_produits['product_price'],"€" . "</td>";
-                echo "<td>" . "" . "</td>";
+                echo "<td>" . $ligne_produits['product_price'] . " &euro;" . "</td>";
+                echo "<td>" . $achatEmprunt . "</td>";
                 echo "<td>" . $ligne_produits['date_ajout'] . "</td>";
                 echo "<td>" . $ligne_produits['supplier_name'] . "</td>";
                 echo "<td>" . $ligne_produits['expeditor_name'] . "</td>";
-                echo "<td><form method='POST'>
+                echo "<form method='POST'>
                 <input type=hidden name=id value=" . $ligne_produits['product_id'] . " >
-                </form>
-                </td>";
+                </form>";
                 echo "</tr>";
             }
         echo "<br />";

@@ -9,7 +9,7 @@ if (!$connexion) {
     die("Échec de la connexion : " . mysqli_connect_error());
 }
 
-if (!isset($_SESSION['ID'])) {
+/*if (!isset($_SESSION['ID'])) {
     header("Location: login.php");
     exit;
 }
@@ -18,7 +18,7 @@ $roles = $_SESSION['roles'];
 if ($roles ===1) {
     header('Location : login.php');
     exit;
-}
+}*/
 
 // Requête pour récupérer les produits
 $requete_produits = "
@@ -48,16 +48,16 @@ LEFT JOIN expediteurs as e ON
 $resultat_produits = $connexion->query($requete_produits);
 
 $donnees_produits = array();
-while ($ligne_produits = $resultat_produits->fetch_assoc()) {
-    $donnees_produits[] = $ligne_produits;
+if($resultat_produits) {
+    while ($ligne_produits = $resultat_produits->fetch_assoc()) {
+        $donnees_produits[] = $ligne_produits;
+    }
 }
-
 ?>
 
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Liste des matériels</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
@@ -163,7 +163,7 @@ while ($ligne_produits = $resultat_produits->fetch_assoc()) {
                 <td><?= $ligne_produits['product_id'] ?></td>
                 <td><?= $ligne_produits['category_description'] ?></td>
                 <td><?= $ligne_produits['stock_quantity'] ?></td>
-                <td><?= $ligne_produits['product_price'] ?>€</td>
+                <td><?= $ligne_produits['product_price'] ?>&euro;</td>
                 <td><?= $ligne_produits['transaction_type'] ?></td>
                 <td><?= $ligne_produits['date_ajout'] ?></td>
                 <td><?= $ligne_produits['supplier_name'] ?></td>
