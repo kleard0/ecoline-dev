@@ -27,6 +27,7 @@
 <!--Body-->
 <body>
 <!-- Ligne pour importer la sidebar -->
+ 
 <div class="container-all">
     <?php include 'components\sidebar.php'; ?>
     <div class="main">
@@ -34,11 +35,19 @@
             <div class="logo-block">
                 <img src="./image/logo-ecoline.png">
             </div>
+            
             <div class="name-box">
             </div>
         </div>
+        
         <div class="main-container">
-            <div class="container"></div>
+            <div class="container">
+            
+
+            <a href="logout.php">Se déconnecter</a>
+
+
+            </div>
             <div class="container"></div>
             
             <div class="container"></div>
