@@ -27,7 +27,7 @@
 <!--Body-->
 <body>
 <!-- Ligne pour importer la sidebar -->
- 
+
 <div class="container-all">
     <?php include 'components\sidebar.php'; ?>
     <div class="main">

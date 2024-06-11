@@ -91,8 +91,11 @@
                 <div class="container">
                     <h1 style="font-family:Arial, Helvetica, sans-serif ";>Boîte de réception</h1>
                     
+                    <a href="formulaire.php">Envoyer un message</a>
+                    <a href="logout.php">Se déconnecter</a>
 
                     <?php
+                    
                     /**
                      * Connect to the database and fetch data from the "message" table.
                      * Display the fetched data in a table.
@@ -137,7 +140,7 @@
                     // Close the database connection
                     $conn->close();
                     ?>
-
+                    
                     <div class="view-message">  <!--carré blanc-->
                       
                        
