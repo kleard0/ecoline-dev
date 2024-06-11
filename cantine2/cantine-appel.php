@@ -37,6 +37,8 @@
 </head>
 <?php
 ob_start();
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
 include 'sql_login.php';
 while ($row_appel = $result_appel->fetch_assoc()) {
     $data_appel[] = $row_appel;
@@ -44,7 +46,7 @@ while ($row_appel = $result_appel->fetch_assoc()) {
 
 <body>
     <div class="container-all">
-        <?php include '../components/sidebar.php';?>
+        <?php include '../components/sidebar.php'; ?>
         <div class="main">
             <div class="head">
                 <div class="logo-block">
@@ -58,7 +60,12 @@ while ($row_appel = $result_appel->fetch_assoc()) {
 
                 <div class="page-title">
                     <?php
-                    echo "<h1>Gestion Appel " . $currentDate . "</h1>"; ?>
+                    echo "<h1>Gestion Appel " . $currentDate . "</h1>";
+                    if (isset($_GET["ajouter"])) {
+                        var_dump($_GET["ajouter"]);}
+
+                         ?>
+                    
                 </div>
                 <table class="table_appel">
                     <tr>
@@ -72,12 +79,12 @@ while ($row_appel = $result_appel->fetch_assoc()) {
                     if (mysqli_num_rows($result_appel) > 0) {
                         foreach ($data_appel as $row_appel) {
                             echo "<tr>";
-                            echo '<td>' . $row_appel["student_id"] . '</td>';
+                            echo '<td>' . $row_appel["user_id"] . '</td>';
                             echo '<td>' . $row_appel["first_name"] . " " . $row_appel["last_name"] . ' </td>';
                             if ($row_appel["presence"] == 1) {
-                                echo '<td><p><a href="active-appel.php?student_id=' . $row_appel["student_id"] . '&presence=0">présent</a></p></td>';
+                                echo '<td><p><a href="active-appel.php?user_id=' . $row_appel["user_id"] . '&presence=0">présent</a></p></td>';
                             } else {
-                                echo '<td><p><a href="active-appel.php?student_id=' . $row_appel["student_id"] . '&presence=1">Absent</a></p></td>';
+                                echo '<td><p><a href="active-appel.php?user_id=' . $row_appel["user_id"] . '&presence=1">Absent</a></p></td>';
                             }
                             /* echo "<td>
                                              <form action=" . "/cantine/reserve3.php " . "method=" . "POST" . ">
@@ -97,11 +104,9 @@ while ($row_appel = $result_appel->fetch_assoc()) {
 
                         <th scope='col'>
                             <form action="" method="GET">
-                                <input type="text" name="search" required
-                                    value="<?php if (isset($_GET['search'])) {
-                                        echo $_GET['search'];
-                                    } ?>"
-                                    placeholder="Ajouter un élève">
+                                <input type="text" name="search" required value="<?php if (isset($_GET['search'])) {
+                                    echo $_GET['search'];
+                                } ?>" placeholder="Ajouter un élève">
                                 <button type="submit">Search</button>
                         </th>
                     </tr>
@@ -114,7 +119,7 @@ while ($row_appel = $result_appel->fetch_assoc()) {
                     echo "<th scope='col'>Option</th>";
 
                     $filtervalues = $_GET['search'];
-                    $query = "SELECT DISTINCT * FROM student LEFT JOIN reservation ON  student_id= reservation.fk_student_id WHERE CONCAT(first_name,last_name) LIKE '%$filtervalues%' 
+                    $query = "SELECT DISTINCT * FROM users LEFT JOIN reservation ON  user_id= reservation.fk_student_id WHERE account_type='student' AND CONCAT(first_name,last_name) LIKE '%$filtervalues%' 
                                      GROUP BY first_name, last_name";
                     $query_run = mysqli_query($connect, $query);
 
@@ -125,14 +130,10 @@ while ($row_appel = $result_appel->fetch_assoc()) {
 
                             echo "<tr>";
                             echo '<td>' . $element['first_name'] . ' ' . $element['last_name'] . '</td>';
-                            /*if((!empty($element["presence"]))){
-                                echo '<td>Cet élève est déja enrigestré</td>';
-                                }
-                            else{*/
                             echo
                                 '<td>
                                                 <form method="GET">
-                                                <input type="hidden" id="ajouter" name="ajouter" value="' . $element["student_id"] . '">
+                                                <input type="hidden" id="ajouter" name="ajouter" value="' . $element["user_id"] . '">
                                                 <button type="submit">Ajouter</button>
                                                 </td></form>';
                             //}
@@ -148,23 +149,39 @@ while ($row_appel = $result_appel->fetch_assoc()) {
                         $check = "SELECT * FROM reservation WHERE res_date=CURDATE() AND fk_student_id='" . $_GET["ajouter"] . "' ";
                         $check_run = mysqli_query($connect, $check);
 
+                        if (!$check_run) {
+                            die("Error executing query: " . mysqli_error($connect));
+                        }
+
                         //check si le tableau n'a pas de data enregistrée déjà avec ce nom
+
                         if (mysqli_num_rows($check_run) === 0) {
-                            $register = "INSERT INTO reservation(res_date,fk_student_id) VALUES (CURDATE(),'" . $_GET["ajouter"] . "')";
-                            mysqli_query($connect, $register);
-                            header('location:active-appel.php');
+                            var_dump($_GET["ajouter"]); 
+                            $kiki = ($_GET["ajouter"]);
+                            $register = "INSERT INTO reservation (res_date,fk_student_id) VALUES (CURDATE(),'" . $_GET["ajouter"] . "')";
+                            $register_run = mysqli_query($connect, $register);
+
+                            if (!$register_run) {
+                                die("Error executing query: " . mysqli_error($connect));}
+                          header('location:active-appel.php');
                         } else {
                             echo "<td>Cet élève est déja enrigestré</td>";
                         }
 
-                    }
+                    } 
                     ob_end_flush();
                 }
                 ?>
 
                 </table>
+                <?php
+                 if (isset($_GET["ajouter"])) {
+                    $kiki = ($_GET["ajouter"]);
+                $register = "INSERT INTO reservation (res_date,fk_student_id) VALUES (CURDATE(),'$kiki')";
 
-
+                 var_dump($connect);
+                 var_dump($register);}
+                ?>
             </div>
         </div>
     </div>
@@ -207,3 +224,4 @@ while ($row_appel = $result_appel->fetch_assoc()) {
         background-color: #eee;
     }
 </style>
+<script>

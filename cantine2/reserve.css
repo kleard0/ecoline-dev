@@ -1,0 +1,74 @@
+page-title{
+    color:  #153243;;
+}
+
+
+
+
+.main-container .appel-menu{
+display: flex;
+flex-direction: row;
+flex-wrap: wrap;
+justify-content: space-around;
+}
+
+.main-container .container{
+    width: 15%;
+    height: auto;
+    background-color: white;
+    border-radius: 5px;
+    margin-top: 1%;
+    margin-left: 1%;
+    margin-right: 1%;
+    margin-bottom: 2vh;
+    text-align: center;    
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    box-shadow: 0vh 1vh 1vh rgb(60, 60, 60);
+}
+
+.parent_name {
+    font-family: Arial;
+    font-size: 5vh;
+text-decoration: none;
+color:  #153243;
+    
+}
+
+th,
+td {
+  border: 1px solid rgb(160 160 160);
+  padding: 8px 10px;
+}
+
+th[scope='col'] {
+  background-color: #505050;
+  color: #fff;
+}
+
+th[scope='row'] {
+  background-color: #d4e4ec;
+}
+
+td {
+  text-align: center;
+}
+
+tr:nth-of-type(even) {
+  background-color: #eee;
+}
+
+.table_enfants {
+  border-collapse: collapse;
+  border: 2px solid rgb(140 140 140);
+  font-family: sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+}
+
+
+caption {
+  caption-side: bottom;
+  padding: 10px;
+}

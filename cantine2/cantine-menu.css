@@ -1,0 +1,25 @@
+
+.main-container .container{
+    width: 100%;
+    height: 35%;
+    background-color: white;
+    border-radius: 10px;
+    margin-top: 10%;
+    margin-left: 1%;
+    margin-right: 1%;
+    text-align: center;    
+
+    box-shadow: 0vh 1vh 1vh rgb(60, 60, 60);
+}
+
+.page-title{
+    color:  #153243;;
+}
+.main-container .container a{
+    font-family: Arial;
+    font-size: 5vh;
+text-decoration: none;
+color:  #153243;
+    
+}
+
