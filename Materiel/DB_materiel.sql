@@ -106,16 +106,13 @@ CREATE TABLE Reservations (
     FOREIGN KEY (product_id) REFERENCES Produits(product_id)
 );
 
-CREATE TABLE Utilisateurs (
-user_id int(8) NOT NULL,
-family_id int(8) NOT NULL,
-first_name text NOT NULL,
-last_name text NOT NULL,
-username varchar(64) NOT NULL,
-account_type varchar(20) NOT NULL,
-email text NOT NULL,
-phone varchar(10) NOT NULL,
-password varchar(128) NOT NULL);
+CREATE TABLE IF NOT EXISTS utilisateurs (
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    noms VARCHAR(255) NOT NULL,
+    mdp TEXT NOT NULL,
+    roles INT NOT NULL
+);
+
 
 
 INSERT INTO `Fournisseurs` (supplier_id, supplier_name, supplier_contact, supplier_address, supplier_city, supplier_postal, supplier_phone)
