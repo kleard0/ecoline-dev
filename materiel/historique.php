@@ -9,6 +9,11 @@ if (!$connexion) {
     die("Échec de la connexion : " . mysqli_connect_error());
 }
 
+/*if (!isset($_SESSION['ID'])) {
+    header("Location: login.php");
+    exit;
+}*/
+
 // Requête pour récupérer l'historique des réservations
 $requete_reservations = "
 SELECT 

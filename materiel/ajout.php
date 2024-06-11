@@ -9,6 +9,17 @@ if (!$connexion) {
     die("Échec de la connexion : " . mysqli_connect_error());
 }
 
+/*if (!isset($_SESSION['ID'])) {
+    header("Location: login.php");
+    exit;
+}
+
+$roles = $_SESSION['roles'];
+if ($roles !==3 && $roles !== 4) {
+    header('Location : login.php');
+    exit;
+}*/
+
 // Ajout de matériel
 if (isset($_POST['ajout'])) {
     $product_id = intval($_POST['product_id']);
@@ -69,7 +80,7 @@ if (isset($_POST['ajout'])) {
         die("Erreur de préparation de la requête : " . $connexion->error);
     }
 
-    header('Location: ajout_materiel.php');
+    header('Location: ajout.php');
     exit;
 }
 ?>
