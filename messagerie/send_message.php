@@ -15,8 +15,8 @@ if ($conn->connect_error) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $user_id = $_SESSION['ID'];
-    $destinataire_id = $_POST['destinataire_id'];
+    $user_id = $_SESSION['ID']; // Expéditeur
+    $destinataire_id = $_POST['destinataire_id']; // Destinataire
     $message_content = $_POST['message_content'];
     $message_text = $_POST['message_text'];
     $message_media = "";
@@ -36,7 +36,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt->bind_param("iisss", $user_id, $destinataire_id, $message_content, $message_text, $message_media);
 
     if ($stmt->execute()) {
-        echo "Message envoyé avec succès.";
+        echo "<div>Message envoyé. Vous serez redirigé dans 2 secondes...</div>";
+        echo "<script>
+                setTimeout(function(){
+                    window.location.href = 'messages.php';
+                }, 2000);
+              </script>";
     } else {
         echo "Erreur: " . $sql . "<br>" . $conn->error;
     }
