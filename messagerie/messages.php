@@ -18,6 +18,15 @@ if ($conn->connect_error) {
 // Récupération de l'ID de l'utilisateur connecté
 $user_id = $_SESSION['ID'];
 
+// Récupération du nom de l'utilisateur connecté
+$user_sql = "SELECT noms FROM utilisateurs WHERE id = ?";
+$user_stmt = $conn->prepare($user_sql);
+$user_stmt->bind_param("i", $user_id);
+$user_stmt->execute();
+$user_result = $user_stmt->get_result();
+$user_row = $user_result->fetch_assoc();
+$user_name = $user_row['noms'];
+
 // Récupération des messages pour l'utilisateur connecté
 $sql = "SELECT * FROM message WHERE destinataire_id = ?";
 $stmt = $conn->prepare($sql);
@@ -38,7 +47,14 @@ $result = $stmt->get_result();
     <style type="text/css">
         @import url(style.css);
         @import url(sidebar.css);
-        @import url(formulaire.css); 
+        @import url(formulaire.css);
+        
+        .user-info {
+            display: inline-block;
+            margin-left: 20px;
+            font-size: 16px;
+            color: #555;
+        }
     </style>
 </head>
 <body>
@@ -51,7 +67,7 @@ $result = $stmt->get_result();
                 </div>
                 <div class="section">
                     <span class="material-symbols-outlined">mail</span>
-                    <span><a href="index.php">Messagerie</a></span>
+                    <span><a href="messages.php">Messagerie</a></span>
                 </div>
                 <div class="section">
                     <span class="material-symbols-outlined">calendar_today</span>
@@ -81,12 +97,14 @@ $result = $stmt->get_result();
                 <div class="logo-block">
                     <img src="image/logo-ecoline.png">
                 </div>
-                <div class="name-box"></div>
             </div>
             <div class="main-container">
                 <div class="container">
                     <div class="view-message">
-                        <h1>Messages reçus</h1>
+                        <h1>
+                            Messages reçus 
+                            <span class="user-info">Connecté avec <?php echo htmlspecialchars($user_name); ?>.</span>
+                        </h1>
                          
                         <a href="formulaire.php">Envoyer un message</a>
                         <a href="logout.php">Se déconnecter</a>
@@ -95,7 +113,13 @@ $result = $stmt->get_result();
                             while($row = $result->fetch_assoc()) {
                                 echo "<div class='message'>";
                                 echo "<h3>Sujet: " . htmlspecialchars($row['message_content']) . "</h3>";
-                                echo "<p><a href='voir_message.php?id=" . $row['message_id'] . "'>Voir le message</a></p>";
+                                echo "<p><a href='voir_message.php?id=" . $row['message_id'] . "'>Voir le message</a> - ";
+                                if ($row['view_message'] == 0) {
+                                    echo "Message non lu";
+                                } else {
+                                    echo "Message lu";
+                                }
+                                echo "</p>";
                                 echo "</div>";
                             }
                         } else {
