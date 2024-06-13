@@ -1,157 +1,120 @@
-<!--Ecoline cette page est en read only pour les eleves -->
+<?php
+session_start();
+
+$serveur = "localhost";
+$utilisateur = "root";
+$motDePasse = "";
+$baseDeDonnees = "ecoline";
+
+$connexion = new mysqli($serveur, $utilisateur, $motDePasse, $baseDeDonnees);
+
+if ($connexion->connect_error) {
+    die("Échec de la connexion : " . $connexion->connect_error);
+}
+
+if (isset($_POST['login'])) {
+    $noms = $_POST['noms'];
+    $mdp = $_POST['mdp'];
+    
+    $requete = $connexion->prepare("SELECT ID, mdp, roles FROM utilisateurs WHERE noms = ?");
+    $requete->bind_param("s", $noms);
+    $requete->execute();
+    $requete->bind_result($id, $hash_mdp, $roles);
+    $requete->fetch();
+    
+    if (password_verify($mdp, $hash_mdp)) {
+        $_SESSION['ID'] = $id;
+        $_SESSION['roles'] = $roles;
+        header("Location: messages.php");
+        exit;
+    } else {
+        $message = "Nom ou mot de passe incorrect";
+    }
+    $requete->close();
+}
+
+$connexion->close();
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <!--Meta-->
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
 
-    <title>Messagerie</title>
-    <link rel="icon" href="/favicon.ico">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <!-- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> -->
-    
-    <!--Icon font Google-->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+        .container {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            padding: 20px;
+            max-width: 400px;
+            margin: 100px auto;
+        }
 
-    <!--CSS-->
-    <!--Changer les paths des fichiers styles pour la fin du projet-->
-    <style type="text/css">
-        @import url(/messagerie/style.css); 
-        @import url(sidebar.css);
-        @import url(/icons.css);
+        h1 {
+            text-align: center;
+            font-weight: 500;
+        }
 
-    h1 {
-    text-align: center;
-    }
+        form div {
+            margin-bottom: 10px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"], input[type="password"], input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .message {
+            text-align: center;
+            color: red;
+        }
     </style>
-    
 </head>
-<!--Body-->
 <body>
-    <div class="container-all">
-        <!--Sidebar-->
-        <div class="sidebar">
-            <div class="section-container">
-                <div class="section">
-                    <span class="material-symbols-outlined">
-                        menu
-                        </span>
-                        <span><a href="/home.php">Accueil</a>
-                </div>
-                <div class="section">
-                    <span class="material-symbols-outlined">
-                        mail
-                        </span>
-                        <span><a href="index.php">Messagerie</a>
-                        </span>
-                </div>
-                <div class="section">
-                    <span class="material-symbols-outlined">
-                        calendar_today
-                        </span>
-                        <span>Planning</span>
-                </div>
-                <div class="section">
-                    <span class="material-symbols-outlined">
-                        book_2
-                        </span>
-                        <span> Agenda</span>
-                </div>
-                <div class="section">
-                    <span class="material-symbols-outlined">
-                        school
-                        </span>
-                        <span>Note</span>
-                </div>
-                <div class="section">
-                    <span class="material-symbols-outlined">
-                        shopping_bag
-                        </span>
-                        <span>Gestion</span>
-                </div>
-                <div class="section">
-                    <span class="material-symbols-outlined">
-                        restaurant
-                        </span>
-                        <span><a href="/cantine/cantine-menu.php">Cantine</a></span>
-                </div>
+    <div class="container">
+        <h1>Connexion</h1>
+        <?php if (isset($message)) { echo "<p class='message'>$message</p>"; } ?>
+        <form method="POST">
+            <div>
+                <label for="noms">Nom :</label>
+                <input type="text" id="noms" name="noms" required>
             </div>
-        </div>
-        <p style="font-family:Arial">
-        <div class="main">
-            <div class="head">
-                <div class="logo-block">
-                    <img src="image/logo-ecoline.png">
-                </div>
-                <div class="name-box">
-                </div>
+            <div>
+                <label for="mdp">Mot de passe :</label>
+                <input type="password" id="mdp" name="mdp" required>
             </div>
-            <div class="main-container">
-                <div class="container">
-                    <h1 style="font-family:Arial, Helvetica, sans-serif ";>Boîte de réception</h1>
-                    
-                    <a href="formulaire.php">Envoyer un message</a>
-                    <a href="logout.php">Se déconnecter</a>
-
-                    <?php
-                    /**
-                     * Connect to the database and fetch data from the "message" table.
-                     * Display the fetched data in a table.
-                     */
-
-                    // Connect to your database
-                    $servername = "localhost";
-                    $username = "message";
-                    $password = "4VZzATv&jiCV5Jo*5m5i@!X^#PbK9ijx";
-                    $dbname = "ecoline";
-
-                    $conn = new mysqli($servername, $username, $password, $dbname);
-                    if ($conn->connect_error) {
-                        die("Connection failed: " . $conn->connect_error);
-                    }
-
-                    // Fetch data from the database
-                    $sql = "SELECT destinataire_id,message_content, message_text FROM message";
-                    $result = $conn->query($sql);
-
-                    // Display the data
-                    if ($result->num_rows > 0) {
-                        while ($row = $result->fetch_assoc()) {
-                            echo "<p>ID Utilisateur: " . $row["destinataire_id"] . "</p>";
-                            echo "<p>Sujet: " . $row["message_content"] . "</p>";
-                            echo "<p>Message: " . $row["message_text"] . "</p>";
-                            echo "<table>";
-                            echo "<tr><th>ID Utilisateur</th><th>Sujet</th><th>Message</th></tr>";
-                            while ($row = $result->fetch_assoc()) {
-                                echo "<tr>";
-                                echo "<td>" . $row["destinataire_id"] . "</td>";
-                                echo "<td>" . $row["message_content"] . "</td>";
-                                echo "<td>" . $row["message_text"] . "</td>";
-                                echo "</tr>";
-                            }
-                            echo "</table>";
-                        }
-                    } else {
-                        echo "No data found.";
-                    }
-
-                    // Close the database connection
-                    $conn->close();
-                    ?>
-                    
-                    <div class="view-message">  <!--carré blanc-->
-                      
-                       
-                        
-                    </div>
-
-                </div>
-
-            </div>                
-        </div>
-
+            <div>
+                <input type="submit" name="login" value="Connexion">
+            </div>
+        </form>
     </div>
-    
 </body>
 </html>

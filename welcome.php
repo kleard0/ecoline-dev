@@ -5,9 +5,6 @@ if (!isset($_SESSION['userid'])) {
     header("Location: login.html");
     exit();
 }
-// Après une connexion réussie
-$username = $_POST['username']; // Supposons que le nom d'utilisateur a été saisi via un formulaire
-setcookie('username', $username, time() + 3600, '/'); // Cookie valide pendant 1 heure (3600 secondes)
 
 // Attendre une seconde avant la redirection
 sleep(1);
