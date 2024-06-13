@@ -62,7 +62,7 @@ if (isset($_POST['update'])) {
         die("Erreur de préparation de la requête (Fournisseurs) : " . $connexion->error);
     }
 
-    // Assurez-vous de lier l'expéditeur au bon fournisseur
+    // Lier l'expéditeur au bon fournisseur
     if ($query = $connexion->prepare("UPDATE Expediteurs SET expeditor_name = ? WHERE expeditor_id = (SELECT expeditor_id FROM Produits WHERE product_id = ?) AND fournisseur_id = (SELECT supplier_id FROM Produits WHERE product_id = ?)")) {
         $query->bind_param("sii", $expeditor_name, $product_id, $product_id);
         $query->execute();

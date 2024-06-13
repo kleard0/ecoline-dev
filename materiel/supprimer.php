@@ -133,7 +133,7 @@ if (isset($_POST['ajout'])) {
     $category_description = $_POST['category_description'];
     $date_ajout = $_POST['date_ajout'];
     $transaction_type = $_POST['transaction_type'];
-    //On insère le fournisseur en premier
+    //On insère le fournisseur
     if ($query = $connexion->prepare("INSERT INTO Fournisseurs (supplier_id, supplier_name) VALUES (?, ?)")) {
         $query->bind_param("is", $supplier_id, $supplier_name);
         $query->execute();
