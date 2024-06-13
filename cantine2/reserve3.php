@@ -10,14 +10,22 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>reserve3</title>
     <link rel="icon" href="favicon.ico" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <style type="text/css">
         @import url(../../components/sidebar.php);
         @import url(../../components/sidebar.css);
@@ -33,15 +41,15 @@ session_start();
     </style>
 </head>
 <?php
-    include 'sql_login.php';
-    if (isset($_POST["user_id"])) {
+include 'sql_login.php';
+if (isset($_POST["user_id"])) {
 
-        $_SESSION["user_id"] = $_POST["user_id"];
-        $req_enfants = "SELECT * FROM users where account_type = 'student' AND user_id = '" . $_SESSION["user_id"] . "' ";
-        $result_enfants = $connect->query($req_enfants);
-    
-        $row_enfants = mysqli_fetch_array($result_enfants);
-    }
+    $_SESSION["user_id"] = $_POST["user_id"];
+    $req_enfants = "SELECT * FROM users where account_type = 'student' AND user_id = '" . $_SESSION["user_id"] . "' ";
+    $result_enfants = $connect->query($req_enfants);
+
+    $row_enfants = mysqli_fetch_array($result_enfants);
+}
 ?>
 
 
@@ -87,16 +95,6 @@ session_start();
 
                         $query = "INSERT INTO reservation(res_date,fk_student_id) VALUES ('$reserve_date',(SELECT user_id FROM users WHERE user_id =  '" . $_SESSION["user_id"] . "'))";
                         $query_run = $connect->query($query);
-
-                        /*
-                    if($query_run){
-                        $_SESSION['status'] = "Date values Inserted";
-                    }  
-
-                    else{
-                        $_SESSION['status'] = "Date values Inserting failed";
-                    }  
-    */
                     }
                     ?>
             </form>

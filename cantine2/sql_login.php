@@ -12,15 +12,9 @@ if (!$connect) {
     die("Échec de la connexion : " . mysqli_connect_error());
 }
 
-//data de BDD
 
-/*
- $data_parents = array();
- while ($row_parents = $result_parents->fetch_assoc()) {
-     $data_parents[] = $row_parents;
- }
 
- */
+
 if (isset($_POST["user_id"])) {
     //utilise le data inséré dans le champ
     $_SESSION["user_id"] = $_POST["user_id"];
@@ -38,18 +32,14 @@ if (isset($_POST["user_id"])) {
 
 
 
-/*
-$data_enfants = array();
-while ($row_enfants = $result_enfants->fetch_assoc()) {
-    $data_enfants[] = $row_enfants;
-}
-*/
-
-
-$req_histoire = "SELECT * FROM reservation 
+$req_historique = "SELECT * FROM reservation 
 FULL JOIN users 
-ON fk_student_id = users.user_id";
-$result_histoire = $connect->query($req_histoire);
+ON fk_student_id = users.user_id  ORDER BY res_date DESC";
+$result_historique = $connect->query($req_historique);
+$data_historique = array();
+while ($row_historique = $result_historique->fetch_assoc()) {
+    $data_historique[] = $row_historique;
+}
 
 
 $currentDate = date('Y-m-d');
@@ -57,9 +47,4 @@ $req_appel = "SELECT * FROM reservation
 FULL JOIN users 
 ON fk_student_id = users.user_id WHERE users.account_type = 'student' AND res_date = CURDATE()";
 $result_appel= $connect->query($req_appel);
-
-
-// EXEMPLE LIASISON
-// SELECT * FROM `student` INNER JOIN parent_student ON parent_student.student_student_id = student.student_id
-//WHERE parent_student.parent_parent_id = 2;
 ?>

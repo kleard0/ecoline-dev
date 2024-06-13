@@ -51,7 +51,7 @@ if (isset($_POST["student_id"])) {
 
 $req_histoire = "SELECT * FROM reservation 
 FULL JOIN student 
-ON fk_student_id = student.student_id";
+ON fk_student_id = student.student_id ORDER BY res_date DESC ";
 $result_histoire = $connect->query($req_histoire);
 
 

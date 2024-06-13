@@ -59,11 +59,11 @@ while ($row_appel = $result_appel->fetch_assoc()) {
             <div class="main-container">
 
                 <div class="page-title">
-                    <?php
+                    <?php 
                     echo "<h1>Gestion Appel " . $currentDate . "</h1>";
                     if (isset($_GET["ajouter"])) {
                         var_dump($_GET["ajouter"]);}
-
+                    
                          ?>
                     
                 </div>
@@ -173,14 +173,16 @@ while ($row_appel = $result_appel->fetch_assoc()) {
                 }
                 ?>
 
-                </table>
+                </table>                
                 <?php
+                /*
                  if (isset($_GET["ajouter"])) {
                     $kiki = ($_GET["ajouter"]);
                 $register = "INSERT INTO reservation (res_date,fk_student_id) VALUES (CURDATE(),'$kiki')";
 
                  var_dump($connect);
                  var_dump($register);}
+                 */
                 ?>
             </div>
         </div>

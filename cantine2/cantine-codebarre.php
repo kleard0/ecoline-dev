@@ -57,7 +57,7 @@ session_start();
 
             <div class="add_section">
                 <div class="field_section">
-                    <form action="/cantine/cantine-codebarre.php" method="POST">
+                    <form action="/cantine2/cantine-codebarre.php" method="POST">
                         <div class="field">
                             <label for="ID">Lecteur Code-barre:</label>
                             <input name="code_barre" id="code_barre" type="number" placeholder="Code Barre" required
@@ -77,14 +77,20 @@ session_start();
 
                     if (isset($_POST["code_barre"])) {
                         $barcode=$_POST["code_barre"];
-                        $scan = "SELECT DISTINCT * FROM student 
-                        INNER JOIN student_barcode ON student.student_id=student_barcode.fk_student_id 
-                        INNER JOIN reservation ON student.student_id=reservation.fk_student_id 
-                        WHERE student_barcode.code_id=$barcode 
+                        /*$scan = "SELECT DISTINCT * FROM users 
+                        INNER JOIN student_barcode ON user_id=student_barcode.fk_student_id 
+                        INNER JOIN reservation ON users.user_id=reservation.fk_student_id 
+                        WHERE student_barcode.code_id=$barcode AND account_type='student'
                         GROUP BY first_name, last_name";
                         mysqli_query($connect, $scan);
 
                         $verify = "INSERT INTO reservation(res_date,fk_student_id) VALUES (CURDATE(),(SELECT fk_student_id FROM student_barcode WHERE code_id =$barcode))";
+                        mysqli_query($connect, $verify);
+                        echo "<h4>Élève nrigestré</h4>";*/
+                        $scan = "SELECT user_id FROM users";
+                        mysqli_query($connect, $scan);
+
+                        $verify = "INSERT INTO reservation(res_date,fk_student_id) VALUES (CURDATE(),(SELECT user_id FROM users WHERE user_id=$barcode))";
                         mysqli_query($connect, $verify);
                         echo "<h4>Élève nrigestré</h4>";
                         /*

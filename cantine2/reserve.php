@@ -80,18 +80,7 @@ href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wg
                 </div>
             </div>
             <br>
-            <div class="parent_name">
-
-                <!--
-             <table class="table table-hover" >
-                <tr>
-                  <th scope="col">ID</th>
-                  <th scope="col">First Name</th>
-                  <th scope="col">Last Name</th>
-                </tr>
-            -->
-            </div> <!--- end of main --->
-        </div>
+        </div> <!--- end of main --->
 
     </div>
 </body>

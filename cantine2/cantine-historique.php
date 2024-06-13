@@ -39,10 +39,7 @@
 </head>
 <?php
 include 'sql_login.php';
-$data_histoire = array();
-while ($row_histoire = $result_histoire->fetch_assoc()) {
-    $data_histoire[] = $row_histoire;
-}
+
 /*
 $data_list = array();
 while ($row_list = $result_list->fetch_assoc()) {
@@ -80,21 +77,18 @@ while ($row_list = $result_list->fetch_assoc()) {
                     </tr>
                     <?php
 
-                    foreach ($data_histoire as $row_histoire) {
-                        if (!empty($row_histoire["reservation_id"])) {
+                    foreach ($data_historique as $row_historique) {
+                        if (!empty($row_historique["reservation_id"])) {
                             echo "<tr>";
-                            //   echo "<td>" . $row_enfants["student_id"] . "</td>";                        echo "<td>" . $row_list["first_name"] . " " . $row_enfants["last_n"] . "</td>";}
-                            echo "<td>" . $row_histoire["first_name"] . " " . $row_histoire["last_name"] . "</td>";
-                            echo "<td>" . $row_histoire["user_id"] . "</td>";
-                            echo "<td>" . $row_histoire["res_date"] . " </td>";
-                            if ($row_histoire["presence"] == 1) {
+                            echo "<td>" . $row_historique["first_name"] . " " . $row_historique["last_name"] . "</td>";
+                            echo "<td>" . $row_historique["user_id"] . "</td>";
+                            echo "<td>" . $row_historique["res_date"] . " </td>";
+                            if ($row_historique["presence"] == 1) {
                                 echo "<td>Présent</td>";
                             } else {
                                 echo "<td>Absent</td>";
                             }
-                            /*
-                            echo "<td><button method="."POST"." onclick=\"location.href='/cantine/reserve3.php?student_id=".$row_enfants["student_id"]."'\">Choisir</button></td>"; */
-                            echo "</tr>";
+                        echo "</tr>";
                         }
                     }
                     ?>
