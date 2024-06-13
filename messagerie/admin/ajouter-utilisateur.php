@@ -12,6 +12,8 @@ if ($connexion->connect_error) {
     die("Échec de la connexion : " . $connexion->connect_error);
 }
 
+$message = "";
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $first_name = $_POST['first_name'];
     $last_name = $_POST['last_name'];
@@ -25,9 +27,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $requete->bind_param("sssssss", $first_name, $last_name, $noms, $roles, $email, $phone, $mdp);
 
     if ($requete->execute()) {
-        echo "Nouvel utilisateur ajouté avec succès.";
+        $message = "Nouvel utilisateur ajouté avec succès.";
     } else {
-        echo "Erreur : " . $requete->error;
+        $message = "Erreur : " . $requete->error;
     }
 
     $requete->close();
@@ -59,6 +61,9 @@ $connexion->close();
         }
         .container h1 {
             margin-bottom: 20px;
+        }
+        form {
+            margin-bottom: 20px; /* Ajout de marge en bas du formulaire */
         }
         form div {
             margin-bottom: 15px;
@@ -95,6 +100,28 @@ $connexion->close();
             cursor: pointer;
         }
         button:hover {
+            background-color: #0056b3;
+        }
+        .message {
+            margin-top: 20px;
+            background-color: #dff0d8;
+            color: #3c763d;
+            border: 1px solid #d6e9c6;
+            padding: 10px;
+            border-radius: 5px;
+            display: <?php echo ($message != '') ? 'block' : 'none'; ?>;
+        }
+        .back-button {
+            display: block;
+            margin-top: 10px; /* Ajout de marge au-dessus du bouton */
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .back-button:hover {
             background-color: #0056b3;
         }
     </style>
@@ -140,6 +167,10 @@ $connexion->close();
                 <button type="submit">Ajouter</button>
             </div>
         </form>
+        <?php if ($message != ''): ?>
+            <div class="message"><?php echo $message; ?></div>
+        <?php endif; ?>
+        <a href="index.php" class="back-button">Retour</a>
     </div>
 </body>
 </html>

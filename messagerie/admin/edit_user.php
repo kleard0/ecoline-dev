@@ -33,9 +33,9 @@ if (isset($_GET['id'])) {
         }
 
         if ($requete->execute()) {
-            echo "Utilisateur mis à jour avec succès.";
+            $message = "Utilisateur mis à jour avec succès.";
         } else {
-            echo "Erreur : " . $requete->error;
+            $message = "Erreur : " . $requete->error;
         }
 
         $requete->close();
@@ -116,6 +116,19 @@ $connexion->close();
         button:hover {
             background-color: #0056b3;
         }
+        .back-button {
+            display: block;
+            margin-top: 20px; /* Marge au-dessus du bouton */
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .back-button:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
@@ -159,6 +172,7 @@ $connexion->close();
                 <button type="submit">Mettre à jour</button>
             </div>
         </form>
+        <a href="modifier-utilisateur.php" class="back-button">Retour</a> <!-- Bouton Retour -->
     </div>
 </body>
 </html>

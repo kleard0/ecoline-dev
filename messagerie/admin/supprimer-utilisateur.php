@@ -25,6 +25,9 @@ if (isset($_GET['delete_id'])) {
         $message = "Erreur : " . $stmt->error;
     }
     $stmt->close();
+    // Redirection après suppression pour éviter le retrait en cas de rechargement de la page
+    header("Location: ".$_SERVER['PHP_SELF']);
+    exit();
 }
 
 $sql = "SELECT id, first_name, last_name, noms, roles, email, phone FROM utilisateurs";
@@ -54,8 +57,14 @@ $result = $connexion->query($sql);
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             margin-top: 50px;
         }
-        h1 {
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             margin-bottom: 20px;
+        }
+        h1 {
+            margin: 0;
         }
         table {
             width: 100%;
@@ -86,11 +95,11 @@ $result = $connexion->query($sql);
             padding: 10px;
             border-radius: 5px;
             margin-bottom: 20px;
+            display: <?php echo ($message != '') ? 'block' : 'none'; ?>;
         }
         .back-button {
             display: inline-block;
             padding: 10px 20px;
-            margin-bottom: 20px;
             background-color: #007BFF;
             color: white;
             text-decoration: none;
@@ -101,14 +110,29 @@ $result = $connexion->query($sql);
             background-color: #0056b3;
         }
     </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var messageDiv = document.querySelector('.message');
+            if (messageDiv && messageDiv.textContent !== '') {
+                messageDiv.style.display = 'block';
+                setTimeout(function() {
+                    messageDiv.style.display = 'none';
+                }, 2000);
+            }
+        });
+    </script>
 </head>
 <body>
     <div class="container">
-        <a href="index.php" class="back-button">Retour</a>
-        <h1>Liste des Utilisateurs</h1>
-        <?php if ($message): ?>
-            <div class="message"><?php echo $message; ?></div>
-        <?php endif; ?>
+        <div class="header">
+            <h1>Liste des Utilisateurs</h1>
+            <a href="index.php" class="back-button">Retour</a>
+        </div>
+        <?php
+        if (!empty($message)) {
+            echo '<div class="message">' . htmlspecialchars($message) . '</div>';
+        }
+        ?>
         <table>
             <thead>
                 <tr>

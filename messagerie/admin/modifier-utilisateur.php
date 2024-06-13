@@ -1,21 +1,3 @@
-<?php
-session_start();
-
-$serveur = "localhost";
-$utilisateur = "root";
-$motDePasse = "";
-$baseDeDonnees = "ecoline";
-
-$connexion = new mysqli($serveur, $utilisateur, $motDePasse, $baseDeDonnees);
-
-if ($connexion->connect_error) {
-    die("Échec de la connexion : " . $connexion->connect_error);
-}
-
-$sql = "SELECT id, first_name, last_name, noms, roles, email, phone FROM utilisateurs";
-$result = $connexion->query($sql);
-?>
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -41,11 +23,27 @@ $result = $connexion->query($sql);
         }
         h1 {
             margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .back-button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .back-button:hover {
+            background-color: #0056b3;
         }
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-bottom: 20px;
+            margin-top: 20px;
         }
         table, th, td {
             border: 1px solid #ccc;
@@ -68,7 +66,7 @@ $result = $connexion->query($sql);
 </head>
 <body>
     <div class="container">
-        <h1>Liste des Utilisateurs</h1>
+        <h1>Liste des Utilisateurs <a href="index.php" class="back-button">Retour</a></h1>
         <table>
             <thead>
                 <tr>
@@ -83,6 +81,21 @@ $result = $connexion->query($sql);
             </thead>
             <tbody>
                 <?php
+                session_start();
+                $serveur = "localhost";
+                $utilisateur = "root";
+                $motDePasse = "";
+                $baseDeDonnees = "ecoline";
+                
+                $connexion = new mysqli($serveur, $utilisateur, $motDePasse, $baseDeDonnees);
+                
+                if ($connexion->connect_error) {
+                    die("Échec de la connexion : " . $connexion->connect_error);
+                }
+                
+                $sql = "SELECT id, first_name, last_name, noms, roles, email, phone FROM utilisateurs";
+                $result = $connexion->query($sql);
+                
                 if ($result->num_rows > 0) {
                     while($row = $result->fetch_assoc()) {
                         echo "<tr>";
@@ -98,13 +111,11 @@ $result = $connexion->query($sql);
                 } else {
                     echo "<tr><td colspan='7'>Aucun utilisateur trouvé</td></tr>";
                 }
+                
+                $connexion->close();
                 ?>
             </tbody>
         </table>
     </div>
 </body>
 </html>
-
-<?php
-$connexion->close();
-?>

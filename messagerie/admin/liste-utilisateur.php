@@ -31,7 +31,6 @@ $result = $connexion->query($sql);
         }
         .container {
             margin: 0 auto;
-            text-align: center;
             max-width: 800px;
             padding: 20px;
             background-color: white;
@@ -41,11 +40,24 @@ $result = $connexion->query($sql);
         }
         h1 {
             margin-bottom: 20px;
+            text-align: center;
+        }
+        .back-button {
+            float: right;
+            padding: 1px;
+            background-color: #007BFF;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .back-button:hover {
+            background-color: #0056b3;
         }
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-bottom: 20px;
+            margin-top: 20px;
         }
         table, th, td {
             border: 1px solid #ccc;
@@ -61,7 +73,7 @@ $result = $connexion->query($sql);
 </head>
 <body>
     <div class="container">
-        <h1>Liste des Utilisateurs</h1>
+        <h1>Liste des Utilisateurs <a href="index.php" class="back-button">Retour</a></h1>
         <table>
             <thead>
                 <tr>
