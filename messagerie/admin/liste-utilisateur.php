@@ -1,56 +1,113 @@
+<?php
+session_start();
+
+$serveur = "localhost";
+$utilisateur = "root";
+$motDePasse = "";
+$baseDeDonnees = "ecoline";
+
+$connexion = new mysqli($serveur, $utilisateur, $motDePasse, $baseDeDonnees);
+
+if ($connexion->connect_error) {
+    die("Échec de la connexion : " . $connexion->connect_error);
+}
+
+$sql = "SELECT first_name, last_name, noms, roles, email, phone FROM utilisateurs";
+$result = $connexion->query($sql);
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Liste des utilisateurs</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des Utilisateurs</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            margin: 0 auto;
+            max-width: 800px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 50px;
+        }
+        h1 {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .back-button {
+            float: right;
+            padding: 1px;
+            background-color: #007BFF;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .back-button:hover {
+            background-color: #0056b3;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+    </style>
 </head>
 <body>
-    <h2>Liste des utilisateurs</h2>
-    <?php
-    $servername = "localhost";
-    $username = "message";
-    $password = "4VZzATv&jiCV5Jo*5m5i@!X^#PbK9ijx";
-    $dbname = "ecoline";
-
-    // Créer une connexion
-    $conn = new mysqli($servername, $username, $password, $dbname);
-
-    // Vérifier la connexion
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-
-    // Préparer et exécuter la requête pour récupérer toutes les informations des utilisateurs
-    $sql = "SELECT user_id, first_name, last_name, username, email, phone, account_type FROM utilisateur";
-    $result = $conn->query($sql);
-
-    if ($result->num_rows > 0) {
-        echo "<table border='1'>";
-        echo "<tr><th>ID Utilisateur</th><th>Prénom</th><th>Nom</th><th>Nom d'utilisateur</th><th>Email</th><th>Téléphone</th><th>Type de compte</th></tr>";
-        // Afficher les données de chaque ligne
-        while($row = $result->fetch_assoc()) {
-            echo "<tr>
-                    <td>" . $row["user_id"]. "</td>
-                    <td>" . $row["first_name"]. "</td>
-                    <td>" . $row["last_name"]. "</td>
-                    <td>" . $row["username"]. "</td>
-                    <td>" . $row["email"]. "</td>
-                    <td>" . $row["phone"]. "</td>
-                    <td>" . $row["account_type"]. "</td>
-                  </tr>";
-        }
-        echo "</table>";
-    } else {
-        echo "0 résultats";
-    }
-
-    // Fermer la connexion
-    $conn->close();
-    ?>
-
-    <br>
-    <form action="index.php" method="get">
-        <input type="submit" value="Retour à l'accueil">
-    </form>
+    <div class="container">
+        <h1>Liste des Utilisateurs <a href="index.php" class="back-button">Retour</a></h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Prénom</th>
+                    <th>Nom</th>
+                    <th>Identifiant</th>
+                    <th>Rôle</th>
+                    <th>Email</th>
+                    <th>Téléphone</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                if ($result->num_rows > 0) {
+                    while($row = $result->fetch_assoc()) {
+                        echo "<tr>";
+                        echo "<td>" . htmlspecialchars($row['first_name']) . "</td>";
+                        echo "<td>" . htmlspecialchars($row['last_name']) . "</td>";
+                        echo "<td>" . htmlspecialchars($row['noms']) . "</td>";
+                        echo "<td>" . htmlspecialchars($row['roles']) . "</td>";
+                        echo "<td>" . htmlspecialchars($row['email']) . "</td>";
+                        echo "<td>" . htmlspecialchars($row['phone']) . "</td>";
+                        echo "</tr>";
+                    }
+                } else {
+                    echo "<tr><td colspan='6'>Aucun utilisateur trouvé</td></tr>";
+                }
+                ?>
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>
+
+<?php
+$connexion->close();
+?>
