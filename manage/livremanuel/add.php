@@ -41,17 +41,17 @@
                 <div class="field_section">
                     <form action="data_add.php" method="post">
                         <div class="field">
-                            <input name="book_ID" id="book_ID" type="text" placeholder="Code barre : ID"/>
+                            <input name="book_ID" id="book_ID" type="text" placeholder="Code barre : ID" required/>
                         </div>
 
                         <div class="field"> 
-                            <input name="book_name" id="book_name" type="text" placeholder="Nom du livre"/>
+                            <input name="book_name" id="book_name" type="text" placeholder="Nom du livre" required/>
                         </div>
                         <div class="field">
-                            <input name="book_author" id="book_author" type="text" placeholder="Auteur du livre"/>
+                            <input name="book_author" id="book_author" type="text" placeholder="Auteur du livre" required/>
                         </div>
                         <div class="field">
-                            <input name="book_isbn" id="book_isbn" type="text" placeholder="Code ISBN"/>
+                            <input name="book_isbn" id="book_isbn" type="text" placeholder="Code ISBN" required/>
                         </div>
                         <button type="submit">Valider</button>
                     </form>

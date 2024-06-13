@@ -22,28 +22,41 @@ $utilisateur = "root";
 $motDePasse = "";
 $baseDeDonnees = "ecoline_books";
 
-try {
-    $connexion = new mysqli($serveur, $utilisateur, $motDePasse, $baseDeDonnees);
-    if ($connexion->connect_error) {
-        throw new Exception("Échec de la connexion : " . $connexion->connect_error);
-    }
+$connexion = new mysqli($serveur, $utilisateur, $motDePasse, $baseDeDonnees);
+if ($connexion->connect_error) {
+    die("Échec de la connexion : " . $connexion->connect_error);
+}
 
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $book_id = $connexion->real_escape_string($_POST['book_id']);
-        $users_id = $connexion->real_escape_string($_POST['users_id']);
-        $date = date('Y-m-d H:i:s');  
-        $state = $connexion->real_escape_string($_POST['state']);
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $book_id = $connexion->real_escape_string($_POST['book_id']);
+    $users_id = $connexion->real_escape_string($_POST['users_id']);
+    $date = date('Y-m-d H:i:s');  
+    $state = $connexion->real_escape_string($_POST['state']);
 
+    // Requête pour vérifier que le livre et l'emprunteur existent bien dans la base de données
+    $verif_books = "SELECT COUNT(*) as count FROM books WHERE barcode = '$book_id'";
+    $verif_users = "SELECT COUNT(*) as count FROM users WHERE barcode = '$users_id'";
+    
+    $requete_verifBooks = $connexion->query($verif_books);
+    $requete_verifUsers = $connexion->query($verif_users);
+    
+    $verif_books = $requete_verifBooks->fetch_assoc();
+    $verif_users = $requete_verifUsers->fetch_assoc();
+
+    if ($verif_books['count'] > 0 && $verif_users['count'] > 0) {
+        // Insérer dans la table emprunts
         $requete = $connexion->prepare("INSERT INTO emprunts(users_id, books_id, emprunt_date, state) VALUES (?, ?, ?, ?)");
         $requete->bind_param("iiss", $users_id, $book_id, $date, $state);
         $requete->execute();
 
         if ($requete->error) {
-            throw new Exception("Erreur lors de l'exécution de la requête : " . $requete->error);
+            echo "Erreur lors de l'exécution de la requête : " . $requete->error;
+        } else {
+            echo "L'emprunt a été enregistré avec succès.";
         }
+    } else {
+        echo "Erreur : l'utilisateur ou le livre n'existe pas.";
     }
-} catch (Exception $e) {
-    echo $e->getMessage();
 }
 ?>
 <div class="container-all">
@@ -51,17 +64,11 @@ try {
     <div class="emprunter">
         <h1> Emprunter un livre</h1>
         <form method="post">
-            
-                <input name="book_id" id="book_id" type="text" placeholder="ID du livre empruntés" onkeypress="return (event.charCode > 47 && event.charCode < 58)"/>
-           
-             
-                <input name="users_id" id="users_id" type="text" placeholder="ID de l'emprunteur"/>
-            
-            
-                <input name="state" id="state" type="text" placeholder="État actuel du livre"/>
-          
+            <input name="book_id" id="book_id" type="text" placeholder="ID du livre emprunté" required/>
+            <input name="users_id" id="users_id" type="text" placeholder="ID de l'emprunteur" required/>
+            <input name="state" id="state" type="text" placeholder="État actuel du livre" required/>
             <button type="submit">Valider</button>
-             <button> <a href="../emprunts.php">Retour </a> </button>
+            <button><a href="../emprunts.php">Retour</a></button>
         </form>
     </div>    
 </div>

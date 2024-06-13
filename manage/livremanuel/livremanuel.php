@@ -28,9 +28,9 @@ if (!$connexion) {
 }
 
 
-$requete_books = "SELECT * FROM books LIMIT 18";
+$requete_books = "SELECT * FROM books LIMIT 10";
 $resultat_books = $connexion->query($requete_books);
-$requete_history = "SELECT * FROM history LIMIT 18";
+$requete_history = "SELECT * FROM history LIMIT 10";
 $resultat_history = $connexion->query($requete_history);
 
 

@@ -1,27 +1,49 @@
+<<<<<<< Updated upstream
+=======
+<!--Ecoline-->
+>>>>>>> Stashed changes
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <!--Meta-->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<< Updated upstream
     <title>Connexion</title>
+=======
+
+
+// Récupérer les informations entrées par l'utilisateur
+$username = $_POST['username'];
+$password = $_POST['password'];
+>>>>>>> Stashed changes
 
     <!--CSS-->
     <style type="text/css">
         @import url(style.css);
+<<<<<<< Updated upstream
         @import url(components/sidebar.css);
         @import url(icons.css);
         
+=======
+        @import url(components\sidebar.css);
+        @import url(icons.css);
+        @import url(components/sidebar.css);
+>>>>>>> Stashed changes
     </style>
     <!--FONT-->
     <style>
         body {
             font-family: Arial, sans-serif;
+<<<<<<< Updated upstream
             background: #f0f0f0;
+=======
+>>>>>>> Stashed changes
         }
         .container {
             margin: 0 auto;
             text-align: center;
+<<<<<<< Updated upstream
             max-width: 400px;
             padding: 20px;
             background-color: white;
@@ -85,10 +107,13 @@
             100% {
                 background-position-x: 1000px;
             }
+=======
+>>>>>>> Stashed changes
         }
     </style>
 </head>
 <body>
+<<<<<<< Updated upstream
     <div class="wave"></div>
     <div class="wave"></div>
     <div class="wave"></div>
@@ -112,3 +137,21 @@
     </div>
 </body>
 </html>
+=======
+<div class="container">
+    <h1>Connexion</h1>
+    <img src="image/logo-ecoline.png" alt="Logo"><br>
+    <p>Veuillez vous connecter</p>
+    <form method="POST" action="">
+        <label for="username">Utilisateur :</label>
+        <input type="text" name="username" id="username" required><br>
+        <label for="password">Mot de passe :</label>
+        <input type="password" name="password" id="password" required><br>
+        <input type="submit" value="Login">
+    </form>
+</div>
+</body>
+</html>
+
+
+>>>>>>> Stashed changes
