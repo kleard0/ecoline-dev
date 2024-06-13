@@ -34,12 +34,13 @@
     </style>
 </head>
 <?php
-
+session_start();
 ?>
 
 <body>
     <div class="container-all">
-        <?php include '../components/sidebar.php'; ?>
+        <?php
+        include '../components/sidebar.php'; ?>
 
         <div class="main">
             <div class="head">
@@ -53,31 +54,51 @@
                 <h1>Menu de Cantine</h1>
             </div>
             <div class="main-container"> <!-- class pour les containers -->
-                <div class="container">
-                    <br><br><br><br><br><br>
-                    <a href="/cantine/cantine-appel.php">
-                        <span>Gérer l'appel</span>
-                    </a>
-                </div>
+                <?php
+                if (!isset($_SESSION['ID'])) {
+                    //  header("Location: login.php");
+                    //   exit;
+                }
 
+                $roles = $_SESSION['account_type'];
+                if ($roles == "teacher" || $roles == "direction") {
+                    ?>
+                    <div class="container">
+                        <br><br><br><br><br><br>
+                        <a href="/cantine/cantine-appel.php">
+                            <span>Gérer l'appel</span>
+                        </a>
+                    </div>
+                <?php } ?>
+                <?php 
+                if ($roles == "parent") {?>
                 <div class="container">
                     <br><br><br><br>
                     <a href="/cantine/reserve.php">
                         <span>Faire/consulter une Réservation</span>
                     </a>
                 </div>
+                <?php } ?>
+                <?php
+                if ($roles == "teacher" || $roles == "direction") {
+                    ?>
                 <div class="container">
                     <br><br><br><br><br>
                     <a href="/cantine/cantine-historique.php">
                         <span>Historique de présence</span>
                     </a>
                 </div>
+                <?php } ?>
+
+                <?php
+                if ($roles == "teacher" || $roles == "direction") {?>
                 <div class="container">
                     <br><br><br><br><br>
                     <a href="/cantine/cantine-codebarre.php">
                         <span>Présence par code-barre</span>
                     </a>
                 </div>
+                <?php } ?>
 
 
 

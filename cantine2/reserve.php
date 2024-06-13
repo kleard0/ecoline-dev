@@ -75,8 +75,6 @@ href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wg
                             <p>Annuler</p>
                         </a>
                     </div>
-                    <!-- <div class="button">
-                           <p>Envoyer</p> -->
                 </div>
             </div>
             <br>

@@ -84,9 +84,7 @@ while ($row_enfants = $result_enfants->fetch_assoc()) {
                     echo nl2br("$row_parents[0] : le parent est '$row_parents[1] $row_parents[2]'
               \n");
                 }
-
                 ?>
-
             </div>
             <table class="table_enfants">
                 <tr>
@@ -95,7 +93,6 @@ while ($row_enfants = $result_enfants->fetch_assoc()) {
                     <th scope='col'>Option</th>
                 </tr>
                 <?php
-
                 foreach ($data_enfants as $row_enfants) {
                     echo "<tr>";
                     echo "<td>" . $row_enfants["user_id"] . "</td>";

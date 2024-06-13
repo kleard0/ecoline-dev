@@ -64,16 +64,12 @@ while ($row_list = $result_list->fetch_assoc()) {
 
             <div class="main-container">
 
-                <table class="table_histoire">
+                <table class="table_historique">
                     <tr>
-                        <!-- <th scope='col'>ID</th> -->
                         <th scope='col'>Name</th>
                         <th scope='col'>ID</th>
                         <th scope='col'>Date</th>
                         <th scope='col'>Présence</th>
-                        <!--
-                                <th scope='col'>phone</th>
-                                <th scope='col'>email</th> --->
                     </tr>
                     <?php
 
@@ -93,10 +89,6 @@ while ($row_list = $result_list->fetch_assoc()) {
                     }
                     ?>
                 </table>
-
-
-
-
 
             </div>
         </div>

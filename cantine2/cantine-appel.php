@@ -86,13 +86,6 @@ while ($row_appel = $result_appel->fetch_assoc()) {
                             } else {
                                 echo '<td><p><a href="active-appel.php?user_id=' . $row_appel["user_id"] . '&presence=1">Absent</a></p></td>';
                             }
-                            /* echo "<td>
-                                             <form action=" . "/cantine/reserve3.php " . "method=" . "POST" . ">
-                                             <input type=" . "checkbox" . "name=" . "checkbox" . " value=" . $row_appel["student_id"] . ">
-                                             <button type=" . "submit" . ">" . "Choisir" . "</button></form>
-                                             </td>";
-                             /*
-                             echo "<td><button method="."POST"." onclick=\"location.href='/cantine/reserve3.php?student_id=".$row_enfants["student_id"]."'\">Choisir</button></td>"; */
                             echo "</tr>";
                         }
 
@@ -119,8 +112,10 @@ while ($row_appel = $result_appel->fetch_assoc()) {
                     echo "<th scope='col'>Option</th>";
 
                     $filtervalues = $_GET['search'];
-                    $query = "SELECT DISTINCT * FROM users LEFT JOIN reservation ON  user_id= reservation.fk_student_id WHERE account_type='student' AND CONCAT(first_name,last_name) LIKE '%$filtervalues%' 
-                                     GROUP BY first_name, last_name";
+                    $query = "SELECT DISTINCT * FROM users 
+                    LEFT JOIN reservation ON user_id= reservation.fk_student_id 
+                    WHERE account_type='student' AND CONCAT(first_name,last_name) LIKE '%$filtervalues%' 
+                    GROUP BY first_name, last_name";
                     $query_run = mysqli_query($connect, $query);
 
 
@@ -132,10 +127,10 @@ while ($row_appel = $result_appel->fetch_assoc()) {
                             echo '<td>' . $element['first_name'] . ' ' . $element['last_name'] . '</td>';
                             echo
                                 '<td>
-                                                <form method="GET">
-                                                <input type="hidden" id="ajouter" name="ajouter" value="' . $element["user_id"] . '">
-                                                <button type="submit">Ajouter</button>
-                                                </td></form>';
+                                        <form method="GET">
+                                        <input type="hidden" id="ajouter" name="ajouter" value="' . $element["user_id"] . '">
+                                        <button type="submit">Ajouter</button>
+                                        </td></form>';
                             //}
                             echo "</tr>";
                         }
@@ -172,18 +167,7 @@ while ($row_appel = $result_appel->fetch_assoc()) {
                     ob_end_flush();
                 }
                 ?>
-
                 </table>                
-                <?php
-                /*
-                 if (isset($_GET["ajouter"])) {
-                    $kiki = ($_GET["ajouter"]);
-                $register = "INSERT INTO reservation (res_date,fk_student_id) VALUES (CURDATE(),'$kiki')";
-
-                 var_dump($connect);
-                 var_dump($register);}
-                 */
-                ?>
             </div>
         </div>
     </div>

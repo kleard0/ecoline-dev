@@ -6,26 +6,26 @@ $utilisateur = "root";
 $motDePasse = "";
 $baseDeDonnees = "ecoline";
 
-$connexion = new mysqli($serveur, $utilisateur, $motDePasse, $baseDeDonnees);
+$connect = new mysqli($serveur, $utilisateur, $motDePasse, $baseDeDonnees);
 
-if ($connexion->connect_error) {
-    die("Échec de la connexion : " . $connexion->connect_error);
+if ($connect->connect_error) {
+    die("Échec de la connexion : " . $connect->connect_error);
 }
 
 if (isset($_POST['login'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
     
-    $requete = $connexion->prepare("SELECT user_id, password, account_type FROM users WHERE username = ?");
+    $requete = $connect->prepare("SELECT user_id, password, account_type FROM users WHERE username = ?");
     $requete->bind_param("s", $username);
     $requete->execute();
-    $requete->bind_result($id, $hash_mdp, $roles);
+    $requete->bind_result($id,$stored_password, $account_type);
     $requete->fetch();
     
-    if (password_verify($password, $hash_mdp)) {
+    if ($password === $stored_password) {
         $_SESSION['user_id'] = $id;
-        $_SESSION['account_type'] = $roles;
-        header("Location: gestion.php");
+        $_SESSION['account_type'] = $account_type;
+        header("Location: cantine-menu.php");
         exit;
     } else {
         $message = "Nom ou mot de passe incorrect";
@@ -33,7 +33,7 @@ if (isset($_POST['login'])) {
     $requete->close();
 }
 
-$connexion->close();
+$connect->close();
 ?>
 
 <!DOCTYPE html>

@@ -18,9 +18,12 @@ if (!$connect) {
 if (isset($_POST["user_id"])) {
     //utilise le data inséré dans le champ
     $_SESSION["user_id"] = $_POST["user_id"];
-    $req_parents = "SELECT * FROM users where account_type = 'parent' AND user_id = '" . $_SESSION["user_id"] . "' ";
+    $req_parents = "SELECT * FROM users where account_type = 'parent' 
+    AND user_id = '" . $_SESSION["user_id"] . "' ";
+
     $result_parents = $connect->query($req_parents);
     $row_parents = mysqli_fetch_array($result_parents);
+    
     $req_enfants = "SELECT DISTINCT T1.* FROM users T1 
     join users T2 ON T1.family_id = T2.family_id 
     WHERE  T1.user_id != T2.user_id 
