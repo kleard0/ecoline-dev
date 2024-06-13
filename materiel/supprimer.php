@@ -1,5 +1,3 @@
-
-
 <?php
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -17,25 +15,17 @@ if (!$connexion) {
 
 session_start();
 
-/*if (!isset($_SESSION['ID'])) {
-    header("Location: login.php");
-    exit;
-}
-
-$roles = $_SESSION['roles'];
-if ($roles !==4) {
-    header('Location : login.php');
-    exit;
-}*/
-
 $requete_produits = "
 SELECT 
     p.product_id,
     p.product_price,
+    cat.category_id,
     cat.category_description,
     s.stock_quantity,
     s.date_ajout,
+    f.supplier_id,
     f.supplier_name,
+    e.expeditor_id,
     e.expeditor_name,
     p.transaction_type
 FROM produits as p
@@ -57,29 +47,72 @@ while ($ligne_produits = $resultat_produits->fetch_assoc()) {
 
 if (isset($_POST['delete'])) {
     $did = intval($_POST['id']);
-    // Supprimer les réservations associées
-    if ($query = $connexion->prepare("DELETE FROM reservations WHERE product_id = ?")) {
-        $query->bind_param("i", $did);
+    $supplier_id = intval($_POST['supplier_id']);
+    $expeditor_id = intval($_POST['expeditor_id']);
+    $category_id = intval($_POST['category_id']);
+    $quantity_to_delete = intval($_POST['quantity_to_delete']);
+
+    // Mettre à jour la quantité en stock
+    if ($query = $connexion->prepare("UPDATE stocks SET stock_quantity = stock_quantity - ? WHERE product_id = ?")) {
+        $query->bind_param("ii", $quantity_to_delete, $did);
         $query->execute();
         $query->close();
     } else {
         die("Erreur de préparation de la requête : " . $connexion->error);
     }
-    // Supprimer les stocks associés
-    if ($query = $connexion->prepare("DELETE FROM stocks WHERE product_id = ?")) {
-        $query->bind_param("i", $did);
-        $query->execute();
-        $query->close();
-    } else {
-        die("Erreur de préparation de la requête : " . $connexion->error);
-    }
-    // Supprimer le produit
-    if ($query = $connexion->prepare("DELETE FROM produits WHERE product_id = ?")) {
-        $query->bind_param("i", $did);
-        $query->execute();
-        $query->close();
-    } else {
-        die("Erreur de préparation de la requête : " . $connexion->error);
+
+    // Vérifier si la quantité en stock est à 0, et supprimer les enregistrements associés
+    $result = $connexion->query("SELECT stock_quantity FROM stocks WHERE product_id = $did");
+    $row = $result->fetch_assoc();
+    if ($row['stock_quantity'] <= 0) {
+        // Supprimer les réservations associées
+        if ($query = $connexion->prepare("DELETE FROM reservations WHERE product_id = ?")) {
+            $query->bind_param("i", $did);
+            $query->execute();
+            $query->close();
+        } else {
+            die("Erreur de préparation de la requête : " . $connexion->error);
+        }
+        // Supprimer les stocks associés
+        if ($query = $connexion->prepare("DELETE FROM stocks WHERE product_id = ?")) {
+            $query->bind_param("i", $did);
+            $query->execute();
+            $query->close();
+        } else {
+            die("Erreur de préparation de la requête : " . $connexion->error);
+        }
+        // Supprimer le produit
+        if ($query = $connexion->prepare("DELETE FROM produits WHERE product_id = ?")) {
+            $query->bind_param("i", $did);
+            $query->execute();
+            $query->close();
+        } else {
+            die("Erreur de préparation de la requête : " . $connexion->error);
+        }
+        // Supprimer l'expéditeur
+        if ($query = $connexion->prepare("DELETE FROM expediteurs WHERE expeditor_id = ?")) {
+            $query->bind_param("i", $expeditor_id);
+            $query->execute();
+            $query->close();
+        } else {
+            die("Erreur de préparation de la requête : " . $connexion->error);
+        }
+        // Supprimer le fournisseur
+        if ($query = $connexion->prepare("DELETE FROM fournisseurs WHERE supplier_id = ?")) {
+            $query->bind_param("i", $supplier_id);
+            $query->execute();
+            $query->close();
+        } else {
+            die("Erreur de préparation de la requête : " . $connexion->error);
+        }
+        // Supprimer la catégorie
+        if ($query = $connexion->prepare("DELETE FROM categories WHERE category_id = ?")) {
+            $query->bind_param("i", $category_id);
+            $query->execute();
+            $query->close();
+        } else {
+            die("Erreur de préparation de la requête : " . $connexion->error);
+        }
     }
 
     header('Location: ' . $_SERVER['REQUEST_URI']);
@@ -116,7 +149,7 @@ if (isset($_POST['ajout'])) {
     } else {
         die("Erreur de préparation de la requête : " . $connexion->error);
     }
-    //On insère le prix
+    //On insère le produit
     if ($query = $connexion->prepare("INSERT INTO Produits (product_id, supplier_id, product_price, category_id, transaction_type) VALUES (?, ?, ?, ?, ?)")) {
         $query->bind_param("iissi", $product_id, $supplier_id, $product_price, $category_id, $transaction_type);
         $query->execute();
@@ -189,10 +222,16 @@ JS;
                 echo "<td>" . $ligne_produits['date_ajout'] . "</td>";
                 echo "<td>" . $ligne_produits['supplier_name'] . "</td>";
                 echo "<td>" . $ligne_produits['expeditor_name'] . "</td>";
-                echo "<td><form method='POST'>
-                <input type='hidden' name='id' value='" . $ligne_produits['product_id'] . "'>
-                <input type='submit' value='Supprimer' name='delete'>
-                </form></td>";
+                echo "<td>
+                <form method='POST'>
+                    <input type='hidden' name='id' value='" . $ligne_produits['product_id'] . "'>
+                    <input type='hidden' name='supplier_id' value='" . $ligne_produits['supplier_id'] . "'>
+                    <input type='hidden' name='expeditor_id' value='" . $ligne_produits['expeditor_id'] . "'>
+                    <input type='hidden' name='category_id' value='" . $ligne_produits['category_id'] . "'>
+                    <input type='number' name='quantity_to_delete' min='1' max='" . $ligne_produits['stock_quantity'] . "' required placeholder='Quantité'>
+                    <input type='submit' value='Supprimer' name='delete'>
+                </form>
+                </td>";
                 echo "</tr>";
             }
             ?>

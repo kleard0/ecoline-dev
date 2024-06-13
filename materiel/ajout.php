@@ -180,7 +180,7 @@ if (isset($_POST['ajout'])) {
                 <label>Type de transaction</label>
                 <select required="required" name="transaction_type">
                     <option value="1">Achat</option>
-                    <option value="2">Emprunt</option>
+                    <option value="2">Prêt</option>
                 </select>
             </div>
             <div>

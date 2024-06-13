@@ -31,8 +31,8 @@ SELECT
     f.supplier_name,
     e.expeditor_name,
     CASE
-        WHEN p.transaction_type = 1 THEN 'Achat'
-        WHEN p.transaction_type = 2 THEN 'Emprunt'
+        WHEN p.transaction_type = 1 THEN 'Prêt'
+        WHEN p.transaction_type = 2 THEN 'Achat'
         ELSE 'N/A'
     END AS transaction_type
 FROM produits as p

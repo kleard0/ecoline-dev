@@ -7,15 +7,16 @@ CREATE TABLE `Produits` (
   `product_id` INTEGER PRIMARY KEY,
   `supplier_id` INTEGER,
   `category_id` INTEGER,
-  `product_unit` VARCHAR(50),
-  `product_price` VARCHAR(50)
+  -- `product_unit` VARCHAR(50),
+  `product_price` VARCHAR(50),
+  `transaction_type` INTEGER
 );
 
 -- Création de la table `Stocks` après avoir vérifié que `Produits` existe
 CREATE TABLE `Stocks` (
   `stock_id` INTEGER PRIMARY KEY,
   `stock_quantity` INTEGER,
-  `stock_name` VARCHAR(255),
+  -- `stock_name` VARCHAR(255),
   `product_id` INTEGER,
   `date_ajout` DATE,
   FOREIGN KEY (`product_id`) REFERENCES `Produits` (`product_id`)
@@ -35,7 +36,7 @@ CREATE TABLE `Fournisseurs` (
 -- Création de la table `Categories`
 CREATE TABLE `Categories` (
   `category_id` INTEGER PRIMARY KEY,
-  `category_name` VARCHAR(255),
+  -- `category_name` VARCHAR(255),
   `category_description` VARCHAR(255)
 );
 
@@ -53,48 +54,48 @@ CREATE TABLE `Expediteurs` (
 );
 
 -- Création de la table `Commandes`
-CREATE TABLE `Commandes` (
-  `order_id` INTEGER PRIMARY KEY,
-  `client_ad` INTEGER,
-  `employe_ad` INTEGER,
-  `order_date` DATE,
-  `sender_id` INTEGER,
-  FOREIGN KEY (`sender_id`) REFERENCES `Expediteurs` (`expeditor_id`)
-);
+-- CREATE TABLE `Commandes` (
+--   `order_id` INTEGER PRIMARY KEY,
+--   `client_ad` INTEGER,
+--   `employe_ad` INTEGER,
+--   `order_date` DATE,
+--   `sender_id` INTEGER,
+--   FOREIGN KEY (`sender_id`) REFERENCES `Expediteurs` (`expeditor_id`)
+-- );
 
 -- Assurez-vous que la table `Stocks` a déjà été créée
-CREATE TABLE `Prets` (
-  `borrow_id` INTEGER PRIMARY KEY,
-  `stock_id` INTEGER,
-  `client_ad` INTEGER,
-  `employe_ad` INTEGER,
-  `borrow_date` DATE,
-  `back_date` DATE,
-  `state_back` VARCHAR(100),
-  FOREIGN KEY (`stock_id`) REFERENCES `Stocks` (`stock_id`)
-);
+-- CREATE TABLE `Prets` (
+--   `borrow_id` INTEGER PRIMARY KEY,
+--   `stock_id` INTEGER,
+--   `client_ad` INTEGER,
+--   `employe_ad` INTEGER,
+--   `borrow_date` DATE,
+--   `back_date` DATE,
+--   `state_back` VARCHAR(100),
+--   FOREIGN KEY (`stock_id`) REFERENCES `Stocks` (`stock_id`)
+-- );
 
-CREATE TABLE `Entree` (
-  `enter_id` INTEGER PRIMARY KEY,
-  `enter_date` DATE,
-  `stock_id` INTEGER,
-  FOREIGN KEY (`stock_id`) REFERENCES `Stocks` (`stock_id`)
-);
+-- CREATE TABLE `Entree` (
+--   `enter_id` INTEGER PRIMARY KEY,
+--   `enter_date` DATE,
+--   `stock_id` INTEGER,
+--   FOREIGN KEY (`stock_id`) REFERENCES `Stocks` (`stock_id`)
+-- );
 
-CREATE TABLE `Consommable` (
-  `consumable_id` INTEGER PRIMARY KEY,
-  `consumable_quantity` INTEGER,
-  `stock_id` INTEGER,
-  FOREIGN KEY (`stock_id`) REFERENCES `Stocks` (`stock_id`)
-);
+-- CREATE TABLE `Consommable` (
+--   `consumable_id` INTEGER PRIMARY KEY,
+--   `consumable_quantity` INTEGER,
+--   `stock_id` INTEGER,
+--   FOREIGN KEY (`stock_id`) REFERENCES `Stocks` (`stock_id`)
+-- );
 
-CREATE TABLE `Intermediaire` (
-  `inter_id` INTEGER PRIMARY KEY,
-  `pret_quantity` INTEGER,
-  `stock_id` INTEGER,
-  `retour_stock` VARCHAR(100),
-  FOREIGN KEY (`stock_id`) REFERENCES `Stocks` (`stock_id`)
-);
+-- CREATE TABLE `Intermediaire` (
+--   `inter_id` INTEGER PRIMARY KEY,
+--   `pret_quantity` INTEGER,
+--   `stock_id` INTEGER,
+--   `retour_stock` VARCHAR(100),
+--   FOREIGN KEY (`stock_id`) REFERENCES `Stocks` (`stock_id`)
+-- );
 
 CREATE TABLE Reservations (
     reservation_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -106,7 +107,7 @@ CREATE TABLE Reservations (
     FOREIGN KEY (product_id) REFERENCES Produits(product_id)
 );
 
-CREATE TABLE IF NOT EXISTS utilisateurs (
+CREATE TABLE Utilisateurs (
     ID INT AUTO_INCREMENT PRIMARY KEY,
     noms VARCHAR(255) NOT NULL,
     mdp TEXT NOT NULL,

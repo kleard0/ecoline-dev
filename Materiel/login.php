@@ -25,7 +25,7 @@ if (isset($_POST['login'])) {
     if (password_verify($mdp, $hash_mdp)) {
         $_SESSION['ID'] = $id;
         $_SESSION['roles'] = $roles;
-        header("Location: gestion.php");
+        header("Location: materiel.php");
         exit;
     } else {
         $message = "Nom ou mot de passe incorrect";

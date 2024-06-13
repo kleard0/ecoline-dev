@@ -160,8 +160,8 @@ JS;
             </tr>
             <?php
             foreach ($donnees_produits as $ligne_produits) {
-                $achatEmprunt = $ligne_produits['transaction_type'] === "1" ? "Pr&ecirc;t" : 
-                    ($ligne_produits['transaction_type'] === "2" ? "Achat" 
+                $achatEmprunt = $ligne_produits['transaction_type'] === "2" ? "Pr&ecirc;t" : 
+                    ($ligne_produits['transaction_type'] === "1" ? "Achat" 
                     : "N/A");
                 echo "<tr>";
                 echo "<td>" . $ligne_produits['product_id'] . "</td>";
