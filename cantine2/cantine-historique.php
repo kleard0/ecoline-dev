@@ -39,12 +39,6 @@
 </head>
 <?php
 include 'sql_login.php';
-
-/*
-$data_list = array();
-while ($row_list = $result_list->fetch_assoc()) {
-    $data_list[] = $row_list;
-}*/
 ?>
 
 <body>

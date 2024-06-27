@@ -140,7 +140,6 @@ while ($row_enfants = $result_enfants->fetch_assoc()) {
 
                     foreach ($data_res as $row_res) {
                         echo "<tr>";
-                        //   echo "<td>" . $row_enfants["student_id"] . "</td>";
                         echo "<td>" . $row_res["first_name"] . " " . $row_res["last_name"] . "</td>";
                         echo "<td>" . $row_res["res_date"] . "</td>";
                         echo "</tr>";

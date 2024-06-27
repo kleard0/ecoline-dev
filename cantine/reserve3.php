@@ -68,7 +68,7 @@ session_start();
 
                 <div class="button_section">
                     <div class="button">
-                        <a href="/cantine/reserve.php">
+                        <a href="/cantine2/reserve.php">
                             <p>Annuler</p>
                         </a>
                     </div>

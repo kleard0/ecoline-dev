@@ -66,10 +66,7 @@ if (isset($_POST["user_id"])) {
                 </div>
             </div>
             <br>
-            <?php if (isset($_SESSION['status'])) {
-                echo "<h4>" . $_SESSION['status'] . "</h4>";
-                unset($_SESSION['status']);
-            }
+            <?php
 
             if (isset($_POST["user_id"])) {
                 echo "student : [" . $_POST["user_id"] . "] " . $row_enfants[1] . " " . $row_enfants[2];

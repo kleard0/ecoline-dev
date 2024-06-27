@@ -151,7 +151,6 @@ while ($row_appel = $result_appel->fetch_assoc()) {
                         //check si le tableau n'a pas de data enregistrée déjà avec ce nom
 
                         if (mysqli_num_rows($check_run) === 0) {
-                            var_dump($_GET["ajouter"]); 
                             $kiki = ($_GET["ajouter"]);
                             $register = "INSERT INTO reservation (res_date,fk_student_id) VALUES (CURDATE(),'" . $_GET["ajouter"] . "')";
                             $register_run = mysqli_query($connect, $register);

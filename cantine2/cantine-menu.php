@@ -65,7 +65,7 @@ session_start();
                     ?>
                     <div class="container">
                         <br><br><br><br><br><br>
-                        <a href="/cantine/cantine-appel.php">
+                        <a href="/cantine2/cantine-appel.php">
                             <span>Gérer l'appel</span>
                         </a>
                     </div>
@@ -74,7 +74,7 @@ session_start();
                 if ($roles == "parent") {?>
                 <div class="container">
                     <br><br><br><br>
-                    <a href="/cantine/reserve.php">
+                    <a href="/cantine2/reserve.php">
                         <span>Faire/consulter une Réservation</span>
                     </a>
                 </div>
@@ -84,7 +84,7 @@ session_start();
                     ?>
                 <div class="container">
                     <br><br><br><br><br>
-                    <a href="/cantine/cantine-historique.php">
+                    <a href="/cantine2/cantine-historique.php">
                         <span>Historique de présence</span>
                     </a>
                 </div>
@@ -94,7 +94,7 @@ session_start();
                 if ($roles == "teacher" || $roles == "direction") {?>
                 <div class="container">
                     <br><br><br><br><br>
-                    <a href="/cantine/cantine-codebarre.php">
+                    <a href="/cantine2/cantine-codebarre.php">
                         <span>Présence par code-barre</span>
                     </a>
                 </div>

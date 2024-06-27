@@ -24,6 +24,7 @@ if (isset($_POST["user_id"])) {
     $result_parents = $connect->query($req_parents);
     $row_parents = mysqli_fetch_array($result_parents);
     
+    // sql pour SELECT des lignes qui partage un valeur specifique dans le BDD
     $req_enfants = "SELECT DISTINCT T1.* FROM users T1 
     join users T2 ON T1.family_id = T2.family_id 
     WHERE  T1.user_id != T2.user_id 
@@ -34,7 +35,7 @@ if (isset($_POST["user_id"])) {
 
 
 
-
+    // SELECT les reservations et connecte le clé etranger avec l'user_id
 $req_historique = "SELECT * FROM reservation 
 FULL JOIN users 
 ON fk_student_id = users.user_id  ORDER BY res_date DESC";
